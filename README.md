@@ -16,7 +16,7 @@ The Ada Stemmer Library integrates stemming algorithms for: English, French, Gre
 Example of stemming:
 
 |Language | Word          | Stem       |
-+---------+---------------+------------+
+|---------|---------------|------------|
 |French   | chienne       | chien      |
 |French   | affectionnait | affection  |
 |English  | zealously     | zealous    |
