@@ -51,4 +51,29 @@ And unit tests are executed with:
    make test
 ```
 
+# Simple example
 
+The Ada Stemmer library does not split words.  You have to give them one word at a time
+to stem and it returns either the word itself or its stem.  The `Stemmer.Factory` is
+the multi-language entry point.  The stemmer algorithm is created for each call.
+
+```
+with Stemmer.Factory;
+
+  Ada.Text_IO.Put_Line (Stem (L_FRENCH, "chienne"));
+```
+
+It is possible to instantiate a specific stemmer algorithm and then use it to stem
+words.
+
+```
+with Stemmer.English;
+
+  Ctx : Stemmer.English.Context_Type;
+  Result : Boolean;
+
+  Ctx.Stem_Word ("zealously", Result);
+  if Result then
+     Ada.Text_IO.Put_Line (Ctx.Get_Result);
+  end if;
+```
