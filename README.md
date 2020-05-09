@@ -8,9 +8,21 @@
 The Ada Stemmer Library is a [stemming](https://en.wikipedia.org/wiki/Stemming) processor for several
 natural languages.  It is based on top of the [Snowball compiler and stemming algorithms](https://snowballstem.org/)
 which has been adapted to generate Ada code.  A stemming algorithm is used in natural language analysis to find
-the base or root form of a word.
+the base or root form of a word.  Such algorithm is specific to each natural language.
+The [Porter Stemmer](https://tartarus.org/martin/PorterStemmer/) algorithm is specific to the English language
+and will not work for French, Greek or Russian.
 
 The Ada Stemmer Library integrates stemming algorithms for: English, French, Greek, Serbian, Spanish, Swedish, Russian.
+Example of stemming:
+
+|Language | Word          | Stem       |
++---------+---------------+------------+
+|French   | chienne       | chien      |
+|French   | affectionnait | affection  |
+|English  | zealously     | zealous    |
+|English  | transitional  | transit    |
+|Greek    | ΠΟΣΟΤΗΤΑ      | ποσοτητ    |
+|Greek    | ΜΝΗΜΕΙΩΔΕΣ    | μνημειωδ   |
 
 
 ## Version 0.1.0 - May 2020
