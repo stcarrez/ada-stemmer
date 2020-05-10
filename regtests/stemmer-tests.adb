@@ -16,8 +16,10 @@
 --  limitations under the License.
 -----------------------------------------------------------------------
 
-with Util.Tests;
+with Ada.Text_IO;
 with Util.Test_Caller;
+with Util.Files;
+with Util.Strings;
 package body Stemmer.Tests is
 
    use Stemmer.Factory;
@@ -32,7 +34,37 @@ package body Stemmer.Tests is
                        Test_Stem_English'Access);
       Caller.Add_Test (Suite, "Test Stemmer.Stem (Greek)",
                        Test_Stem_Greek'Access);
+      Caller.Add_Test (Suite, "Test Stemmer.Stem (French)",
+                       Test_Stem_French_Reference_File'Access);
    end Add_Tests;
+
+   procedure Verify (T : in out Test;
+                     L : in Factory.Language_Type;
+                     Source : in String) is
+      procedure Process (Line : in String);
+
+      Error : Boolean := False;
+
+      procedure Process (Line : in String) is
+         Pos : constant Natural := Util.Strings.Index (Line, ASCII.HT);
+      begin
+         if Pos > 0 then
+            declare
+               Word   : constant String := Line (Line'First .. Pos - 1);
+               Expect : constant String := Line (Pos + 1 .. Line'Last);
+               Result : constant String := Stemmer.Factory.Stem (L, Word);
+            begin
+               if Result /= Expect then
+                  Ada.Text_IO.Put_Line ("Bad [" & Word & "] -> [" & Result & "] <== " & Expect);
+                  Error := True;
+               end if;
+            end;
+         end if;
+      end Process;
+   begin
+      Util.Files.Read_File (Source, Process'Access);
+      T.Assert (not Error, "Stemming error for " & Source);
+   end Verify;
 
    procedure Verify (T : in out Test;
                      L : in Factory.Language_Type;
@@ -52,6 +84,7 @@ package body Stemmer.Tests is
       T.Verify (L_FRENCH, "échographe", "échograph");
       T.Verify (L_FRENCH, "abandonnait", "abandon");
       T.Verify (L_FRENCH, "affectées", "affect");
+      Verify (T, L_FRENCH, "regtests/files/fr-test.txt");
       T.Verify (L_FRENCH, "affectionné", "affection");
       T.Verify (L_FRENCH, "affectionnait", "affection");
    end Test_Stem_French;
@@ -70,8 +103,8 @@ package body Stemmer.Tests is
       T.Verify (L_ENGLISH, "cosmos", "cosmos");
       T.Verify (L_ENGLISH, "transitional", "transit");
 
---      T.Verify (L_ENGLISH, "academies", "academy");
---      T.Verify (L_ENGLISH, "abolished", "abolish");
+      T.Verify (L_ENGLISH, "academies", "academi");
+      T.Verify (L_ENGLISH, "abolished", "abolish");
    end Test_Stem_English;
 
    --  Stem on Greek words.
@@ -79,6 +112,14 @@ package body Stemmer.Tests is
    begin
       T.Verify (L_GREEK, "ΠΟΣΟΤΗΤΑ", "ποσοτητ");
       T.Verify (L_GREEK, "ΜΝΗΜΕΙΩΔΕΣ", "μνημειωδ");
+      T.Verify (L_GREEK, "ΩΣΤΙΚΟ", "ωστ");
+      T.Verify (L_GREEK, "ΩΦΕΛΕΙ", "ωφελ");
    end Test_Stem_Greek;
+
+   --  Stem on French words using the reference file.
+   procedure Test_Stem_French_Reference_File (T : in out Test) is
+   begin
+      Verify (T, L_FRENCH, "regtests/files/fr-test.txt");
+   end Test_Stem_French_Reference_File;
 
 end Stemmer.Tests;
