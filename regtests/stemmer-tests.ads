@@ -29,13 +29,20 @@ package Stemmer.Tests is
                      S : in String;
                      R : in String);
 
+   procedure Verify (T : in out Test;
+                     L : in Factory.Language_Type;
+                     Source : in String);
+
    --  Stem on French words.
    procedure Test_Stem_French (T : in out Test);
 
    --  Stem on English words.
    procedure Test_Stem_English (T : in out Test);
-   
+
    --  Stem on Greek words.
    procedure Test_Stem_Greek (T : in out Test);
+
+   --  Stem on French word using the reference file.
+   procedure Test_Stem_French_Reference_File (T : in out Test);
 
 end Stemmer.Tests;
