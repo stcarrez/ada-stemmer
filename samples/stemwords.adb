@@ -43,7 +43,7 @@ begin
             Last_Pos  : Positive;
             Start_Pos : Positive;
          begin
-            while Pos < Line'Last loop
+            while Pos <= Line'Last loop
                Last_Pos := Pos;
                while Pos <= Line'Last and then Is_Space (Line (Pos)) loop
                   Pos := Pos + 1;
