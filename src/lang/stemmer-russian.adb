@@ -353,7 +353,6 @@ package body Stemmer.Russian is
             --  literal, line 117
             C := Eq_S_Backward (Z, "а");
             if C = 0 then
-               Z.C := Z.L - v_1;
                goto lab2;
             end if;
             Z.C := Z.C - C;
@@ -664,7 +663,6 @@ package body Stemmer.Russian is
       --  call perfective_gerund, line 210
       R_Perfective_gerund (Z, Result);
       if not Result then
-         Z.Lb := v_6;
          goto lab7;
       end if;
       goto lab6;
@@ -687,7 +685,6 @@ package body Stemmer.Russian is
       --  call adjectival, line 212
       R_Adjectival (Z, Result);
       if not Result then
-         Z.Lb := v_6;
          goto lab10;
       end if;
       goto lab9;
@@ -697,7 +694,6 @@ package body Stemmer.Russian is
       --  call verb, line 212
       R_Verb (Z, Result);
       if not Result then
-         Z.Lb := v_6;
          goto lab11;
       end if;
       goto lab9;
@@ -707,7 +703,6 @@ package body Stemmer.Russian is
       --  call noun, line 212
       R_Noun (Z, Result);
       if not Result then
-         Z.Lb := v_6;
          goto lab5;
       end if;
 

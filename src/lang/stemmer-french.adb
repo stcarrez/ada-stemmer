@@ -688,7 +688,6 @@ package body Stemmer.French is
             --  call R2, line 107
             R_R2 (Z, Result);
             if not Result then
-               Z.C := Z.L - v_1;
                goto lab2;
             end if;
             --  delete, line 107
@@ -795,7 +794,6 @@ package body Stemmer.French is
                   --  call R2, line 125
                   R_R2 (Z, Result);
                   if not Result then
-                     Z.C := Z.L - v_3;
                      goto lab5;
                   end if;
                   --  delete, line 125
@@ -878,7 +876,6 @@ package body Stemmer.French is
                   --  call R2, line 139
                   R_R2 (Z, Result);
                   if not Result then
-                     Z.C := Z.L - v_5;
                      goto lab8;
                   end if;
                   --  delete, line 139
@@ -899,7 +896,6 @@ package body Stemmer.French is
                   --  call R2, line 140
                   R_R2 (Z, Result);
                   if not Result then
-                     Z.C := Z.L - v_5;
                      goto lab10;
                   end if;
                   --  delete, line 140
@@ -976,7 +972,6 @@ package body Stemmer.French is
             --  call R2, line 149
             R_R2 (Z, Result);
             if not Result then
-               Z.C := Z.L - v_8;
                goto lab13;
             end if;
             --  delete, line 149
@@ -1264,7 +1259,6 @@ package body Stemmer.French is
       --  literal, line 206
       C := Eq_S_Backward (Z, "Hi");
       if C = 0 then
-         Z.C := Z.L - v_1;
          goto lab2;
       end if;
       Z.C := Z.C - C;
@@ -1323,7 +1317,6 @@ package body Stemmer.French is
             --  literal, line 209
             C := Eq_S_Backward (Z, "s");
             if C = 0 then
-               Z.Lb := v_5;
                goto lab4;
             end if;
             Z.C := Z.C - C;
@@ -1530,7 +1523,6 @@ package body Stemmer.French is
       --  literal, line 240
       C := Eq_S_Backward (Z, "Y");
       if C = 0 then
-         Z.C := Z.L - v_7;
          goto lab8;
       end if;
       Z.C := Z.C - C;
