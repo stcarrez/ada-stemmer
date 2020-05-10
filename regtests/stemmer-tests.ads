@@ -75,4 +75,7 @@ package Stemmer.Tests is
    --  Stem on German word using the reference file.
    procedure Test_Stem_German_Reference_File (T : in out Test);
 
+   --  Stem on Italian word using the reference file.
+   procedure Test_Stem_Italian_Reference_File (T : in out Test);
+
 end Stemmer.Tests;
