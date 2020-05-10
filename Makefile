@@ -47,6 +47,7 @@ generate: ./snowball/snowball
 	$(SNOWBALL) $(SNOWBALL_ALGORITHMS)/greek.sbl -ada -P Greek -comments -o src/lang/stemmer-greek
 	$(SNOWBALL) $(SNOWBALL_ALGORITHMS)/spanish.sbl -ada -P Spanish -comments -o src/lang/stemmer-spanish
 	$(SNOWBALL) $(SNOWBALL_ALGORITHMS)/german.sbl -ada -P German -comments -o src/lang/stemmer-german
+	$(SNOWBALL) $(SNOWBALL_ALGORITHMS)/italian.sbl -ada -P Italian -comments -o src/lang/stemmer-italian
 
 snowball/snowball:
 	cd ./snowball && $(MAKE)
