@@ -38,6 +38,8 @@ package body Stemmer.Tests is
                        Test_Stem_Spanish'Access);
       Caller.Add_Test (Suite, "Test Stemmer.Stem (Swedish)",
                        Test_Stem_Swedish'Access);
+      Caller.Add_Test (Suite, "Test Stemmer.Stem (Russian)",
+                       Test_Stem_Russian'Access);
       Caller.Add_Test (Suite, "Test Stemmer.Stem (French, Ref File)",
                        Test_Stem_French_Reference_File'Access);
       Caller.Add_Test (Suite, "Test Stemmer.Stem (Spanish, Ref File)",
@@ -143,6 +145,14 @@ package body Stemmer.Tests is
       T.Verify (L_SWEDISH, "afhölja", "afhölj");
       T.Verify (L_SWEDISH, "överändakastade", "överändakast");
    end Test_Stem_Swedish;
+
+   --  Stem on Russian words.
+   procedure Test_Stem_Russian (T : in out Test) is
+   begin
+      T.Verify (L_RUSSIAN, "авдотьей", "авдот");
+      T.Verify (L_RUSSIAN, "адом", "ад");
+      T.Verify (L_RUSSIAN, "ячменный", "ячмен");
+   end Test_Stem_Russian;
 
    --  Stem on French words using the reference file.
    procedure Test_Stem_French_Reference_File (T : in out Test) is
