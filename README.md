@@ -12,7 +12,9 @@ the base or root form of a word.  Such algorithm is specific to each natural lan
 The [Porter Stemmer](https://tartarus.org/martin/PorterStemmer/) algorithm is specific to the English language
 and will not work for French, Greek or Russian.
 
-The Ada Stemmer Library integrates stemming algorithms for: English, French, Greek, Serbian, Spanish, Swedish, Russian.
+The Ada Stemmer Library integrates stemming algorithms for:
+English, French, German, Greek, Italian, Serbian, Spanish, Swedish, Russian.
+
 Example of stemming:
 
 |Language | Word          | Stem       |
