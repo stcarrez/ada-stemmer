@@ -16,7 +16,9 @@
 --  limitations under the License.
 -----------------------------------------------------------------------
 with Stemmer.English;
+with Stemmer.Italian;
 with Stemmer.French;
+with Stemmer.German;
 with Stemmer.Greek;
 with Stemmer.Serbian;
 with Stemmer.Spanish;
@@ -36,7 +38,7 @@ package body Stemmer.Factory with SPARK_Mode is
                C.Stem_Word (Word, Result);
                return Get_Result (C);
             end;
-            
+
          when L_FRENCH =>
             declare
                C : Stemmer.French.Context_Type;
@@ -45,9 +47,25 @@ package body Stemmer.Factory with SPARK_Mode is
                return Get_Result (C);
             end;
 
+         when L_GERMAN =>
+            declare
+               C : Stemmer.German.Context_Type;
+            begin
+               C.Stem_Word (Word, Result);
+               return Get_Result (C);
+            end;
+
          when L_GREEK =>
             declare
                C : Stemmer.Greek.Context_Type;
+            begin
+               C.Stem_Word (Word, Result);
+               return Get_Result (C);
+            end;
+
+         when L_ITALIAN =>
+            declare
+               C : Stemmer.Italian.Context_Type;
             begin
                C.Stem_Word (Word, Result);
                return Get_Result (C);
