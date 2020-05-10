@@ -23,6 +23,8 @@ Example of stemming:
 |English  | transitional  | transit    |
 |Greek    | ΠΟΣΟΤΗΤΑ      | ποσοτητ    |
 |Greek    | ΜΝΗΜΕΙΩΔΕΣ    | μνημειωδ   |
+|Russian  | ячменный      | ячмен      |
+|Russian  | адом          | ад         |
 
 
 ## Version 0.1.0 - May 2020
@@ -36,11 +38,6 @@ Build with the following commands:
    make
 ```
 
-The samples can be built using:
-```
-   gnatmake -Psamples
-```
-   
 The unit tests are built using:
 ```
    gnatmake -Ptests
@@ -53,6 +50,31 @@ And unit tests are executed with:
 
 The unit tests contains several reference files in `regtests/files` that come from the
 [Lucene](https://lucene.apache.org) search engine unit tests.
+
+# Examples
+
+The samples can be built using:
+```
+   gnatmake -Psamples
+```
+
+You will get two programs:
+
+* `bin/stemargs` will give the stem of words given as program argument,
+* `bin/stemwords` will read a file and stem the words to print the result.
+
+The first argument is the language.  For example:
+
+```
+bin/stemargs french chienne
+```
+
+or:
+
+```
+bin/stemwords english LICENSE.txt
+```
+
 
 # Simple example
 
