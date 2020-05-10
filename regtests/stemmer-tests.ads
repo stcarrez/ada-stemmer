@@ -42,6 +42,9 @@ package Stemmer.Tests is
    --  Stem on Greek words.
    procedure Test_Stem_Greek (T : in out Test);
 
+   --  Stem on Spanish words.
+   procedure Test_Stem_Spanish (T : in out Test);
+
    --  Stem on French word using the reference file.
    procedure Test_Stem_French_Reference_File (T : in out Test);
 
