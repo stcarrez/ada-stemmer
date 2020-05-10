@@ -15,21 +15,11 @@
 --  See the License for the specific language governing permissions and
 --  limitations under the License.
 -----------------------------------------------------------------------
-with Ada.Text_IO;
 with Interfaces;
 package body Stemmer with SPARK_Mode is
-   
-   use Ada.Text_IO;
-   
-   Debug : Boolean := False;
 
    subtype Byte is Interfaces.Unsigned_8;
    use type Interfaces.Unsigned_8;
-
-   --   procedure Put_Line (S : in String) is
-   --   begin
-   --   null;
-   --   end Put_Line;
 
    procedure Stem_Word (Context  : in out Context_Type'Class;
                         Word     : in String;
@@ -46,7 +36,7 @@ package body Stemmer with SPARK_Mode is
    begin
       return Context.P (1 .. Context.L - 1);
    end Get_Result;
-   
+
    function Eq_S (Context : in Context_Type'Class;
                   S       : in String) return Natural is
    begin
@@ -101,9 +91,6 @@ package body Stemmer with SPARK_Mode is
       C   : constant Integer := Context.C;
       L   : constant Integer := Context.L;
    begin
-      if Debug then
-         Put_Line ("Find_Among: " & Context.P (Context.C .. Context.L - 1));
-      end if;
       loop
          declare
             K      : constant Natural := I + (J - I) / 2;
@@ -112,9 +99,6 @@ package body Stemmer with SPARK_Mode is
             Common : Natural := (if Common_I < Common_J then Common_I else Common_J);
             Diff   : Integer := 0;
          begin
-            if Debug then
-               Put_Line ("  k = " & Natural'Image (K));
-            end if;
             for I2 in Common + 1 .. Len loop
                if C + Common = L then
                   Diff := -1;
@@ -140,7 +124,7 @@ package body Stemmer with SPARK_Mode is
             First_Key_Inspected := True;
          end if;
       end loop;
- 
+
       loop
          declare
             W   : constant Among_Type := Amongs (I);
@@ -170,9 +154,6 @@ package body Stemmer with SPARK_Mode is
       C   : constant Integer := Context.C;
       Lb  : constant Integer := Context.Lb;
    begin
-      if Debug then
-         Put_Line ("Find_Among_Backward: " & Context.P (Context.C .. Context.L - 1));
-      end if;
       loop
          declare
             K      : constant Natural := I + (J - I) / 2;
@@ -180,17 +161,10 @@ package body Stemmer with SPARK_Mode is
             Common : Natural := (if Common_I < Common_J then Common_I else Common_J);
             Diff   : Integer := 0;
          begin
-            if Debug then
-               Put_Line ("  k = " & Natural'Image (K) & " " & Pattern (W.First .. W.Last));
-            end if;
             for I2 in reverse W.First .. W.Last - Common loop
                if C - Common = Lb then
                   Diff := -1;
                   exit;
-               end if;
-               if Debug then
-                  Put_Line ("  find_among_b c1=" & Context.P (C - Common - 1)
-                              & " c2=" & Pattern (I2));
                end if;
                Diff := Character'Pos (Context.P (C - Common - 1))
                  - Character'Pos (Pattern (I2));
@@ -213,9 +187,6 @@ package body Stemmer with SPARK_Mode is
          end if;
       end loop;
 
-      if Debug then
-         Put_Line ("  ==> i = " & Natural'Image (I));
-      end if;
       loop
          declare
             W   : constant Among_Type := Amongs (I);
@@ -372,9 +343,7 @@ package body Stemmer with SPARK_Mode is
          Result := -1;
          return;
       end if;
-      if Debug then
-         Put_Line ("Out_Grouping: " & Context.P (Context.C .. Context.L - 1));
-      end if;
+
       loop
          Get_Utf8 (Context, Ch, Count);
          if Count = 0 then
@@ -407,9 +376,7 @@ package body Stemmer with SPARK_Mode is
          Result := -1;
          return;
       end if;
-      if Debug then
-         Put_Line ("Out_Grouping_Backward: " & Context.P (1 .. Context.C - 1));
-      end if;
+
       loop
          Get_Utf8_Backward (Context, Ch, Count);
          if Count = 0 then
@@ -442,9 +409,7 @@ package body Stemmer with SPARK_Mode is
          Result := -1;
          return;
       end if;
-      if Debug then
-         Put_Line ("In_Grouping: " & Context.P (Context.C .. Context.L - 1));
-      end if;
+
       loop
          Get_Utf8 (Context, Ch, Count);
          if Count = 0 then
@@ -479,9 +444,7 @@ package body Stemmer with SPARK_Mode is
          Result := -1;
          return;
       end if;
-      if Debug then
-         Put_Line ("In_Grouping_Backward: " & Context.P (1 .. Context.C - 1));
-      end if;
+
       loop
          Get_Utf8_Backward (Context, Ch, Count);
          if Count = 0 then
@@ -521,7 +484,6 @@ package body Stemmer with SPARK_Mode is
          Context.P (C_Bra + S'Length .. Context.L + Adjustment)
            := Context.P (C_Ket .. Context.L);
       end if;
-      --  Replace_Slice (Context.P, C_Bra, C_Ket - 1, S);
       Context.L := Context.L + Adjustment;
       if Context.C >= C_Ket then
          Context.C := Context.C + Adjustment;
