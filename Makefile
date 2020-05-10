@@ -13,11 +13,18 @@ include Makefile.defaults
 
 # Build executables for all mains defined by the project.
 build-test::	setup
+ifeq ($(HAVE_ADA_UTIL),yes)
 	$(GNATMAKE) $(GPRFLAGS) -p -P$(NAME)_tests $(MAKE_ARGS)
+endif
 
 # Build and run the unit tests
 test:	build
+ifeq ($(HAVE_ADA_UTIL),yes)
 	bin/stemmer_harness -xml stemmer-aunit.xml
+else
+	@echo "You must build with Ada Utility Library to run the unit tests."
+	@exit 1
+endif
 
 install-samples:
 	$(MKDIR) -p $(samplesdir)/samples
