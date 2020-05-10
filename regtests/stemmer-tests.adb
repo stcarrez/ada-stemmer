@@ -34,6 +34,8 @@ package body Stemmer.Tests is
                        Test_Stem_English'Access);
       Caller.Add_Test (Suite, "Test Stemmer.Stem (Greek)",
                        Test_Stem_Greek'Access);
+      Caller.Add_Test (Suite, "Test Stemmer.Stem (Spanish)",
+                       Test_Stem_Spanish'Access);
       Caller.Add_Test (Suite, "Test Stemmer.Stem (French)",
                        Test_Stem_French_Reference_File'Access);
    end Add_Tests;
@@ -115,6 +117,15 @@ package body Stemmer.Tests is
       T.Verify (L_GREEK, "ΩΣΤΙΚΟ", "ωστ");
       T.Verify (L_GREEK, "ΩΦΕΛΕΙ", "ωφελ");
    end Test_Stem_Greek;
+
+   --  Stem on Spanish words.
+   procedure Test_Stem_Spanish (T : in out Test) is
+   begin
+      T.Verify (L_SPANISH, "abarcaría", "abarc");
+      T.Verify (L_SPANISH, "abarroteros", "abarroter");
+      T.Verify (L_SPANISH, "aseguramiento", "asegur");
+      T.Verify (L_SPANISH, "zubillaga", "zubillag");
+   end Test_Stem_Spanish;
 
    --  Stem on French words using the reference file.
    procedure Test_Stem_French_Reference_File (T : in out Test) is
