@@ -36,6 +36,8 @@ package body Stemmer.Tests is
                        Test_Stem_Greek'Access);
       Caller.Add_Test (Suite, "Test Stemmer.Stem (Spanish)",
                        Test_Stem_Spanish'Access);
+      Caller.Add_Test (Suite, "Test Stemmer.Stem (Swedish)",
+                       Test_Stem_Swedish'Access);
       Caller.Add_Test (Suite, "Test Stemmer.Stem (French, Ref File)",
                        Test_Stem_French_Reference_File'Access);
       Caller.Add_Test (Suite, "Test Stemmer.Stem (Spanish, Ref File)",
@@ -129,12 +131,21 @@ package body Stemmer.Tests is
       T.Verify (L_SPANISH, "zubillaga", "zubillag");
    end Test_Stem_Spanish;
 
+   --  Stem on Swedish words.
+   procedure Test_Stem_Swedish (T : in out Test) is
+   begin
+      T.Verify (L_SWEDISH, "ackompanjerade", "ackompanjer");
+      T.Verify (L_SWEDISH, "abskons", "abskon");
+      T.Verify (L_SWEDISH, "afhölja", "afhölj");
+      T.Verify (L_SWEDISH, "överändakastade", "överändakast");
+   end Test_Stem_Swedish;
+
    --  Stem on French words using the reference file.
    procedure Test_Stem_French_Reference_File (T : in out Test) is
    begin
       Verify (T, L_FRENCH, "regtests/files/fr-test.txt");
    end Test_Stem_French_Reference_File;
-   
+
    --  Stem on Spanish words using the reference file.
    procedure Test_Stem_Spanish_Reference_File (T : in out Test) is
    begin
