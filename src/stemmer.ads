@@ -17,20 +17,27 @@
 -----------------------------------------------------------------------
 package Stemmer with SPARK_Mode is
 
+   WORD_MAX_LENGTH : constant := 1024;
+
    type Context_Type is abstract tagged private;
 
+   --  Apply the stemming algorithm on the word initialized in the context.
+   procedure Stem (Context : in out Context_Type;
+                   Result  : out Boolean) is abstract;
+
+   --  Stem the word and return True if it was reduced.
    procedure Stem_Word (Context  : in out Context_Type'Class;
                         Word     : in String;
-                        Result   : out Boolean);
+                        Result   : out Boolean) with
+     Global => null,
+     Pre => Word'Length < WORD_MAX_LENGTH;
 
-   procedure Stem (Z      : in out Context_Type;
-                   Result : out Boolean) is abstract;
-
-   function Get_Result (Context : in Context_Type'Class) return String;
+   --  Get the stem or the input word unmodified.
+   function Get_Result (Context : in Context_Type'Class) return String with
+     Global => null,
+     Post => Get_Result'Result'Length < WORD_MAX_LENGTH;
 
 private
-
-   WORD_MAX_LENGTH : constant := 1024;
 
    type Mask_Type is mod 2**32;
 
@@ -139,9 +146,11 @@ private
                       C_Ket      : in Integer;
                       S          : in String;
                       Adjustment : out Integer) with
+     Global => null,
      Pre => C_Bra >= Context.Lb and C_Ket >= C_Bra and C_Ket <= Context.L;
 
    procedure Slice_Del (Context : in out Context_Type'Class) with
+     Global => null,
      Pre => Context.Bra >= Context.Lb and Context.Ket >= Context.Bra
      and Context.Ket <= Context.L;
 
@@ -156,6 +165,7 @@ private
                      C_Bra   : in Natural;
                      C_Ket   : in Natural;
                      S       : in String) with
+     Global => null,
      Pre => C_Bra >= Context.Lb and C_Ket >= C_Bra and C_Ket <= Context.L;
 
    type Context_Type is abstract tagged record
