@@ -32,6 +32,19 @@ private
 
    WORD_MAX_LENGTH : constant := 1024;
 
+   type Mask_Type is mod 2**32;
+
+   --  A 32-bit character value that was read from UTF-8 sequence.
+   --  A modular value is used because shift and logical arithmetic is necessary.
+   type Utf8_Type is mod 2**32;
+
+   --  Index of the Grouping_Array.  The index comes from the 32-bit character value
+   --  minus a starting offset.  We don't expect large tables and we check against
+   --  a maximum value.
+   subtype Grouping_Index is Utf8_Type range 0 .. 16384;
+
+   type Grouping_Array is array (Grouping_Index range <>) of Boolean with Pack;
+
    subtype Among_Index is Natural range 0 .. 65535;
    subtype Among_Start_Index is Among_Index range 1 .. Among_Index'Last;
 
@@ -41,8 +54,6 @@ private
       Substring_I : Integer;
       Result      : Integer;
    end record;
-
-   type Grouping_Array is array (Natural range <>) of Boolean with Pack;
 
    type Among_Array_Type is array (Natural range <>) of Among_Type;
 
@@ -80,33 +91,46 @@ private
                                 N       : in Positive) return Integer with
      Global => null;
 
+   procedure Get_Utf8 (Context : in Context_Type'Class;
+                       Value   : out Utf8_Type;
+                       Count   : out Natural);
+
+   procedure Get_Utf8_Backward (Context : in Context_Type'Class;
+                                Value   : out Utf8_Type;
+                                Count   : out Natural);
+
    function Length (Context : in Context_Type'Class) return Natural;
+
+   function Check_Among (Context : in Context_Type'Class;
+                         Pos     : in Natural;
+                         Shift   : in Natural;
+                         Mask    : in Mask_Type) return Boolean;
 
    procedure Out_Grouping (Context : in out Context_Type'Class;
                            S       : in Grouping_Array;
-                           Min     : in Integer;
-                           Max     : in Integer;
+                           Min     : in Utf8_Type;
+                           Max     : in Utf8_Type;
                            Repeat  : in Boolean;
                            Result  : out Integer);
 
    procedure Out_Grouping_Backward (Context : in out Context_Type'Class;
                                     S       : in Grouping_Array;
-                                    Min     : in Integer;
-                                    Max     : in Integer;
+                                    Min     : in Utf8_Type;
+                                    Max     : in Utf8_Type;
                                     Repeat  : in Boolean;
                                     Result  : out Integer);
 
    procedure In_Grouping (Context : in out Context_Type'Class;
                           S       : in Grouping_Array;
-                          Min     : in Integer;
-                          Max     : in Integer;
+                          Min     : in Utf8_Type;
+                          Max     : in Utf8_Type;
                           Repeat  : in Boolean;
                           Result  : out Integer);
 
    procedure In_Grouping_Backward (Context : in out Context_Type'Class;
                                    S       : in Grouping_Array;
-                                   Min     : in Integer;
-                                   Max     : in Integer;
+                                   Min     : in Utf8_Type;
+                                   Max     : in Utf8_Type;
                                    Repeat  : in Boolean;
                                    Result  : out Integer);
 
