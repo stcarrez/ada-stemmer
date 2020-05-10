@@ -72,4 +72,7 @@ package Stemmer.Tests is
    --  Stem on Serbian word using the reference file.
    procedure Test_Stem_Serbian_Reference_File (T : in out Test);
 
+   --  Stem on German word using the reference file.
+   procedure Test_Stem_German_Reference_File (T : in out Test);
+
 end Stemmer.Tests;
