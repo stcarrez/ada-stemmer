@@ -63,4 +63,7 @@ package Stemmer.Tests is
    --  Stem on Swedish word using the reference file.
    procedure Test_Stem_Swedish_Reference_File (T : in out Test);
 
+   --  Stem on Russian word using the reference file.
+   procedure Test_Stem_Russian_Reference_File (T : in out Test);
+
 end Stemmer.Tests;
