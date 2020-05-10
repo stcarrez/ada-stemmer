@@ -54,6 +54,8 @@ package body Stemmer.Tests is
                        Test_Stem_Russian_Reference_File'Access);
       Caller.Add_Test (Suite, "Test Stemmer.Stem (Serbian, Ref File)",
                        Test_Stem_Serbian_Reference_File'Access);
+      Caller.Add_Test (Suite, "Test Stemmer.Stem (German, Ref File)",
+                       Test_Stem_German_Reference_File'Access);
    end Add_Tests;
 
    procedure Verify (T : in out Test;
@@ -203,5 +205,11 @@ package body Stemmer.Tests is
    begin
       Verify (T, L_SERBIAN, "regtests/files/sr-test.txt");
    end Test_Stem_Serbian_Reference_File;
+
+   --  Stem on German words using the reference file.
+   procedure Test_Stem_German_Reference_File (T : in out Test) is
+   begin
+      Verify (T, L_GERMAN, "regtests/files/gr-test.txt");
+   end Test_Stem_German_Reference_File;
 
 end Stemmer.Tests;
