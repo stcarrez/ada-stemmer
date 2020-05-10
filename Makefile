@@ -26,6 +26,9 @@ else
 	@exit 1
 endif
 
+build::
+	$(GNATMAKE) $(GPRFLAGS) -p -Psamples $(MAKE_ARGS)
+
 install-samples:
 	$(MKDIR) -p $(samplesdir)/samples
 	cp -rp $(srcdir)/samples/*.ad[sb] $(samplesdir)/samples/
