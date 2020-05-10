@@ -5,6 +5,6 @@ package Stemmer.Greek is
    procedure Stem (Z : in out Context_Type; Result : out Boolean);
 private
    type Context_Type is new Stemmer.Context_Type with record
-      B_test1 : Boolean;
+      B_Test1 : Boolean;
    end record;
 end Stemmer.Greek;

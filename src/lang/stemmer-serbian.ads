@@ -5,7 +5,7 @@ package Stemmer.Serbian is
    procedure Stem (Z : in out Context_Type; Result : out Boolean);
 private
    type Context_Type is new Stemmer.Context_Type with record
-      I_p1 : Integer;
-      B_no_diacritics : Boolean;
+      I_P1 : Integer;
+      B_No_diacritics : Boolean;
    end record;
 end Stemmer.Serbian;

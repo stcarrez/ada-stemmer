@@ -5,8 +5,8 @@ package Stemmer.Spanish is
    procedure Stem (Z : in out Context_Type; Result : out Boolean);
 private
    type Context_Type is new Stemmer.Context_Type with record
-      I_p2 : Integer;
-      I_p1 : Integer;
-      IlU_pV : Integer;
+      I_P2 : Integer;
+      I_P1 : Integer;
+      I_PV : Integer;
    end record;
 end Stemmer.Spanish;

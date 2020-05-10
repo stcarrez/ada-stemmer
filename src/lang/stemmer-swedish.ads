@@ -5,7 +5,7 @@ package Stemmer.Swedish is
    procedure Stem (Z : in out Context_Type; Result : out Boolean);
 private
    type Context_Type is new Stemmer.Context_Type with record
-      I_x : Integer;
-      I_p1 : Integer;
+      I_X : Integer;
+      I_P1 : Integer;
    end record;
 end Stemmer.Swedish;
