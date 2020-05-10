@@ -38,9 +38,13 @@ Build with the following commands:
    make
 ```
 
-The unit tests are built using:
+## Unit test
+
+To build the unit test, you will need the [Ada Utility Library](https://github.com/stcarrez/ada-util).
+If that library is not installed, you can use the following commands:
 ```
-   gnatmake -Ptests
+   git clone https://github.com/stcarrez/ada-util.git
+   make build test HAVE_ADA_UTIL=yes ADA_PROJECT_PATH=./ada-util/.alire:./ada-util:./ada-util/.alire/unit
 ```
 
 And unit tests are executed with:
