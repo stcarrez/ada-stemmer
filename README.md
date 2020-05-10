@@ -51,6 +51,9 @@ And unit tests are executed with:
    make test
 ```
 
+The unit tests contains several reference files in `regtests/files` that come from the
+[Lucene](https://lucene.apache.org) search engine unit tests.
+
 # Simple example
 
 The Ada Stemmer library does not split words.  You have to give them one word at a time
@@ -77,3 +80,9 @@ with Stemmer.English;
      Ada.Text_IO.Put_Line (Ctx.Get_Result);
   end if;
 ```
+
+# References
+
+* [The Porter Stemming Algorithm](https://tartarus.org/martin/PorterStemmer/)
+* [Snowball Manual](http://snowball.tartarus.org/compiler/snowman.html)
+* [Lucene text analysis](https://lucene.apache.org/core/8_5_1/core/org/apache/lucene/analysis/package-summary.html#package.description)
