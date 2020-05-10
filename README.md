@@ -7,7 +7,7 @@
 
 The Ada Stemmer Library is a [stemming](https://en.wikipedia.org/wiki/Stemming) processor for several
 natural languages.  It is based on the [Snowball compiler and stemming algorithms](https://snowballstem.org/)
-which has been adapted to generate Ada code ([Snowball](https://github.com/stcarrez/snowball).
+which has been adapted to generate Ada code ([Snowball Ada](https://github.com/stcarrez/snowball/tree/ada-support)).
 A stemming algorithm is used in natural language analysis to find
 the base or root form of a word.  Such algorithm is specific to each natural language.
 The [Porter Stemmer](https://tartarus.org/martin/PorterStemmer/) algorithm is specific to the English language
