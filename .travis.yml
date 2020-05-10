@@ -1,0 +1,20 @@
+dist: bionic
+
+language: generic
+
+install:
+
+  # Install GNAT FSF
+  - sudo apt-get -y install gnat gprbuild
+
+  # Install lcov for coverage
+  - sudo apt-get -y install lcov
+
+  - git clone https://github.com/stcarrez/ada-util.git
+
+script:
+  - make build test BUILD=coverage HAVE_ADA_UTIL=yes ADA_PROJECT_PATH=./ada-util/.alire:./ada-util:./ada-util/.alire/unit
+  - sh ./coverage.sh
+
+after_success:
+  - bash <(curl -s https://codecov.io/bash) -f stemmer.cov
