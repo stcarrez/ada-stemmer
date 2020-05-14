@@ -108,6 +108,8 @@ private
 
    function Length (Context : in Context_Type'Class) return Natural;
 
+   function Length_Utf8 (Context : in Context_Type'Class) return Natural;
+
    function Check_Among (Context : in Context_Type'Class;
                          Pos     : in Natural;
                          Shift   : in Natural;
@@ -168,6 +170,9 @@ private
      Global => null,
      Pre => C_Bra >= Context.Lb and C_Ket >= C_Bra and C_Ket <= Context.L;
 
+   --  The context indexes follow the C paradigm: they start at 0 for the first character.
+   --  This is necessary because several algorithms rely on this when they compare the
+   --  cursor position ('C') or setup some markers from the cursor.
    type Context_Type is abstract tagged record
       C   : Integer := 0;
       L   : Integer := 0;
