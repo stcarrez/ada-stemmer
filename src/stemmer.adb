@@ -26,15 +26,15 @@ package body Stemmer with SPARK_Mode is
                         Result   : out Boolean) is
    begin
       Context.P (1 .. Word'Length) := Word;
-      Context.C := 1;
-      Context.L := Word'Length + 1;
+      Context.C := 0;
+      Context.L := Word'Length;
       Context.Lb := 0;
       Stemmer.Stem (Context, Result);
    end Stem_Word;
 
    function Get_Result (Context : in Context_Type'Class) return String is
    begin
-      return Context.P (1 .. Context.L - 1);
+      return Context.P (1 .. Context.L);
    end Get_Result;
 
    function Eq_S (Context : in Context_Type'Class;
@@ -43,7 +43,7 @@ package body Stemmer with SPARK_Mode is
       if Context.L - Context.C < S'Length then
          return 0;
       end if;
-      if Context.P (Context.C .. Context.C + S'Length - 1) /= S then
+      if Context.P (Context.C + 1 .. Context.C + S'Length) /= S then
          return 0;
       end if;
       return S'Length;
@@ -55,7 +55,7 @@ package body Stemmer with SPARK_Mode is
       if Context.C - Context.Lb < S'Length then
          return 0;
       end if;
-      if Context.P (Context.C - S'Length .. Context.C - 1) /= S then
+      if Context.P (Context.C + 1 - S'Length .. Context.C) /= S then
          return 0;
       end if;
       return S'Length;
@@ -66,12 +66,27 @@ package body Stemmer with SPARK_Mode is
       return Context.L - Context.Lb;
    end Length;
 
+   function Length_Utf8 (Context : in Context_Type'Class) return Natural is
+      Count : Natural := 0;
+      Pos   : Positive := 1;
+      Val   : Byte;
+   begin
+      while Pos <= Context.L loop
+         Val := Character'Pos (Context.P (Pos));
+         Pos := Pos + 1;
+         if Val >= 16#C0# or Val < 16#80# then
+            Count := Count + 1;
+         end if;
+      end loop;
+      return Count;
+   end Length_Utf8;
+
    function Check_Among (Context : in Context_Type'Class;
                          Pos     : in Natural;
                          Shift   : in Natural;
                          Mask    : in Mask_Type) return Boolean is
       use Interfaces;
-      Val : constant Byte := Character'Pos (Context.P (Pos));
+      Val : constant Byte := Character'Pos (Context.P (Pos + 1));
    begin
       if Natural (Shift_Right (Val, 5)) /= Shift then
          return True;
@@ -95,17 +110,16 @@ package body Stemmer with SPARK_Mode is
          declare
             K      : constant Natural := I + (J - I) / 2;
             W      : constant Among_Type := Amongs (K);
-            Len    : constant Natural := W.Last - W.First + 1;
             Common : Natural := (if Common_I < Common_J then Common_I else Common_J);
             Diff   : Integer := 0;
          begin
-            for I2 in Common + 1 .. Len loop
+            for I2 in W.First + Common .. W.Last loop
                if C + Common = L then
                   Diff := -1;
                   exit;
                end if;
-               Diff := Character'Pos (Context.P (Context.C + Common))
-                 - Character'Pos (Pattern (W.First + I2 - 1));
+               Diff := Character'Pos (Context.P (Context.C + Common + 1))
+                 - Character'Pos (Pattern (I2));
                exit when Diff /= 0;
                Common := Common + 1;
             end loop;
@@ -118,9 +132,7 @@ package body Stemmer with SPARK_Mode is
             end if;
          end;
          if J - I <= 1 then
-            exit when I > 0;
-            exit when J = I;
-            exit when First_Key_Inspected;
+            exit when I > 0 or J = I or First_Key_Inspected;
             First_Key_Inspected := True;
          end if;
       end loop;
@@ -166,7 +178,7 @@ package body Stemmer with SPARK_Mode is
                   Diff := -1;
                   exit;
                end if;
-               Diff := Character'Pos (Context.P (C - Common - 1))
+               Diff := Character'Pos (Context.P (C - Common))
                  - Character'Pos (Pattern (I2));
                exit when Diff /= 0;
                Common := Common + 1;
@@ -180,9 +192,7 @@ package body Stemmer with SPARK_Mode is
             end if;
          end;
          if J - I <= 1 then
-            exit when I > 0;
-            exit when J = I;
-            exit when First_Key_Inspected;
+            exit when I > 0 or J = I or First_Key_Inspected;
             First_Key_Inspected := True;
          end if;
       end loop;
@@ -213,11 +223,11 @@ package body Stemmer with SPARK_Mode is
          if Pos >= Context.L then
             return -1;
          end if;
-         Val := Character'Pos (Context.P (Pos));
          Pos := Pos + 1;
+         Val := Character'Pos (Context.P (Pos));
          if Val >= 16#C0# then
             while Pos < Context.L loop
-               Val := Character'Pos (Context.P (Pos));
+               Val := Character'Pos (Context.P (Pos + 1));
                exit when Val >= 16#C0# or Val < 16#80#;
                Pos := Pos + 1;
             end loop;
@@ -235,11 +245,11 @@ package body Stemmer with SPARK_Mode is
          if Pos <= Context.Lb then
             return -1;
          end if;
-         Pos := Pos - 1;
          Val := Character'Pos (Context.P (Pos));
+         Pos := Pos - 1;
          if Val >= 16#80# then
             while Pos > Context.Lb loop
-               Val := Character'Pos (Context.P (Pos));
+               Val := Character'Pos (Context.P (Pos + 1));
                exit when Val >= 16#C0#;
                Pos := Pos - 1;
             end loop;
@@ -262,26 +272,26 @@ package body Stemmer with SPARK_Mode is
          Count := 0;
          return;
       end if;
-      B0 := Character'Pos (Context.P (Context.C));
+      B0 := Character'Pos (Context.P (Context.C + 1));
       if B0 < 16#C0# or Context.C + 1 >= Context.L then
          Value := Utf8_Type (B0);
          Count := 1;
          return;
       end if;
-      B1 := Character'Pos (Context.P (Context.C + 1)) and 16#3F#;
+      B1 := Character'Pos (Context.P (Context.C + 2)) and 16#3F#;
       if B0 < 16#E0# or Context.C + 2 >= Context.L then
          Value := Shift_Left (Utf8_Type (B0 and 16#1F#), 6) or Utf8_Type (B1);
          Count := 2;
          return;
       end if;
-      B2 := Character'Pos (Context.P (Context.C + 2)) and 16#3F#;
+      B2 := Character'Pos (Context.P (Context.C + 3)) and 16#3F#;
       if B0 < 16#F0# or Context.C + 3 >= Context.L then
          Value := Shift_Left (Utf8_Type (B0 and 16#0F#), 12)
            or Shift_Left (Utf8_Type (B1), 6) or Utf8_Type (B2);
          Count := 3;
          return;
       end if;
-      B3 := Character'Pos (Context.P (Context.C + 3)) and 16#3F#;
+      B3 := Character'Pos (Context.P (Context.C + 4)) and 16#3F#;
       Value := Shift_Left (Utf8_Type (B0 and 16#0E#), 18)
         or Shift_Left (Utf8_Type (B1), 12)
         or Shift_Left (Utf8_Type (B2), 6) or Utf8_Type (B3);
@@ -298,20 +308,20 @@ package body Stemmer with SPARK_Mode is
          Count := 0;
          return;
       end if;
-      B3 := Character'Pos (Context.P (Context.C - 1));
+      B3 := Character'Pos (Context.P (Context.C));
       if B3 < 16#80# or Context.C - 1 <= Context.Lb then
          Value := Utf8_Type (B3);
          Count := 1;
          return;
       end if;
-      B2 := Character'Pos (Context.P (Context.C - 2));
+      B2 := Character'Pos (Context.P (Context.C - 1));
       if B2 >= 16#C0# or Context.C - 2 <= Context.Lb then
          B2 := B2 and 16#1F#;
          Value := Shift_Left (Utf8_Type (B2 and 16#1F#), 6) or Utf8_Type (B3);
          Count := 2;
          return;
       end if;
-      B1 := Character'Pos (Context.P (Context.C - 3));
+      B1 := Character'Pos (Context.P (Context.C - 2));
       if B1 >= 16#E0# or Context.C - 3 <= Context.Lb then
          B1 := B1 and 16#1F#;
          B2 := B2 and 16#1F#;
@@ -320,7 +330,7 @@ package body Stemmer with SPARK_Mode is
          Count := 3;
          return;
       end if;
-      B0 := Character'Pos (Context.P (Context.C - 4));
+      B0 := Character'Pos (Context.P (Context.C - 3));
       B1 := B1 and 16#1F#;
       B2 := B2 and 16#1F#;
       B3 := B3 and 16#1F#;
@@ -474,15 +484,15 @@ package body Stemmer with SPARK_Mode is
    begin
       Adjustment := S'Length - (C_Ket - C_Bra);
       if Adjustment > 0 then
-         Context.P (C_Bra + S'Length .. Context.Lb + Adjustment)
-           := Context.P (C_Ket .. Context.Lb);
+         Context.P (C_Bra + S'Length + 1 .. Context.Lb + Adjustment + 1)
+           := Context.P (C_Ket + 1 .. Context.Lb + 1);
       end if;
       if S'Length > 0 then
-         Context.P (C_Bra .. C_Bra + S'Length - 1) := S;
+         Context.P (C_Bra + 1 .. C_Bra + S'Length) := S;
       end if;
       if Adjustment < 0 then
-         Context.P (C_Bra + S'Length .. Context.L + Adjustment)
-           := Context.P (C_Ket .. Context.L);
+         Context.P (C_Bra + S'Length + 1 .. Context.L + Adjustment + 1)
+           := Context.P (C_Ket + 1 .. Context.L + 1);
       end if;
       Context.L := Context.L + Adjustment;
       if Context.C >= C_Ket then
