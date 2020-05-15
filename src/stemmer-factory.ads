@@ -17,7 +17,7 @@
 -----------------------------------------------------------------------
 package Stemmer.Factory with SPARK_Mode is
 
-   type Language_Type is (L_ENGLISH, L_FRENCH, L_ITALIAN, L_GERMAN,
+   type Language_Type is (L_DANISH, L_DUTCH, L_ENGLISH, L_FRENCH, L_ITALIAN, L_GERMAN,
                           L_GREEK, L_SERBIAN, L_SPANISH,
                           L_SWEDISH, L_RUSSIAN);
 
