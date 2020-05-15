@@ -14,7 +14,7 @@ The [Porter Stemmer](https://tartarus.org/martin/PorterStemmer/) algorithm is sp
 and will not work for French, Greek or Russian.
 
 The Ada Stemmer Library integrates stemming algorithms for:
-English, French, German, Greek, Italian, Serbian, Spanish, Swedish, Russian.
+English, Danish, Dutch, French, German, Greek, Italian, Serbian, Spanish, Swedish, Russian.
 
 Example of stemming:
 
