@@ -81,4 +81,7 @@ package Stemmer.Tests is
    --  Stem on Greek word using the reference file.
    procedure Test_Stem_Greek_Reference_File (T : in out Test);
 
+   --  Stem on Danish word using the reference file.
+   procedure Test_Stem_Danish_Reference_File (T : in out Test);
+
 end Stemmer.Tests;
