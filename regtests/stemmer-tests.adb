@@ -60,6 +60,8 @@ package body Stemmer.Tests is
                        Test_Stem_Italian_Reference_File'Access);
       Caller.Add_Test (Suite, "Test Stemmer.Stem (Greek, Ref File)",
                        Test_Stem_Greek_Reference_File'Access);
+      Caller.Add_Test (Suite, "Test Stemmer.Stem (Danish, Ref File)",
+                       Test_Stem_Danish_Reference_File'Access);
    end Add_Tests;
 
    procedure Verify (T : in out Test;
@@ -227,5 +229,11 @@ package body Stemmer.Tests is
    begin
       Verify (T, L_GREEK, "regtests/files/el-test.txt");
    end Test_Stem_Greek_Reference_File;
+
+   --  Stem on Danish words using the reference file.
+   procedure Test_Stem_Danish_Reference_File (T : in out Test) is
+   begin
+      Verify (T, L_DANISH, "regtests/files/dn-test.txt");
+   end Test_Stem_Danish_Reference_File;
 
 end Stemmer.Tests;
