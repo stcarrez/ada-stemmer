@@ -15,6 +15,8 @@
 --  See the License for the specific language governing permissions and
 --  limitations under the License.
 -----------------------------------------------------------------------
+with Stemmer.Danish;
+with Stemmer.Dutch;
 with Stemmer.English;
 with Stemmer.Italian;
 with Stemmer.French;
@@ -31,6 +33,22 @@ package body Stemmer.Factory with SPARK_Mode is
       Result : Boolean := False;
    begin
       case Language is
+         when L_DANISH =>
+            declare
+               C : Stemmer.Danish.Context_Type;
+            begin
+               C.Stem_Word (Word, Result);
+               return Get_Result (C);
+            end;
+
+         when L_DUTCH =>
+            declare
+               C : Stemmer.Dutch.Context_Type;
+            begin
+               C.Stem_Word (Word, Result);
+               return Get_Result (C);
+            end;
+
          when L_ENGLISH =>
             declare
                C : Stemmer.English.Context_Type;
