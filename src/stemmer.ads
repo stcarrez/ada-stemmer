@@ -163,6 +163,8 @@ private
      and Context.Ket <= Context.L
      and Context.L - Context.Lb + Text'Length + Context.Ket - Context.Bra < Context.P'Length;
 
+   function Slice_To (Context : in Context_Type'Class) return String;
+
    procedure Insert (Context : in out Context_Type'Class;
                      C_Bra   : in Natural;
                      C_Ket   : in Natural;
