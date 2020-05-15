@@ -515,6 +515,11 @@ package body Stemmer with SPARK_Mode is
       Replace (Context, Context.Bra, Context.Ket, Text, Result);
    end Slice_From;
 
+   function Slice_To (Context : in Context_Type'Class) return String is
+   begin
+      return Context.P (Context.Bra + 1 .. Context.Ket);
+   end Slice_To;
+
    procedure Insert (Context : in out Context_Type'Class;
                      C_Bra   : in Natural;
                      C_Ket   : in Natural;
