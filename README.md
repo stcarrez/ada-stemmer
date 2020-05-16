@@ -24,13 +24,13 @@ Example of stemming:
 |French   | affectionnait | affection  |
 |English  | zealously     | zealous    |
 |English  | transitional  | transit    |
-|Greek    | ΠΟΣΟΤΗΤΑ      | ποσοτητ    |
-|Greek    | ΜΝΗΜΕΙΩΔΕΣ    | μνημειωδ   |
+|Greek    | ποσοτητα      | ποσοτητ    |
+|Greek    | μνημειωδεσ    | μνημειωδ   |
 |Russian  | ячменный      | ячмен      |
 |Russian  | адом          | ад         |
 
 
-## Version 0.1.0 - May 2020
+## Version 1.0.0 - May 2020
 
 * First implementation of the Ada Stemmer Library
 
