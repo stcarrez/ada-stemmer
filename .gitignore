@@ -3,3 +3,5 @@
 *.s
 *.ali
 *.o
+stemmer.cov
+
