@@ -15,17 +15,33 @@
 --  See the License for the specific language governing permissions and
 --  limitations under the License.
 -----------------------------------------------------------------------
+with Stemmer.Arabic;
+with Stemmer.Basque;
+with Stemmer.Catalan;
 with Stemmer.Danish;
 with Stemmer.Dutch;
 with Stemmer.English;
-with Stemmer.Italian;
+with Stemmer.Finnish;
 with Stemmer.French;
 with Stemmer.German;
 with Stemmer.Greek;
+with Stemmer.Hindi;
+with Stemmer.Hungarian;
+with Stemmer.Indonesian;
+with Stemmer.Irish;
+with Stemmer.Italian;
+with Stemmer.Lithuanian;
+with Stemmer.Nepali;
+with Stemmer.Norwegian;
+with Stemmer.Porter;
+with Stemmer.Portuguese;
+with Stemmer.Romanian;
+with Stemmer.Russian;
 with Stemmer.Serbian;
 with Stemmer.Spanish;
 with Stemmer.Swedish;
-with Stemmer.Russian;
+with Stemmer.Tamil;
+with Stemmer.Turkish;
 package body Stemmer.Factory with SPARK_Mode is
 
    function Stem (Language : in Language_Type;
@@ -33,6 +49,30 @@ package body Stemmer.Factory with SPARK_Mode is
       Result : Boolean := False;
    begin
       case Language is
+         when L_ARABIC =>
+            declare
+               C : Stemmer.Arabic.Context_Type;
+            begin
+               C.Stem_Word (Word, Result);
+               return Get_Result (C);
+            end;
+
+         when L_BASQUE =>
+            declare
+               C : Stemmer.Basque.Context_Type;
+            begin
+               C.Stem_Word (Word, Result);
+               return Get_Result (C);
+            end;
+
+         when L_CATALAN =>
+            declare
+               C : Stemmer.Catalan.Context_Type;
+            begin
+               C.Stem_Word (Word, Result);
+               return Get_Result (C);
+            end;
+
          when L_DANISH =>
             declare
                C : Stemmer.Danish.Context_Type;
@@ -52,6 +92,14 @@ package body Stemmer.Factory with SPARK_Mode is
          when L_ENGLISH =>
             declare
                C : Stemmer.English.Context_Type;
+            begin
+               C.Stem_Word (Word, Result);
+               return Get_Result (C);
+            end;
+
+         when L_FINNISH =>
+            declare
+               C : Stemmer.Finnish.Context_Type;
             begin
                C.Stem_Word (Word, Result);
                return Get_Result (C);
@@ -81,6 +129,38 @@ package body Stemmer.Factory with SPARK_Mode is
                return Get_Result (C);
             end;
 
+         when L_HINDI =>
+            declare
+               C : Stemmer.Hindi.Context_Type;
+            begin
+               C.Stem_Word (Word, Result);
+               return Get_Result (C);
+            end;
+
+         when L_HUNGARIAN =>
+            declare
+               C : Stemmer.Hungarian.Context_Type;
+            begin
+               C.Stem_Word (Word, Result);
+               return Get_Result (C);
+            end;
+
+         when L_INDONESIAN =>
+            declare
+               C : Stemmer.Indonesian.Context_Type;
+            begin
+               C.Stem_Word (Word, Result);
+               return Get_Result (C);
+            end;
+
+         when L_IRISH =>
+            declare
+               C : Stemmer.Irish.Context_Type;
+            begin
+               C.Stem_Word (Word, Result);
+               return Get_Result (C);
+            end;
+
          when L_ITALIAN =>
             declare
                C : Stemmer.Italian.Context_Type;
@@ -89,9 +169,57 @@ package body Stemmer.Factory with SPARK_Mode is
                return Get_Result (C);
             end;
 
-         when L_SPANISH =>
+         when L_LITHUANIAN =>
             declare
-               C : Stemmer.Spanish.Context_Type;
+               C : Stemmer.Lithuanian.Context_Type;
+            begin
+               C.Stem_Word (Word, Result);
+               return Get_Result (C);
+            end;
+
+         when L_NEPALI =>
+            declare
+               C : Stemmer.Nepali.Context_Type;
+            begin
+               C.Stem_Word (Word, Result);
+               return Get_Result (C);
+            end;
+
+         when L_NORWEGIAN =>
+            declare
+               C : Stemmer.Norwegian.Context_Type;
+            begin
+               C.Stem_Word (Word, Result);
+               return Get_Result (C);
+            end;
+
+         when L_PORTER =>
+            declare
+               C : Stemmer.Porter.Context_Type;
+            begin
+               C.Stem_Word (Word, Result);
+               return Get_Result (C);
+            end;
+
+         when L_PORTUGUESE =>
+            declare
+               C : Stemmer.Portuguese.Context_Type;
+            begin
+               C.Stem_Word (Word, Result);
+               return Get_Result (C);
+            end;
+
+         when L_ROMANIAN =>
+            declare
+               C : Stemmer.Romanian.Context_Type;
+            begin
+               C.Stem_Word (Word, Result);
+               return Get_Result (C);
+            end;
+
+         when L_RUSSIAN =>
+            declare
+               C : Stemmer.Russian.Context_Type;
             begin
                C.Stem_Word (Word, Result);
                return Get_Result (C);
@@ -105,6 +233,14 @@ package body Stemmer.Factory with SPARK_Mode is
                return Get_Result (C);
             end;
 
+         when L_SPANISH =>
+            declare
+               C : Stemmer.Spanish.Context_Type;
+            begin
+               C.Stem_Word (Word, Result);
+               return Get_Result (C);
+            end;
+
          when L_SWEDISH =>
             declare
                C : Stemmer.Swedish.Context_Type;
@@ -113,13 +249,22 @@ package body Stemmer.Factory with SPARK_Mode is
                return Get_Result (C);
             end;
 
-         when L_RUSSIAN =>
+         when L_TAMIL =>
             declare
-               C : Stemmer.Russian.Context_Type;
+               C : Stemmer.Tamil.Context_Type;
             begin
                C.Stem_Word (Word, Result);
                return Get_Result (C);
             end;
+
+         when L_TURKISH =>
+            declare
+               C : Stemmer.Turkish.Context_Type;
+            begin
+               C.Stem_Word (Word, Result);
+               return Get_Result (C);
+            end;
+
       end case;
    end Stem;
 

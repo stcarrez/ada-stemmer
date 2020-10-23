@@ -17,9 +17,12 @@
 -----------------------------------------------------------------------
 package Stemmer.Factory with SPARK_Mode is
 
-   type Language_Type is (L_DANISH, L_DUTCH, L_ENGLISH, L_FRENCH, L_ITALIAN, L_GERMAN,
-                          L_GREEK, L_SERBIAN, L_SPANISH,
-                          L_SWEDISH, L_RUSSIAN);
+   type Language_Type is (L_ARABIC, L_BASQUE, L_CATALAN, L_DANISH, L_DUTCH, L_ENGLISH,
+                          L_FINNISH, L_FRENCH, L_GERMAN,
+                          L_GREEK, L_HINDI, L_HUNGARIAN, L_INDONESIAN, L_IRISH, L_ITALIAN,
+                          L_LITHUANIAN, L_NEPALI, L_NORWEGIAN, L_PORTER,
+                          L_PORTUGUESE, L_ROMANIAN, L_RUSSIAN, L_SERBIAN, L_SPANISH,
+                          L_SWEDISH, L_TAMIL, L_TURKISH);
 
    function Stem (Language : in Language_Type;
                   Word     : in String) return String;
