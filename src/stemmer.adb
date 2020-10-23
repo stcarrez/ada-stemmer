@@ -97,13 +97,17 @@ package body Stemmer with SPARK_Mode is
    procedure Find_Among (Context : in out Context_Type'Class;
                          Amongs  : in Among_Array_Type;
                          Pattern : in String;
+                         Execute : access procedure
+                           (Ctx       : in out Context_Type'Class;
+                            Operation : in Operation_Index;
+                            Status    : out Boolean);
                          Result  : out Integer) is
       I   : Natural := Amongs'First;
       J   : Natural := Amongs'Last + 1;
       Common_I : Natural := 0;
       Common_J : Natural := 0;
       First_Key_Inspected : Boolean := False;
-      C   : constant Integer := Context.C;
+      C   : constant Natural := Context.C;
       L   : constant Integer := Context.L;
    begin
       loop
@@ -141,11 +145,20 @@ package body Stemmer with SPARK_Mode is
          declare
             W   : constant Among_Type := Amongs (I);
             Len : constant Natural := W.Last - W.First + 1;
+            Status : Boolean;
          begin
             if Common_I >= Len then
-               Context.C := Context.C + Len;
-               Result := W.Result;
-               return;
+               Context.C := C + Len;
+               if W.Operation = 0 then
+                  Result := W.Result;
+                  return;
+               end if;
+               Execute (Context, W.Operation, Status);
+               Context.C := C + Len;
+               if Status then
+                  Result := W.Result;
+                  return;
+               end if;
             end if;
             exit when W.Substring_I < 0;
             I := W.Substring_I;
@@ -157,6 +170,10 @@ package body Stemmer with SPARK_Mode is
    procedure Find_Among_Backward (Context : in out Context_Type'Class;
                                   Amongs  : in Among_Array_Type;
                                   Pattern : in String;
+                                  Execute : access procedure
+                                    (Ctx       : in out Context_Type'Class;
+                                     Operation : in Operation_Index;
+                                     Status    : out Boolean);
                                   Result  : out Integer) is
       I   : Natural := Amongs'First;
       J   : Natural := Amongs'Last + 1;
@@ -201,11 +218,20 @@ package body Stemmer with SPARK_Mode is
          declare
             W   : constant Among_Type := Amongs (I);
             Len : constant Natural := W.Last - W.First + 1;
+            Status : Boolean;
          begin
             if Common_I >= Len then
-               Context.C := Context.C - Len;
-               Result := W.Result;
-               return;
+               Context.C := C - Len;
+               if W.Operation = 0 then
+                  Result := W.Result;
+                  return;
+               end if;
+               Execute (Context, W.Operation, Status);
+               Context.C := C - Len;
+               if Status then
+                  Result := W.Result;
+                  return;
+               end if;
             end if;
             exit when W.Substring_I < 0;
             I := W.Substring_I;
@@ -292,7 +318,7 @@ package body Stemmer with SPARK_Mode is
          return;
       end if;
       B3 := Character'Pos (Context.P (Context.C + 4)) and 16#3F#;
-      Value := Shift_Left (Utf8_Type (B0 and 16#0E#), 18)
+      Value := Shift_Left (Utf8_Type (B0 and 16#07#), 18)
         or Shift_Left (Utf8_Type (B1), 12)
         or Shift_Left (Utf8_Type (B2), 6) or Utf8_Type (B3);
       Count := 4;
@@ -316,15 +342,15 @@ package body Stemmer with SPARK_Mode is
       end if;
       B2 := Character'Pos (Context.P (Context.C - 1));
       if B2 >= 16#C0# or Context.C - 2 <= Context.Lb then
-         B2 := B2 and 16#1F#;
+         B3 := B3 and 16#3F#;
          Value := Shift_Left (Utf8_Type (B2 and 16#1F#), 6) or Utf8_Type (B3);
          Count := 2;
          return;
       end if;
       B1 := Character'Pos (Context.P (Context.C - 2));
       if B1 >= 16#E0# or Context.C - 3 <= Context.Lb then
-         B1 := B1 and 16#1F#;
-         B2 := B2 and 16#1F#;
+         B3 := B3 and 16#3F#;
+         B2 := B2 and 16#3F#;
          Value := Shift_Left (Utf8_Type (B1 and 16#0F#), 12)
            or Shift_Left (Utf8_Type (B2), 6) or Utf8_Type (B3);
          Count := 3;
@@ -332,9 +358,9 @@ package body Stemmer with SPARK_Mode is
       end if;
       B0 := Character'Pos (Context.P (Context.C - 3));
       B1 := B1 and 16#1F#;
-      B2 := B2 and 16#1F#;
-      B3 := B3 and 16#1F#;
-      Value := Shift_Left (Utf8_Type (B0 and 16#0E#), 18)
+      B2 := B2 and 16#3F#;
+      B3 := B3 and 16#3F#;
+      Value := Shift_Left (Utf8_Type (B0 and 16#07#), 18)
         or Shift_Left (Utf8_Type (B1), 12)
         or Shift_Left (Utf8_Type (B2), 6) or Utf8_Type (B3);
       Count := 4;
@@ -382,7 +408,7 @@ package body Stemmer with SPARK_Mode is
       Ch    : Utf8_Type;
       Count : Natural;
    begin
-      if Context.C <= 0 then
+      if Context.C = 0 then
          Result := -1;
          return;
       end if;
@@ -427,12 +453,12 @@ package body Stemmer with SPARK_Mode is
             return;
          end if;
          if Ch > Max or Ch < Min then
-            Result := 1;
+            Result := Count;
             return;
          end if;
          Ch := Ch - Min;
          if not S (Ch) then
-            Result := 1;
+            Result := Count;
             return;
          end if;
          Context.C := Context.C + Count;
@@ -450,7 +476,7 @@ package body Stemmer with SPARK_Mode is
       Ch    : Utf8_Type;
       Count : Natural;
    begin
-      if Context.C <= 0 then
+      if Context.C = 0 then
          Result := -1;
          return;
       end if;
@@ -462,12 +488,12 @@ package body Stemmer with SPARK_Mode is
             return;
          end if;
          if Ch > Max or Ch < Min then
-            Result := 1;
+            Result := Count;
             return;
          end if;
          Ch := Ch - Min;
          if not S (Ch) then
-            Result := 1;
+            Result := Count;
             return;
          end if;
          Context.C := Context.C - Count;
