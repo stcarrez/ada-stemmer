@@ -113,5 +113,5 @@ with Stemmer.English;
 # References
 
 * [The Porter Stemming Algorithm](https://tartarus.org/martin/PorterStemmer/)
-* [Snowball Manual](http://snowball.tartarus.org/compiler/snowman.html)
+* [Snowball Manual](https://snowballstem.org/compiler/snowman.html)
 * [Lucene text analysis](https://lucene.apache.org/core/8_5_1/core/org/apache/lucene/analysis/package-summary.html#package.description)
