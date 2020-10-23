@@ -54,12 +54,14 @@ private
 
    subtype Among_Index is Natural range 0 .. 65535;
    subtype Among_Start_Index is Among_Index range 1 .. Among_Index'Last;
+   subtype Operation_Index is Natural range 0 .. 65535;
 
    type Among_Type is record
       First       : Among_Start_Index;
       Last        : Among_Index;
       Substring_I : Integer;
       Result      : Integer;
+      Operation   : Operation_Index;
    end record;
 
    type Among_Array_Type is array (Natural range <>) of Among_Type;
@@ -79,6 +81,10 @@ private
    procedure Find_Among (Context : in out Context_Type'Class;
                          Amongs  : in Among_Array_Type;
                          Pattern : in String;
+                         Execute : access procedure
+                           (Ctx       : in out Context_Type'Class;
+                            Operation : in Operation_Index;
+                            Status    : out Boolean);
                          Result  : out Integer) with
      Global => null,
      Pre => Pattern'Length > 0 and Amongs'Length > 0;
@@ -86,6 +92,10 @@ private
    procedure Find_Among_Backward (Context : in out Context_Type'Class;
                                   Amongs  : in Among_Array_Type;
                                   Pattern : in String;
+                                  Execute : access procedure
+                                    (Ctx       : in out Context_Type'Class;
+                                     Operation : in Operation_Index;
+                                     Status    : out Boolean);
                                   Result  : out Integer) with
      Global => null,
      Pre => Pattern'Length > 0 and Amongs'Length > 0;
@@ -176,7 +186,7 @@ private
    --  This is necessary because several algorithms rely on this when they compare the
    --  cursor position ('C') or setup some markers from the cursor.
    type Context_Type is abstract tagged record
-      C   : Integer := 0;
+      C   : Natural := 0;
       L   : Integer := 0;
       Lb  : Integer := 0;
       Bra : Integer := 0;
