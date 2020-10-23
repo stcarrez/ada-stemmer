@@ -7,7 +7,7 @@ package body Stemmer.Dutch is
    pragma Warnings (Off, "*mode could be*instead of*");
    pragma Warnings (Off, "*formal parameter.*is not modified*");
    pragma Warnings (Off, "*this line is too long*");
-   pragma Warnings (Off, "*label.*is not referenced*");
+   pragma Warnings (Off, "*is not referenced*");
 
    procedure R_Standard_suffix (Z : in out Context_Type; Result : out Boolean);
    procedure R_Undouble (Z : in out Context_Type; Result : out Boolean);
@@ -87,48 +87,48 @@ package body Stemmer.Dutch is
       & "aa" & "ee" & "oo" & "uu";
 
    A_0 : constant Among_Array_Type (0 .. 10) := (
-      (1, 0, -1, 6),
-      (1, 2, 0, 1),
-      (3, 4, 0, 1),
-      (5, 6, 0, 2),
-      (7, 8, 0, 2),
-      (9, 10, 0, 3),
-      (11, 12, 0, 3),
-      (13, 14, 0, 4),
-      (15, 16, 0, 4),
-      (17, 18, 0, 5),
-      (19, 20, 0, 5));
+      (1, 0, -1, 6, 0),
+      (1, 2, 0, 1, 0),
+      (3, 4, 0, 1, 0),
+      (5, 6, 0, 2, 0),
+      (7, 8, 0, 2, 0),
+      (9, 10, 0, 3, 0),
+      (11, 12, 0, 3, 0),
+      (13, 14, 0, 4, 0),
+      (15, 16, 0, 4, 0),
+      (17, 18, 0, 5, 0),
+      (19, 20, 0, 5, 0));
 
    A_1 : constant Among_Array_Type (0 .. 2) := (
-      (21, 20, -1, 3),
-      (21, 21, 0, 2),
-      (22, 22, 0, 1));
+      (21, 20, -1, 3, 0),
+      (21, 21, 0, 2, 0),
+      (22, 22, 0, 1, 0));
 
    A_2 : constant Among_Array_Type (0 .. 2) := (
-      (23, 24, -1, -1),
-      (25, 26, -1, -1),
-      (27, 28, -1, -1));
+      (23, 24, -1, -1, 0),
+      (25, 26, -1, -1, 0),
+      (27, 28, -1, -1, 0));
 
    A_3 : constant Among_Array_Type (0 .. 4) := (
-      (29, 31, -1, 2),
-      (32, 33, -1, 3),
-      (34, 35, -1, 2),
-      (36, 40, 2, 1),
-      (41, 41, -1, 3));
+      (29, 31, -1, 2, 0),
+      (32, 33, -1, 3, 0),
+      (34, 35, -1, 2, 0),
+      (36, 40, 2, 1, 0),
+      (41, 41, -1, 3, 0));
 
    A_4 : constant Among_Array_Type (0 .. 5) := (
-      (42, 44, -1, 1),
-      (45, 46, -1, 2),
-      (47, 49, -1, 1),
-      (50, 53, -1, 3),
-      (54, 57, -1, 4),
-      (58, 60, -1, 5));
+      (42, 44, -1, 1, 0),
+      (45, 46, -1, 2, 0),
+      (47, 49, -1, 1, 0),
+      (50, 53, -1, 3, 0),
+      (54, 57, -1, 4, 0),
+      (58, 60, -1, 5, 0));
 
    A_5 : constant Among_Array_Type (0 .. 3) := (
-      (61, 62, -1, -1),
-      (63, 64, -1, -1),
-      (65, 66, -1, -1),
-      (67, 68, -1, -1));
+      (61, 62, -1, -1, 0),
+      (63, 64, -1, -1, 0),
+      (65, 66, -1, -1, 0),
+      (67, 68, -1, -1, 0));
 
 
    procedure R_Prelude (Z : in out Context_Type; Result : out Boolean) is
@@ -157,7 +157,7 @@ package body Stemmer.Dutch is
          if Z.C + 1 >= Z.L or else Check_Among (Z, Z.C + 1, 5, 16#1448aa12#) then
             A := 6;
          else            --  substring, line 43
-            Find_Among (Z, A_0, Among_String, A);
+            Find_Among (Z, A_0, Among_String, null, A);
             if A = 0 then
                goto lab1;
             end if;
@@ -327,7 +327,7 @@ package body Stemmer.Dutch is
       --  try, line 70
       --  (, line 70
       if not (Z.I_P1 < 3) then
-      goto lab2;
+         goto lab2;
       end if;
       Z.I_P1 := 3;
 
@@ -372,7 +372,7 @@ package body Stemmer.Dutch is
          if Z.C >= Z.L or else (Character'Pos (Z.P (Z.C + 1)) /= 73 and then Character'Pos (Z.P (Z.C + 1)) /= 89) then
             A := 3;
          else            --  substring, line 77
-            Find_Among (Z, A_1, Among_String, A);
+            Find_Among (Z, A_1, Among_String, null, A);
             if A = 0 then
                goto lab1;
             end if;
@@ -435,7 +435,7 @@ package body Stemmer.Dutch is
          return;
          --  among, line 91
       end if;
-      Find_Among_Backward (Z, A_2, Among_String, A);
+      Find_Among_Backward (Z, A_2, Among_String, null, A);
       if A = 0 then
          Result := False;
          return;
@@ -575,7 +575,7 @@ package body Stemmer.Dutch is
          goto lab0;
          --  substring, line 108
       end if;
-      Find_Among_Backward (Z, A_3, Among_String, A);
+      Find_Among_Backward (Z, A_3, Among_String, null, A);
       if A = 0 then
          goto lab0;
       end if;
@@ -683,7 +683,7 @@ package body Stemmer.Dutch is
          goto lab3;
          --  substring, line 127
       end if;
-      Find_Among_Backward (Z, A_4, Among_String, A);
+      Find_Among_Backward (Z, A_4, Among_String, null, A);
       if A = 0 then
          goto lab3;
       end if;
@@ -821,7 +821,7 @@ package body Stemmer.Dutch is
          goto lab8;
          --  among, line 149
       end if;
-      Find_Among_Backward (Z, A_5, Among_String, A);
+      Find_Among_Backward (Z, A_5, Among_String, null, A);
       if A = 0 then
          goto lab8;
       end if;

@@ -7,7 +7,7 @@ package body Stemmer.German is
    pragma Warnings (Off, "*mode could be*instead of*");
    pragma Warnings (Off, "*formal parameter.*is not modified*");
    pragma Warnings (Off, "*this line is too long*");
-   pragma Warnings (Off, "*label.*is not referenced*");
+   pragma Warnings (Off, "*is not referenced*");
 
    procedure R_Standard_suffix (Z : in out Context_Type; Result : out Boolean);
    procedure R_R2 (Z : in out Context_Type; Result : out Boolean);
@@ -55,41 +55,41 @@ package body Stemmer.German is
       & "lich" & "isch" & "ik" & "heit" & "keit";
 
    A_0 : constant Among_Array_Type (0 .. 5) := (
-      (1, 0, -1, 5),
-      (1, 1, 0, 2),
-      (2, 2, 0, 1),
-      (3, 4, 0, 3),
-      (5, 6, 0, 4),
-      (7, 8, 0, 2));
+      (1, 0, -1, 5, 0),
+      (1, 1, 0, 2, 0),
+      (2, 2, 0, 1, 0),
+      (3, 4, 0, 3, 0),
+      (5, 6, 0, 4, 0),
+      (7, 8, 0, 2, 0));
 
    A_1 : constant Among_Array_Type (0 .. 6) := (
-      (9, 9, -1, 2),
-      (10, 11, -1, 1),
-      (12, 13, -1, 2),
-      (14, 16, -1, 1),
-      (17, 18, -1, 1),
-      (19, 19, -1, 3),
-      (20, 21, 5, 2));
+      (9, 9, -1, 2, 0),
+      (10, 11, -1, 1, 0),
+      (12, 13, -1, 2, 0),
+      (14, 16, -1, 1, 0),
+      (17, 18, -1, 1, 0),
+      (19, 19, -1, 3, 0),
+      (20, 21, 5, 2, 0));
 
    A_2 : constant Among_Array_Type (0 .. 3) := (
-      (22, 23, -1, 1),
-      (24, 25, -1, 1),
-      (26, 27, -1, 2),
-      (28, 30, 2, 1));
+      (22, 23, -1, 1, 0),
+      (24, 25, -1, 1, 0),
+      (26, 27, -1, 2, 0),
+      (28, 30, 2, 1, 0));
 
    A_3 : constant Among_Array_Type (0 .. 1) := (
-      (31, 32, -1, 1),
-      (33, 36, -1, 1));
+      (31, 32, -1, 1, 0),
+      (33, 36, -1, 1, 0));
 
    A_4 : constant Among_Array_Type (0 .. 7) := (
-      (37, 39, -1, 1),
-      (40, 41, -1, 2),
-      (42, 44, -1, 1),
-      (45, 48, -1, 3),
-      (49, 52, -1, 2),
-      (53, 54, -1, 2),
-      (55, 58, -1, 3),
-      (59, 62, -1, 4));
+      (37, 39, -1, 1, 0),
+      (40, 41, -1, 2, 0),
+      (42, 44, -1, 1, 0),
+      (45, 48, -1, 3, 0),
+      (49, 52, -1, 2, 0),
+      (53, 54, -1, 2, 0),
+      (55, 58, -1, 3, 0),
+      (59, 62, -1, 4, 0));
 
 
    procedure R_Prelude (Z : in out Context_Type; Result : out Boolean) is
@@ -269,7 +269,7 @@ package body Stemmer.German is
       --  try, line 55
       --  (, line 55
       if not (Z.I_P1 < Z.I_X) then
-      goto lab2;
+         goto lab2;
       end if;
       Z.I_P1 := Z.I_X;
 
@@ -311,7 +311,7 @@ package body Stemmer.German is
          Z.Bra := Z.C;         --  [, line 62
 
          --  substring, line 62
-         Find_Among (Z, A_0, Among_String, A);
+         Find_Among (Z, A_0, Among_String, null, A);
          if A = 0 then
             goto lab1;
          end if;
@@ -392,7 +392,7 @@ package body Stemmer.German is
          goto lab0;
          --  substring, line 80
       end if;
-      Find_Among_Backward (Z, A_1, Among_String, A);
+      Find_Among_Backward (Z, A_1, Among_String, null, A);
       if A = 0 then
          goto lab0;
       end if;
@@ -462,7 +462,7 @@ package body Stemmer.German is
          goto lab2;
          --  substring, line 94
       end if;
-      Find_Among_Backward (Z, A_2, Among_String, A);
+      Find_Among_Backward (Z, A_2, Among_String, null, A);
       if A = 0 then
          goto lab2;
       end if;
@@ -509,7 +509,7 @@ package body Stemmer.German is
          goto lab3;
          --  substring, line 104
       end if;
-      Find_Among_Backward (Z, A_4, Among_String, A);
+      Find_Among_Backward (Z, A_4, Among_String, null, A);
       if A = 0 then
          goto lab3;
       end if;
@@ -636,7 +636,7 @@ package body Stemmer.German is
                goto lab10;
                --  substring, line 121
             end if;
-            Find_Among_Backward (Z, A_3, Among_String, A);
+            Find_Among_Backward (Z, A_3, Among_String, null, A);
             if A = 0 then
                Z.C := Z.L - v_10;
                goto lab10;

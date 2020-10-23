@@ -7,7 +7,7 @@ package body Stemmer.English is
    pragma Warnings (Off, "*mode could be*instead of*");
    pragma Warnings (Off, "*formal parameter.*is not modified*");
    pragma Warnings (Off, "*this line is too long*");
-   pragma Warnings (Off, "*label.*is not referenced*");
+   pragma Warnings (Off, "*is not referenced*");
 
    procedure R_Exception2 (Z : in out Context_Type; Result : out Boolean);
    procedure R_Exception1 (Z : in out Context_Type; Result : out Boolean);
@@ -60,136 +60,136 @@ package body Stemmer.English is
       & "skies" & "skis" & "sky" & "tying" & "ugly";
 
    A_0 : constant Among_Array_Type (0 .. 2) := (
-      (1, 5, -1, -1),
-      (6, 11, -1, -1),
-      (12, 16, -1, -1));
+      (1, 5, -1, -1, 0),
+      (6, 11, -1, -1, 0),
+      (12, 16, -1, -1, 0));
 
    A_1 : constant Among_Array_Type (0 .. 2) := (
-      (17, 17, -1, 1),
-      (18, 20, 0, 1),
-      (21, 22, -1, 1));
+      (17, 17, -1, 1, 0),
+      (18, 20, 0, 1, 0),
+      (21, 22, -1, 1, 0));
 
    A_2 : constant Among_Array_Type (0 .. 5) := (
-      (23, 25, -1, 2),
-      (26, 26, -1, 3),
-      (27, 29, 1, 2),
-      (30, 33, 1, 1),
-      (34, 35, 1, -1),
-      (36, 37, 1, -1));
+      (23, 25, -1, 2, 0),
+      (26, 26, -1, 3, 0),
+      (27, 29, 1, 2, 0),
+      (30, 33, 1, 1, 0),
+      (34, 35, 1, -1, 0),
+      (36, 37, 1, -1, 0));
 
    A_3 : constant Among_Array_Type (0 .. 12) := (
-      (38, 37, -1, 3),
-      (38, 39, 0, 2),
-      (40, 41, 0, 2),
-      (42, 43, 0, 2),
-      (44, 45, 0, 2),
-      (46, 47, 0, 1),
-      (48, 49, 0, 2),
-      (50, 51, 0, 2),
-      (52, 53, 0, 2),
-      (54, 55, 0, 2),
-      (56, 57, 0, 1),
-      (58, 59, 0, 2),
-      (60, 61, 0, 1));
+      (38, 37, -1, 3, 0),
+      (38, 39, 0, 2, 0),
+      (40, 41, 0, 2, 0),
+      (42, 43, 0, 2, 0),
+      (44, 45, 0, 2, 0),
+      (46, 47, 0, 1, 0),
+      (48, 49, 0, 2, 0),
+      (50, 51, 0, 2, 0),
+      (52, 53, 0, 2, 0),
+      (54, 55, 0, 2, 0),
+      (56, 57, 0, 1, 0),
+      (58, 59, 0, 2, 0),
+      (60, 61, 0, 1, 0));
 
    A_4 : constant Among_Array_Type (0 .. 5) := (
-      (62, 63, -1, 2),
-      (64, 66, 0, 1),
-      (67, 69, -1, 2),
-      (70, 73, -1, 2),
-      (74, 78, 3, 1),
-      (79, 83, -1, 2));
+      (62, 63, -1, 2, 0),
+      (64, 66, 0, 1, 0),
+      (67, 69, -1, 2, 0),
+      (70, 73, -1, 2, 0),
+      (74, 78, 3, 1, 0),
+      (79, 83, -1, 2, 0));
 
    A_5 : constant Among_Array_Type (0 .. 23) := (
-      (84, 87, -1, 3),
-      (88, 91, -1, 2),
-      (92, 94, -1, 13),
-      (95, 96, -1, 15),
-      (97, 99, 3, 12),
-      (100, 103, 4, 4),
-      (104, 107, 3, 8),
-      (108, 112, 3, 9),
-      (113, 118, 3, 14),
-      (119, 123, 3, 10),
-      (124, 128, 3, 5),
-      (129, 133, -1, 8),
-      (134, 139, -1, 12),
-      (140, 144, -1, 11),
-      (145, 150, -1, 1),
-      (151, 157, 14, 7),
-      (158, 162, -1, 8),
-      (163, 167, -1, 7),
-      (168, 174, 17, 6),
-      (175, 178, -1, 6),
-      (179, 182, -1, 7),
-      (183, 189, -1, 11),
-      (190, 196, -1, 9),
-      (197, 203, -1, 10));
+      (84, 87, -1, 3, 0),
+      (88, 91, -1, 2, 0),
+      (92, 94, -1, 13, 0),
+      (95, 96, -1, 15, 0),
+      (97, 99, 3, 12, 0),
+      (100, 103, 4, 4, 0),
+      (104, 107, 3, 8, 0),
+      (108, 112, 3, 9, 0),
+      (113, 118, 3, 14, 0),
+      (119, 123, 3, 10, 0),
+      (124, 128, 3, 5, 0),
+      (129, 133, -1, 8, 0),
+      (134, 139, -1, 12, 0),
+      (140, 144, -1, 11, 0),
+      (145, 150, -1, 1, 0),
+      (151, 157, 14, 7, 0),
+      (158, 162, -1, 8, 0),
+      (163, 167, -1, 7, 0),
+      (168, 174, 17, 6, 0),
+      (175, 178, -1, 6, 0),
+      (179, 182, -1, 7, 0),
+      (183, 189, -1, 11, 0),
+      (190, 196, -1, 9, 0),
+      (197, 203, -1, 10, 0));
 
    A_6 : constant Among_Array_Type (0 .. 8) := (
-      (204, 208, -1, 4),
-      (209, 213, -1, 6),
-      (214, 218, -1, 3),
-      (219, 223, -1, 4),
-      (224, 227, -1, 4),
-      (228, 233, -1, 1),
-      (234, 240, 5, 2),
-      (241, 243, -1, 5),
-      (244, 247, -1, 5));
+      (204, 208, -1, 4, 0),
+      (209, 213, -1, 6, 0),
+      (214, 218, -1, 3, 0),
+      (219, 223, -1, 4, 0),
+      (224, 227, -1, 4, 0),
+      (228, 233, -1, 1, 0),
+      (234, 240, 5, 2, 0),
+      (241, 243, -1, 5, 0),
+      (244, 247, -1, 5, 0));
 
    A_7 : constant Among_Array_Type (0 .. 17) := (
-      (248, 249, -1, 1),
-      (250, 253, -1, 1),
-      (254, 257, -1, 1),
-      (258, 261, -1, 1),
-      (262, 265, -1, 1),
-      (266, 268, -1, 1),
-      (269, 271, -1, 1),
-      (272, 274, -1, 1),
-      (275, 277, -1, 1),
-      (278, 279, -1, 1),
-      (280, 282, -1, 1),
-      (283, 285, -1, 2),
-      (286, 287, -1, 1),
-      (288, 290, -1, 1),
-      (291, 293, -1, 1),
-      (294, 296, -1, 1),
-      (297, 300, 15, 1),
-      (301, 305, 16, 1));
+      (248, 249, -1, 1, 0),
+      (250, 253, -1, 1, 0),
+      (254, 257, -1, 1, 0),
+      (258, 261, -1, 1, 0),
+      (262, 265, -1, 1, 0),
+      (266, 268, -1, 1, 0),
+      (269, 271, -1, 1, 0),
+      (272, 274, -1, 1, 0),
+      (275, 277, -1, 1, 0),
+      (278, 279, -1, 1, 0),
+      (280, 282, -1, 1, 0),
+      (283, 285, -1, 2, 0),
+      (286, 287, -1, 1, 0),
+      (288, 290, -1, 1, 0),
+      (291, 293, -1, 1, 0),
+      (294, 296, -1, 1, 0),
+      (297, 300, 15, 1, 0),
+      (301, 305, 16, 1, 0));
 
    A_8 : constant Among_Array_Type (0 .. 1) := (
-      (306, 306, -1, 1),
-      (307, 307, -1, 2));
+      (306, 306, -1, 1, 0),
+      (307, 307, -1, 2, 0));
 
    A_9 : constant Among_Array_Type (0 .. 7) := (
-      (308, 314, -1, -1),
-      (315, 321, -1, -1),
-      (322, 327, -1, -1),
-      (328, 334, -1, -1),
-      (335, 340, -1, -1),
-      (341, 347, -1, -1),
-      (348, 354, -1, -1),
-      (355, 360, -1, -1));
+      (308, 314, -1, -1, 0),
+      (315, 321, -1, -1, 0),
+      (322, 327, -1, -1, 0),
+      (328, 334, -1, -1, 0),
+      (335, 340, -1, -1, 0),
+      (341, 347, -1, -1, 0),
+      (348, 354, -1, -1, 0),
+      (355, 360, -1, -1, 0));
 
    A_10 : constant Among_Array_Type (0 .. 17) := (
-      (361, 365, -1, -1),
-      (366, 370, -1, -1),
-      (371, 374, -1, -1),
-      (375, 380, -1, -1),
-      (381, 385, -1, 3),
-      (386, 390, -1, 9),
-      (391, 396, -1, 7),
-      (397, 400, -1, -1),
-      (401, 404, -1, 6),
-      (405, 409, -1, 4),
-      (410, 413, -1, -1),
-      (414, 417, -1, 10),
-      (418, 423, -1, 11),
-      (424, 428, -1, 2),
-      (429, 432, -1, 1),
-      (433, 435, -1, -1),
-      (436, 440, -1, 5),
-      (441, 444, -1, 8));
+      (361, 365, -1, -1, 0),
+      (366, 370, -1, -1, 0),
+      (371, 374, -1, -1, 0),
+      (375, 380, -1, -1, 0),
+      (381, 385, -1, 3, 0),
+      (386, 390, -1, 9, 0),
+      (391, 396, -1, 7, 0),
+      (397, 400, -1, -1, 0),
+      (401, 404, -1, 6, 0),
+      (405, 409, -1, 4, 0),
+      (410, 413, -1, -1, 0),
+      (414, 417, -1, 10, 0),
+      (418, 423, -1, 11, 0),
+      (424, 428, -1, 2, 0),
+      (429, 432, -1, 1, 0),
+      (433, 435, -1, -1, 0),
+      (436, 440, -1, 5, 0),
+      (441, 444, -1, 8, 0));
 
 
    procedure R_Prelude (Z : in out Context_Type; Result : out Boolean) is
@@ -321,7 +321,7 @@ package body Stemmer.English is
          goto lab2;
          --  among, line 36
       end if;
-      Find_Among (Z, A_0, Among_String, A);
+      Find_Among (Z, A_0, Among_String, null, A);
       if A = 0 then
          goto lab2;
       end if;
@@ -446,7 +446,7 @@ package body Stemmer.English is
          goto lab0;
          --  substring, line 60
       end if;
-      Find_Among_Backward (Z, A_1, Among_String, A);
+      Find_Among_Backward (Z, A_1, Among_String, null, A);
       if A = 0 then
          Z.C := Z.L - v_1;
          goto lab0;
@@ -466,7 +466,7 @@ package body Stemmer.English is
          return;
          --  substring, line 65
       end if;
-      Find_Among_Backward (Z, A_2, Among_String, A);
+      Find_Among_Backward (Z, A_2, Among_String, null, A);
       if A = 0 then
          Result := False;
          return;
@@ -541,7 +541,7 @@ package body Stemmer.English is
          return;
          --  substring, line 75
       end if;
-      Find_Among_Backward (Z, A_4, Among_String, A);
+      Find_Among_Backward (Z, A_4, Among_String, null, A);
       if A = 0 then
          Result := False;
          return;
@@ -581,7 +581,7 @@ package body Stemmer.English is
             if Z.C - 1 <= Z.Lb or else Check_Among (Z, Z.C - 1, 3, 16#41570d4#) then
                A := 3;
             else               --  substring, line 81
-               Find_Among_Backward (Z, A_3, Among_String, A);
+               Find_Among_Backward (Z, A_3, Among_String, null, A);
                if A = 0 then
                   Result := False;
                   return;
@@ -704,7 +704,7 @@ package body Stemmer.English is
          return;
          --  substring, line 100
       end if;
-      Find_Among_Backward (Z, A_5, Among_String, A);
+      Find_Among_Backward (Z, A_5, Among_String, null, A);
       if A = 0 then
          Result := False;
          return;
@@ -811,7 +811,7 @@ package body Stemmer.English is
          return;
          --  substring, line 127
       end if;
-      Find_Among_Backward (Z, A_6, Among_String, A);
+      Find_Among_Backward (Z, A_6, Among_String, null, A);
       if A = 0 then
          Result := False;
          return;
@@ -877,7 +877,7 @@ package body Stemmer.English is
          return;
          --  substring, line 141
       end if;
-      Find_Among_Backward (Z, A_7, Among_String, A);
+      Find_Among_Backward (Z, A_7, Among_String, null, A);
       if A = 0 then
          Result := False;
          return;
@@ -943,7 +943,7 @@ package body Stemmer.English is
          return;
          --  substring, line 150
       end if;
-      Find_Among_Backward (Z, A_8, Among_String, A);
+      Find_Among_Backward (Z, A_8, Among_String, null, A);
       if A = 0 then
          Result := False;
          return;
@@ -1025,7 +1025,7 @@ package body Stemmer.English is
          return;
          --  substring, line 158
       end if;
-      Find_Among_Backward (Z, A_9, Among_String, A);
+      Find_Among_Backward (Z, A_9, Among_String, null, A);
       if A = 0 then
          Result := False;
          return;
@@ -1054,7 +1054,7 @@ package body Stemmer.English is
          return;
          --  substring, line 170
       end if;
-      Find_Among (Z, A_10, Among_String, A);
+      Find_Among (Z, A_10, Among_String, null, A);
       if A = 0 then
          Result := False;
          return;

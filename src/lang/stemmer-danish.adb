@@ -7,7 +7,7 @@ package body Stemmer.Danish is
    pragma Warnings (Off, "*mode could be*instead of*");
    pragma Warnings (Off, "*formal parameter.*is not modified*");
    pragma Warnings (Off, "*this line is too long*");
-   pragma Warnings (Off, "*label.*is not referenced*");
+   pragma Warnings (Off, "*is not referenced*");
 
    procedure R_Undouble (Z : in out Context_Type; Result : out Boolean);
    procedure R_Other_suffix (Z : in out Context_Type; Result : out Boolean);
@@ -70,51 +70,51 @@ package body Stemmer.Danish is
       & "gd" & "dt" & "gt" & "kt" & "ig" & "lig" & "elig" & "els" & "løst";
 
    A_0 : constant Among_Array_Type (0 .. 31) := (
-      (1, 3, -1, 1),
-      (4, 8, 0, 1),
-      (9, 12, -1, 1),
-      (13, 13, -1, 1),
-      (14, 18, 3, 1),
-      (19, 22, 3, 1),
-      (23, 28, 5, 1),
-      (29, 31, 3, 1),
-      (32, 35, 3, 1),
-      (36, 38, 3, 1),
-      (39, 40, -1, 1),
-      (41, 45, 10, 1),
-      (46, 49, 10, 1),
-      (50, 51, -1, 1),
-      (52, 56, 13, 1),
-      (57, 60, 13, 1),
-      (61, 61, -1, 2),
-      (62, 65, 16, 1),
-      (66, 67, 16, 1),
-      (68, 72, 18, 1),
-      (73, 79, 19, 1),
-      (80, 83, 18, 1),
-      (84, 88, 18, 1),
-      (89, 92, 18, 1),
-      (93, 95, 16, 1),
-      (96, 101, 24, 1),
-      (102, 106, 24, 1),
-      (107, 109, 16, 1),
-      (110, 112, 16, 1),
-      (113, 117, 28, 1),
-      (118, 119, -1, 1),
-      (120, 123, 30, 1));
+      (1, 3, -1, 1, 0),
+      (4, 8, 0, 1, 0),
+      (9, 12, -1, 1, 0),
+      (13, 13, -1, 1, 0),
+      (14, 18, 3, 1, 0),
+      (19, 22, 3, 1, 0),
+      (23, 28, 5, 1, 0),
+      (29, 31, 3, 1, 0),
+      (32, 35, 3, 1, 0),
+      (36, 38, 3, 1, 0),
+      (39, 40, -1, 1, 0),
+      (41, 45, 10, 1, 0),
+      (46, 49, 10, 1, 0),
+      (50, 51, -1, 1, 0),
+      (52, 56, 13, 1, 0),
+      (57, 60, 13, 1, 0),
+      (61, 61, -1, 2, 0),
+      (62, 65, 16, 1, 0),
+      (66, 67, 16, 1, 0),
+      (68, 72, 18, 1, 0),
+      (73, 79, 19, 1, 0),
+      (80, 83, 18, 1, 0),
+      (84, 88, 18, 1, 0),
+      (89, 92, 18, 1, 0),
+      (93, 95, 16, 1, 0),
+      (96, 101, 24, 1, 0),
+      (102, 106, 24, 1, 0),
+      (107, 109, 16, 1, 0),
+      (110, 112, 16, 1, 0),
+      (113, 117, 28, 1, 0),
+      (118, 119, -1, 1, 0),
+      (120, 123, 30, 1, 0));
 
    A_1 : constant Among_Array_Type (0 .. 3) := (
-      (124, 125, -1, -1),
-      (126, 127, -1, -1),
-      (128, 129, -1, -1),
-      (130, 131, -1, -1));
+      (124, 125, -1, -1, 0),
+      (126, 127, -1, -1, 0),
+      (128, 129, -1, -1, 0),
+      (130, 131, -1, -1, 0));
 
    A_2 : constant Among_Array_Type (0 .. 4) := (
-      (132, 133, -1, 1),
-      (134, 136, 0, 1),
-      (137, 140, 1, 1),
-      (141, 143, -1, 1),
-      (144, 148, -1, 2));
+      (132, 133, -1, 1, 0),
+      (134, 136, 0, 1, 0),
+      (137, 140, 1, 1, 0),
+      (141, 143, -1, 1, 0),
+      (144, 148, -1, 2, 0));
 
 
    procedure R_Mark_regions (Z : in out Context_Type; Result : out Boolean) is
@@ -155,7 +155,7 @@ package body Stemmer.Danish is
       --  try, line 37
       --  (, line 37
       if not (Z.I_P1 < Z.I_X) then
-      goto lab2;
+         goto lab2;
       end if;
       Z.I_P1 := Z.I_X;
 
@@ -185,7 +185,7 @@ package body Stemmer.Danish is
          return;
          --  substring, line 43
       end if;
-      Find_Among_Backward (Z, A_0, Among_String, A);
+      Find_Among_Backward (Z, A_0, Among_String, null, A);
       if A = 0 then
          Z.Lb := v_2;
          Result := False;
@@ -241,7 +241,7 @@ package body Stemmer.Danish is
          return;
          --  substring, line 58
       end if;
-      Find_Among_Backward (Z, A_1, Among_String, A);
+      Find_Among_Backward (Z, A_1, Among_String, null, A);
       if A = 0 then
          Z.Lb := v_3;
          Result := False;
@@ -312,7 +312,7 @@ package body Stemmer.Danish is
          return;
          --  substring, line 69
       end if;
-      Find_Among_Backward (Z, A_2, Among_String, A);
+      Find_Among_Backward (Z, A_2, Among_String, null, A);
       if A = 0 then
          Z.Lb := v_3;
          Result := False;

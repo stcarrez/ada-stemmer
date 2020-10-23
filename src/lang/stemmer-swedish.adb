@@ -7,7 +7,7 @@ package body Stemmer.Swedish is
    pragma Warnings (Off, "*mode could be*instead of*");
    pragma Warnings (Off, "*formal parameter.*is not modified*");
    pragma Warnings (Off, "*this line is too long*");
-   pragma Warnings (Off, "*label.*is not referenced*");
+   pragma Warnings (Off, "*is not referenced*");
 
    procedure R_Other_suffix (Z : in out Context_Type; Result : out Boolean);
    procedure R_Consonant_pair (Z : in out Context_Type; Result : out Boolean);
@@ -49,59 +49,59 @@ package body Stemmer.Swedish is
       & "kt" & "tt" & "ig" & "lig" & "els" & "fullt" & "löst";
 
    A_0 : constant Among_Array_Type (0 .. 36) := (
-      (1, 1, -1, 1),
-      (2, 5, 0, 1),
-      (6, 9, 0, 1),
-      (10, 16, 2, 1),
-      (17, 20, 0, 1),
-      (21, 22, -1, 1),
-      (23, 23, -1, 1),
-      (24, 26, 6, 1),
-      (27, 30, 6, 1),
-      (31, 34, 6, 1),
-      (35, 37, 6, 1),
-      (38, 41, 6, 1),
-      (42, 43, -1, 1),
-      (44, 48, 12, 1),
-      (49, 52, 12, 1),
-      (53, 57, 12, 1),
-      (58, 60, -1, 1),
-      (61, 62, -1, 1),
-      (63, 64, -1, 1),
-      (65, 69, 18, 1),
-      (70, 71, -1, 1),
-      (72, 72, -1, 2),
-      (73, 74, 21, 1),
-      (75, 79, 22, 1),
-      (80, 84, 22, 1),
-      (85, 89, 22, 1),
-      (90, 91, 21, 1),
-      (92, 95, 26, 1),
-      (96, 100, 26, 1),
-      (101, 103, 21, 1),
-      (104, 108, 29, 1),
-      (109, 114, 29, 1),
-      (115, 118, 21, 1),
-      (119, 120, -1, 1),
-      (121, 125, -1, 1),
-      (126, 128, -1, 1),
-      (129, 131, -1, 1));
+      (1, 1, -1, 1, 0),
+      (2, 5, 0, 1, 0),
+      (6, 9, 0, 1, 0),
+      (10, 16, 2, 1, 0),
+      (17, 20, 0, 1, 0),
+      (21, 22, -1, 1, 0),
+      (23, 23, -1, 1, 0),
+      (24, 26, 6, 1, 0),
+      (27, 30, 6, 1, 0),
+      (31, 34, 6, 1, 0),
+      (35, 37, 6, 1, 0),
+      (38, 41, 6, 1, 0),
+      (42, 43, -1, 1, 0),
+      (44, 48, 12, 1, 0),
+      (49, 52, 12, 1, 0),
+      (53, 57, 12, 1, 0),
+      (58, 60, -1, 1, 0),
+      (61, 62, -1, 1, 0),
+      (63, 64, -1, 1, 0),
+      (65, 69, 18, 1, 0),
+      (70, 71, -1, 1, 0),
+      (72, 72, -1, 2, 0),
+      (73, 74, 21, 1, 0),
+      (75, 79, 22, 1, 0),
+      (80, 84, 22, 1, 0),
+      (85, 89, 22, 1, 0),
+      (90, 91, 21, 1, 0),
+      (92, 95, 26, 1, 0),
+      (96, 100, 26, 1, 0),
+      (101, 103, 21, 1, 0),
+      (104, 108, 29, 1, 0),
+      (109, 114, 29, 1, 0),
+      (115, 118, 21, 1, 0),
+      (119, 120, -1, 1, 0),
+      (121, 125, -1, 1, 0),
+      (126, 128, -1, 1, 0),
+      (129, 131, -1, 1, 0));
 
    A_1 : constant Among_Array_Type (0 .. 6) := (
-      (132, 133, -1, -1),
-      (134, 135, -1, -1),
-      (136, 137, -1, -1),
-      (138, 139, -1, -1),
-      (140, 141, -1, -1),
-      (142, 143, -1, -1),
-      (144, 145, -1, -1));
+      (132, 133, -1, -1, 0),
+      (134, 135, -1, -1, 0),
+      (136, 137, -1, -1, 0),
+      (138, 139, -1, -1, 0),
+      (140, 141, -1, -1, 0),
+      (142, 143, -1, -1, 0),
+      (144, 145, -1, -1, 0));
 
    A_2 : constant Among_Array_Type (0 .. 4) := (
-      (146, 147, -1, 1),
-      (148, 150, 0, 1),
-      (151, 153, -1, 1),
-      (154, 158, -1, 3),
-      (159, 163, -1, 2));
+      (146, 147, -1, 1, 0),
+      (148, 150, 0, 1, 0),
+      (151, 153, -1, 1, 0),
+      (154, 158, -1, 3, 0),
+      (159, 163, -1, 2, 0));
 
 
    procedure R_Mark_regions (Z : in out Context_Type; Result : out Boolean) is
@@ -142,7 +142,7 @@ package body Stemmer.Swedish is
       --  try, line 31
       --  (, line 31
       if not (Z.I_P1 < Z.I_X) then
-      goto lab2;
+         goto lab2;
       end if;
       Z.I_P1 := Z.I_X;
 
@@ -172,7 +172,7 @@ package body Stemmer.Swedish is
          return;
          --  substring, line 37
       end if;
-      Find_Among_Backward (Z, A_0, Among_String, A);
+      Find_Among_Backward (Z, A_0, Among_String, null, A);
       if A = 0 then
          Z.Lb := v_2;
          Result := False;
@@ -224,7 +224,7 @@ package body Stemmer.Swedish is
          return;
          --  among, line 51
       end if;
-      Find_Among_Backward (Z, A_1, Among_String, A);
+      Find_Among_Backward (Z, A_1, Among_String, null, A);
       if A = 0 then
          Z.Lb := v_2;
          Result := False;
@@ -270,7 +270,7 @@ package body Stemmer.Swedish is
          return;
          --  substring, line 56
       end if;
-      Find_Among_Backward (Z, A_2, Among_String, A);
+      Find_Among_Backward (Z, A_2, Among_String, null, A);
       if A = 0 then
          Z.Lb := v_2;
          Result := False;
