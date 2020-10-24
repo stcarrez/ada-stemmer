@@ -105,4 +105,7 @@ package Stemmer.Tests is
    --  Stem on Irish word using the reference file.
    procedure Test_Stem_Irish_Reference_File (T : in out Test);
 
+   --  Stem on Indonesian word using the reference file.
+   procedure Test_Stem_Indonesian_Reference_File (T : in out Test);
+
 end Stemmer.Tests;
