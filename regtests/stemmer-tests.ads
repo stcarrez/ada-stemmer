@@ -87,6 +87,9 @@ package Stemmer.Tests is
    --  Stem on Dutch word using the reference file.
    procedure Test_Stem_Dutch_Reference_File (T : in out Test);
 
+   --  Stem on Basque word using the reference file.
+   procedure Test_Stem_Basque_Reference_File (T : in out Test);
+
    --  Stem on Catalan word using the reference file.
    procedure Test_Stem_Catalan_Reference_File (T : in out Test);
 
