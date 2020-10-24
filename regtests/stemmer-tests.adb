@@ -76,6 +76,8 @@ package body Stemmer.Tests is
                        Test_Stem_Hungarian_Reference_File'Access);
       Caller.Add_Test (Suite, "Test Stemmer.Stem (Irish, Ref File)",
                        Test_Stem_Irish_Reference_File'Access);
+      Caller.Add_Test (Suite, "Test Stemmer.Stem (Indonesian, Ref File)",
+                       Test_Stem_Indonesian_Reference_File'Access);
    end Add_Tests;
 
    procedure Verify (T : in out Test;
@@ -291,5 +293,11 @@ package body Stemmer.Tests is
    begin
       Verify (T, L_IRISH, "regtests/files/gd-ie-test.txt");
    end Test_Stem_Irish_Reference_File;
+
+   --  Stem on Indonesian words using the reference file.
+   procedure Test_Stem_Indonesian_Reference_File (T : in out Test) is
+   begin
+      Verify (T, L_INDONESIAN, "regtests/files/id-test.txt");
+   end Test_Stem_Indonesian_Reference_File;
 
 end Stemmer.Tests;
