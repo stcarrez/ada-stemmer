@@ -117,4 +117,7 @@ package Stemmer.Tests is
    --  Stem on Portuguese word using the reference file.
    procedure Test_Stem_Portuguese_Reference_File (T : in out Test);
 
+   --  Stem on Romanian word using the reference file.
+   procedure Test_Stem_Romanian_Reference_File (T : in out Test);
+
 end Stemmer.Tests;
