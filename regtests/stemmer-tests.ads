@@ -108,4 +108,7 @@ package Stemmer.Tests is
    --  Stem on Indonesian word using the reference file.
    procedure Test_Stem_Indonesian_Reference_File (T : in out Test);
 
+   --  Stem on Nepali word using the reference file.
+   procedure Test_Stem_Nepali_Reference_File (T : in out Test);
+
 end Stemmer.Tests;
