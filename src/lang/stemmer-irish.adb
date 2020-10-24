@@ -138,10 +138,10 @@ package body Stemmer.Irish is
 
 
    procedure R_Mark_regions (Z : in out Context_Type; Result : out Boolean) is
-      C : Integer;
+      C : Result_Index;
       A : Integer;
-      v_1 : Integer;
-      v_2 : Integer;
+      v_1 : Char_Index;
+      v_2 : Char_Index;
    begin
       --  (, line 28
       Z.I_PV := Z.L;
@@ -205,7 +205,7 @@ package body Stemmer.Irish is
    end R_Mark_regions;
 
    procedure R_Initial_morph (Z : in out Context_Type; Result : out Boolean) is
-      C : Integer;
+      C : Result_Index;
       A : Integer;
    begin
       --  (, line 43
@@ -284,7 +284,7 @@ package body Stemmer.Irish is
    end R_R2;
 
    procedure R_Noun_sfx (Z : in out Context_Type; Result : out Boolean) is
-      C : Integer;
+      C : Result_Index;
       A : Integer;
    begin
       --  (, line 103
@@ -328,7 +328,7 @@ package body Stemmer.Irish is
    end R_Noun_sfx;
 
    procedure R_Deriv (Z : in out Context_Type; Result : out Boolean) is
-      C : Integer;
+      C : Result_Index;
       A : Integer;
    begin
       --  (, line 113
@@ -382,7 +382,7 @@ package body Stemmer.Irish is
    end R_Deriv;
 
    procedure R_Verb_sfx (Z : in out Context_Type; Result : out Boolean) is
-      C : Integer;
+      C : Result_Index;
       A : Integer;
    begin
       --  (, line 129
@@ -431,12 +431,12 @@ package body Stemmer.Irish is
    end R_Verb_sfx;
 
    procedure Stem (Z : in out Context_Type; Result : out Boolean) is
-      C : Integer;
+      C : Result_Index;
       A : Integer;
-      v_1 : Integer;
-      v_3 : Integer;
-      v_4 : Integer;
-      v_5 : Integer;
+      v_1 : Char_Index;
+      v_3 : Char_Index;
+      v_4 : Char_Index;
+      v_5 : Char_Index;
    begin
       --  (, line 143
       --  do, line 144

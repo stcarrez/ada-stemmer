@@ -118,9 +118,9 @@ package body Stemmer.Danish is
 
 
    procedure R_Mark_regions (Z : in out Context_Type; Result : out Boolean) is
-      C : Integer;
+      C : Result_Index;
       A : Integer;
-      v_1 : Integer;
+      v_1 : Char_Index;
    begin
       --  (, line 31
       Z.I_P1 := Z.L;
@@ -165,7 +165,7 @@ package body Stemmer.Danish is
    end R_Mark_regions;
 
    procedure R_Main_suffix (Z : in out Context_Type; Result : out Boolean) is
-      C : Integer;
+      C : Result_Index;
       A : Integer;
       v_2 : Integer;
    begin
@@ -217,9 +217,9 @@ package body Stemmer.Danish is
    end R_Main_suffix;
 
    procedure R_Consonant_pair (Z : in out Context_Type; Result : out Boolean) is
-      C : Integer;
+      C : Result_Index;
       A : Integer;
-      v_1 : Integer;
+      v_1 : Char_Index;
       v_3 : Integer;
    begin
       --  (, line 56
@@ -252,7 +252,8 @@ package body Stemmer.Danish is
       Z.Lb := v_3;
       Z.C := Z.L - v_1;
       --  next, line 64
-      C := Skip_Utf8_Backward (Z, 1);      if C < 0 then
+      C := Skip_Utf8_Backward (Z);
+      if C < 0 then
          Result := False;
          return;
       end if;
@@ -266,11 +267,11 @@ package body Stemmer.Danish is
    end R_Consonant_pair;
 
    procedure R_Other_suffix (Z : in out Context_Type; Result : out Boolean) is
-      C : Integer;
+      C : Result_Index;
       A : Integer;
-      v_1 : Integer;
+      v_1 : Char_Index;
       v_3 : Integer;
-      v_4 : Integer;
+      v_4 : Char_Index;
    begin
       --  (, line 67
       --  do, line 68
@@ -344,7 +345,7 @@ package body Stemmer.Danish is
    end R_Other_suffix;
 
    procedure R_Undouble (Z : in out Context_Type; Result : out Boolean) is
-      C : Integer;
+      C : Result_Index;
       A : Integer;
       v_2 : Integer;
    begin
@@ -380,13 +381,13 @@ package body Stemmer.Danish is
    end R_Undouble;
 
    procedure Stem (Z : in out Context_Type; Result : out Boolean) is
-      C : Integer;
+      C : Result_Index;
       A : Integer;
-      v_1 : Integer;
-      v_2 : Integer;
-      v_3 : Integer;
-      v_4 : Integer;
-      v_5 : Integer;
+      v_1 : Char_Index;
+      v_2 : Char_Index;
+      v_3 : Char_Index;
+      v_4 : Char_Index;
+      v_5 : Char_Index;
    begin
       --  (, line 84
       --  do, line 86

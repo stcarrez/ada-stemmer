@@ -1276,7 +1276,7 @@ package body Stemmer.Greek is
 
 
    procedure R_Has_min_length (Z : in out Context_Type; Result : out Boolean) is
-      C : Integer;
+      C : Result_Index;
       A : Integer;
    begin
       --  (, line 108
@@ -1289,9 +1289,9 @@ package body Stemmer.Greek is
    end R_Has_min_length;
 
    procedure R_Tolower (Z : in out Context_Type; Result : out Boolean) is
-      C : Integer;
+      C : Result_Index;
       A : Integer;
-      v_1 : Integer;
+      v_1 : Char_Index;
    begin
       --  (, line 112
       --  repeat, line 113
@@ -1411,7 +1411,8 @@ package body Stemmer.Greek is
             when 25 =>
                --  (, line 160
                --  next, line 160
-               C := Skip_Utf8_Backward (Z, 1);               if C < 0 then
+               C := Skip_Utf8_Backward (Z);
+               if C < 0 then
                   goto lab1;
                end if;
                Z.C := C;
@@ -1430,7 +1431,7 @@ package body Stemmer.Greek is
    end R_Tolower;
 
    procedure R_Step1 (Z : in out Context_Type; Result : out Boolean) is
-      C : Integer;
+      C : Result_Index;
       A : Integer;
    begin
       --  (, line 165
@@ -1500,9 +1501,9 @@ package body Stemmer.Greek is
    end R_Step1;
 
    procedure R_Steps1 (Z : in out Context_Type; Result : out Boolean) is
-      C : Integer;
+      C : Result_Index;
       A : Integer;
-      v_1 : Integer;
+      v_1 : Char_Index;
    begin
       --  (, line 182
       Z.Ket := Z.C;      --  [, line 183
@@ -1573,7 +1574,7 @@ package body Stemmer.Greek is
    end R_Steps1;
 
    procedure R_Steps2 (Z : in out Context_Type; Result : out Boolean) is
-      C : Integer;
+      C : Result_Index;
       A : Integer;
    begin
       --  (, line 202
@@ -1615,9 +1616,9 @@ package body Stemmer.Greek is
    end R_Steps2;
 
    procedure R_Steps3 (Z : in out Context_Type; Result : out Boolean) is
-      C : Integer;
+      C : Result_Index;
       A : Integer;
-      v_1 : Integer;
+      v_1 : Char_Index;
    begin
       --  (, line 214
       Z.Ket := Z.C;      --  [, line 215
@@ -1705,7 +1706,7 @@ package body Stemmer.Greek is
    end R_Steps3;
 
    procedure R_Steps4 (Z : in out Context_Type; Result : out Boolean) is
-      C : Integer;
+      C : Result_Index;
       A : Integer;
    begin
       --  (, line 235
@@ -1752,9 +1753,9 @@ package body Stemmer.Greek is
    end R_Steps4;
 
    procedure R_Steps5 (Z : in out Context_Type; Result : out Boolean) is
-      C : Integer;
+      C : Result_Index;
       A : Integer;
-      v_1 : Integer;
+      v_1 : Char_Index;
    begin
       --  (, line 250
       Z.Ket := Z.C;      --  [, line 251
@@ -1825,9 +1826,9 @@ package body Stemmer.Greek is
    end R_Steps5;
 
    procedure R_Steps6 (Z : in out Context_Type; Result : out Boolean) is
-      C : Integer;
+      C : Result_Index;
       A : Integer;
-      v_1 : Integer;
+      v_1 : Char_Index;
    begin
       --  (, line 270
       Z.Ket := Z.C;      --  [, line 271
@@ -1965,7 +1966,7 @@ package body Stemmer.Greek is
    end R_Steps6;
 
    procedure R_Steps7 (Z : in out Context_Type; Result : out Boolean) is
-      C : Integer;
+      C : Result_Index;
       A : Integer;
    begin
       --  (, line 299
@@ -2017,9 +2018,9 @@ package body Stemmer.Greek is
    end R_Steps7;
 
    procedure R_Steps8 (Z : in out Context_Type; Result : out Boolean) is
-      C : Integer;
+      C : Result_Index;
       A : Integer;
-      v_1 : Integer;
+      v_1 : Char_Index;
    begin
       --  (, line 312
       Z.Ket := Z.C;      --  [, line 313
@@ -2102,9 +2103,9 @@ package body Stemmer.Greek is
    end R_Steps8;
 
    procedure R_Steps9 (Z : in out Context_Type; Result : out Boolean) is
-      C : Integer;
+      C : Result_Index;
       A : Integer;
-      v_1 : Integer;
+      v_1 : Char_Index;
    begin
       --  (, line 334
       Z.Ket := Z.C;      --  [, line 335
@@ -2176,7 +2177,7 @@ package body Stemmer.Greek is
    end R_Steps9;
 
    procedure R_Steps10 (Z : in out Context_Type; Result : out Boolean) is
-      C : Integer;
+      C : Result_Index;
       A : Integer;
    begin
       --  (, line 349
@@ -2218,9 +2219,9 @@ package body Stemmer.Greek is
    end R_Steps10;
 
    procedure R_Step2a (Z : in out Context_Type; Result : out Boolean) is
-      C : Integer;
+      C : Result_Index;
       A : Integer;
-      v_1 : Integer;
+      v_1 : Char_Index;
    begin
       --  (, line 362
       Z.Ket := Z.C;      --  [, line 363
@@ -2267,7 +2268,7 @@ package body Stemmer.Greek is
    end R_Step2a;
 
    procedure R_Step2b (Z : in out Context_Type; Result : out Boolean) is
-      C : Integer;
+      C : Result_Index;
       A : Integer;
    begin
       --  (, line 372
@@ -2312,7 +2313,7 @@ package body Stemmer.Greek is
    end R_Step2b;
 
    procedure R_Step2c (Z : in out Context_Type; Result : out Boolean) is
-      C : Integer;
+      C : Result_Index;
       A : Integer;
    begin
       --  (, line 381
@@ -2352,7 +2353,7 @@ package body Stemmer.Greek is
    end R_Step2c;
 
    procedure R_Step2d (Z : in out Context_Type; Result : out Boolean) is
-      C : Integer;
+      C : Result_Index;
       A : Integer;
    begin
       --  (, line 391
@@ -2399,7 +2400,7 @@ package body Stemmer.Greek is
    end R_Step2d;
 
    procedure R_Step3 (Z : in out Context_Type; Result : out Boolean) is
-      C : Integer;
+      C : Result_Index;
       A : Integer;
    begin
       --  (, line 400
@@ -2435,9 +2436,9 @@ package body Stemmer.Greek is
    end R_Step3;
 
    procedure R_Step4 (Z : in out Context_Type; Result : out Boolean) is
-      C : Integer;
+      C : Result_Index;
       A : Integer;
-      v_1 : Integer;
+      v_1 : Char_Index;
    begin
       --  (, line 407
       Z.Ket := Z.C;      --  [, line 408
@@ -2497,10 +2498,10 @@ package body Stemmer.Greek is
    end R_Step4;
 
    procedure R_Step5a (Z : in out Context_Type; Result : out Boolean) is
-      C : Integer;
+      C : Result_Index;
       A : Integer;
-      v_1 : Integer;
-      v_2 : Integer;
+      v_1 : Char_Index;
+      v_2 : Char_Index;
    begin
       --  (, line 421
       --  do, line 422
@@ -2583,10 +2584,10 @@ package body Stemmer.Greek is
    end R_Step5a;
 
    procedure R_Step5b (Z : in out Context_Type; Result : out Boolean) is
-      C : Integer;
+      C : Result_Index;
       A : Integer;
-      v_1 : Integer;
-      v_2 : Integer;
+      v_1 : Char_Index;
+      v_2 : Char_Index;
    begin
       --  (, line 437
       --  do, line 438
@@ -2690,10 +2691,10 @@ package body Stemmer.Greek is
    end R_Step5b;
 
    procedure R_Step5c (Z : in out Context_Type; Result : out Boolean) is
-      C : Integer;
+      C : Result_Index;
       A : Integer;
-      v_1 : Integer;
-      v_2 : Integer;
+      v_1 : Char_Index;
+      v_2 : Char_Index;
    begin
       --  (, line 475
       --  do, line 476
@@ -2794,9 +2795,9 @@ package body Stemmer.Greek is
    end R_Step5c;
 
    procedure R_Step5d (Z : in out Context_Type; Result : out Boolean) is
-      C : Integer;
+      C : Result_Index;
       A : Integer;
-      v_1 : Integer;
+      v_1 : Char_Index;
    begin
       --  (, line 499
       Z.Ket := Z.C;      --  [, line 500
@@ -2863,7 +2864,7 @@ package body Stemmer.Greek is
    end R_Step5d;
 
    procedure R_Step5e (Z : in out Context_Type; Result : out Boolean) is
-      C : Integer;
+      C : Result_Index;
       A : Integer;
    begin
       --  (, line 510
@@ -2911,9 +2912,9 @@ package body Stemmer.Greek is
    end R_Step5e;
 
    procedure R_Step5f (Z : in out Context_Type; Result : out Boolean) is
-      C : Integer;
+      C : Result_Index;
       A : Integer;
-      v_1 : Integer;
+      v_1 : Char_Index;
    begin
       --  (, line 520
       --  do, line 521
@@ -2994,10 +2995,10 @@ package body Stemmer.Greek is
    end R_Step5f;
 
    procedure R_Step5g (Z : in out Context_Type; Result : out Boolean) is
-      C : Integer;
+      C : Result_Index;
       A : Integer;
-      v_1 : Integer;
-      v_2 : Integer;
+      v_1 : Char_Index;
+      v_2 : Char_Index;
    begin
       --  (, line 538
       --  do, line 539
@@ -3085,9 +3086,9 @@ package body Stemmer.Greek is
    end R_Step5g;
 
    procedure R_Step5h (Z : in out Context_Type; Result : out Boolean) is
-      C : Integer;
+      C : Result_Index;
       A : Integer;
-      v_1 : Integer;
+      v_1 : Char_Index;
    begin
       --  (, line 558
       Z.Ket := Z.C;      --  [, line 559
@@ -3150,11 +3151,11 @@ package body Stemmer.Greek is
    end R_Step5h;
 
    procedure R_Step5i (Z : in out Context_Type; Result : out Boolean) is
-      C : Integer;
+      C : Result_Index;
       A : Integer;
-      v_1 : Integer;
-      v_2 : Integer;
-      v_3 : Integer;
+      v_1 : Char_Index;
+      v_2 : Char_Index;
+      v_3 : Char_Index;
    begin
       --  (, line 578
       Z.Ket := Z.C;      --  [, line 579
@@ -3260,7 +3261,7 @@ package body Stemmer.Greek is
    end R_Step5i;
 
    procedure R_Step5j (Z : in out Context_Type; Result : out Boolean) is
-      C : Integer;
+      C : Result_Index;
       A : Integer;
    begin
       --  (, line 602
@@ -3307,7 +3308,7 @@ package body Stemmer.Greek is
    end R_Step5j;
 
    procedure R_Step5k (Z : in out Context_Type; Result : out Boolean) is
-      C : Integer;
+      C : Result_Index;
       A : Integer;
    begin
       --  (, line 611
@@ -3354,7 +3355,7 @@ package body Stemmer.Greek is
    end R_Step5k;
 
    procedure R_Step5l (Z : in out Context_Type; Result : out Boolean) is
-      C : Integer;
+      C : Result_Index;
       A : Integer;
    begin
       --  (, line 621
@@ -3401,7 +3402,7 @@ package body Stemmer.Greek is
    end R_Step5l;
 
    procedure R_Step5m (Z : in out Context_Type; Result : out Boolean) is
-      C : Integer;
+      C : Result_Index;
       A : Integer;
    begin
       --  (, line 630
@@ -3448,9 +3449,9 @@ package body Stemmer.Greek is
    end R_Step5m;
 
    procedure R_Step6 (Z : in out Context_Type; Result : out Boolean) is
-      C : Integer;
+      C : Result_Index;
       A : Integer;
-      v_1 : Integer;
+      v_1 : Char_Index;
    begin
       --  (, line 640
       --  do, line 641
@@ -3494,7 +3495,7 @@ package body Stemmer.Greek is
    end R_Step6;
 
    procedure R_Step7 (Z : in out Context_Type; Result : out Boolean) is
-      C : Integer;
+      C : Result_Index;
       A : Integer;
    begin
       --  (, line 661
@@ -3521,41 +3522,41 @@ package body Stemmer.Greek is
    end R_Step7;
 
    procedure Stem (Z : in out Context_Type; Result : out Boolean) is
-      C : Integer;
+      C : Result_Index;
       A : Integer;
-      v_1 : Integer;
-      v_2 : Integer;
-      v_3 : Integer;
-      v_4 : Integer;
-      v_5 : Integer;
-      v_6 : Integer;
-      v_7 : Integer;
-      v_8 : Integer;
-      v_9 : Integer;
-      v_10 : Integer;
-      v_11 : Integer;
-      v_12 : Integer;
-      v_13 : Integer;
-      v_14 : Integer;
-      v_15 : Integer;
-      v_16 : Integer;
-      v_17 : Integer;
-      v_18 : Integer;
-      v_19 : Integer;
-      v_20 : Integer;
-      v_21 : Integer;
-      v_22 : Integer;
-      v_23 : Integer;
-      v_24 : Integer;
-      v_25 : Integer;
-      v_26 : Integer;
-      v_27 : Integer;
-      v_28 : Integer;
-      v_29 : Integer;
-      v_30 : Integer;
-      v_31 : Integer;
-      v_32 : Integer;
-      v_33 : Integer;
+      v_1 : Char_Index;
+      v_2 : Char_Index;
+      v_3 : Char_Index;
+      v_4 : Char_Index;
+      v_5 : Char_Index;
+      v_6 : Char_Index;
+      v_7 : Char_Index;
+      v_8 : Char_Index;
+      v_9 : Char_Index;
+      v_10 : Char_Index;
+      v_11 : Char_Index;
+      v_12 : Char_Index;
+      v_13 : Char_Index;
+      v_14 : Char_Index;
+      v_15 : Char_Index;
+      v_16 : Char_Index;
+      v_17 : Char_Index;
+      v_18 : Char_Index;
+      v_19 : Char_Index;
+      v_20 : Char_Index;
+      v_21 : Char_Index;
+      v_22 : Char_Index;
+      v_23 : Char_Index;
+      v_24 : Char_Index;
+      v_25 : Char_Index;
+      v_26 : Char_Index;
+      v_27 : Char_Index;
+      v_28 : Char_Index;
+      v_29 : Char_Index;
+      v_30 : Char_Index;
+      v_31 : Char_Index;
+      v_32 : Char_Index;
+      v_33 : Char_Index;
    begin
       --  (, line 668
       Z.Lb := Z.C; Z.C := Z.L;      --  backwards, line 669

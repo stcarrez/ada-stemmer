@@ -278,9 +278,9 @@ package body Stemmer.Portuguese is
 
 
    procedure R_Prelude (Z : in out Context_Type; Result : out Boolean) is
-      C : Integer;
+      C : Result_Index;
       A : Integer;
-      v_1 : Integer;
+      v_1 : Char_Index;
    begin
       --  repeat, line 36
 
@@ -315,7 +315,7 @@ package body Stemmer.Portuguese is
             when 3 =>
                --  (, line 40
                --  next, line 40
-               C := Skip_Utf8 (Z, 1);
+               C := Skip_Utf8 (Z);
                if C < 0 then
                   goto lab1;
                end if;
@@ -335,13 +335,13 @@ package body Stemmer.Portuguese is
    end R_Prelude;
 
    procedure R_Mark_regions (Z : in out Context_Type; Result : out Boolean) is
-      C : Integer;
+      C : Result_Index;
       A : Integer;
-      v_1 : Integer;
-      v_2 : Integer;
-      v_3 : Integer;
-      v_4 : Integer;
-      v_5 : Integer;
+      v_1 : Char_Index;
+      v_2 : Char_Index;
+      v_3 : Char_Index;
+      v_4 : Char_Index;
+      v_5 : Char_Index;
    begin
       --  (, line 44
       Z.I_PV := Z.L;
@@ -422,7 +422,7 @@ package body Stemmer.Portuguese is
          goto lab0;
       end if;
       --  next, line 53
-      C := Skip_Utf8 (Z, 1);
+      C := Skip_Utf8 (Z);
       if C < 0 then
          goto lab0;
       end if;
@@ -479,9 +479,9 @@ package body Stemmer.Portuguese is
    end R_Mark_regions;
 
    procedure R_Postlude (Z : in out Context_Type; Result : out Boolean) is
-      C : Integer;
+      C : Result_Index;
       A : Integer;
-      v_1 : Integer;
+      v_1 : Char_Index;
    begin
       --  repeat, line 62
 
@@ -516,7 +516,7 @@ package body Stemmer.Portuguese is
             when 3 =>
                --  (, line 66
                --  next, line 66
-               C := Skip_Utf8 (Z, 1);
+               C := Skip_Utf8 (Z);
                if C < 0 then
                   goto lab1;
                end if;
@@ -551,12 +551,12 @@ package body Stemmer.Portuguese is
    end R_R2;
 
    procedure R_Standard_suffix (Z : in out Context_Type; Result : out Boolean) is
-      C : Integer;
+      C : Result_Index;
       A : Integer;
-      v_1 : Integer;
-      v_2 : Integer;
-      v_3 : Integer;
-      v_4 : Integer;
+      v_1 : Char_Index;
+      v_2 : Char_Index;
+      v_3 : Char_Index;
+      v_4 : Char_Index;
    begin
       --  (, line 76
       Z.Ket := Z.C;      --  [, line 77
@@ -817,7 +817,7 @@ package body Stemmer.Portuguese is
    end R_Standard_suffix;
 
    procedure R_Verb_suffix (Z : in out Context_Type; Result : out Boolean) is
-      C : Integer;
+      C : Result_Index;
       A : Integer;
       v_2 : Integer;
    begin
@@ -847,7 +847,7 @@ package body Stemmer.Portuguese is
    end R_Verb_suffix;
 
    procedure R_Residual_suffix (Z : in out Context_Type; Result : out Boolean) is
-      C : Integer;
+      C : Result_Index;
       A : Integer;
    begin
       --  (, line 183
@@ -875,11 +875,11 @@ package body Stemmer.Portuguese is
    end R_Residual_suffix;
 
    procedure R_Residual_form (Z : in out Context_Type; Result : out Boolean) is
-      C : Integer;
+      C : Result_Index;
       A : Integer;
-      v_1 : Integer;
-      v_2 : Integer;
-      v_3 : Integer;
+      v_1 : Char_Index;
+      v_2 : Char_Index;
+      v_3 : Char_Index;
    begin
       --  (, line 191
       Z.Ket := Z.C;      --  [, line 192
@@ -972,17 +972,17 @@ package body Stemmer.Portuguese is
    end R_Residual_form;
 
    procedure Stem (Z : in out Context_Type; Result : out Boolean) is
-      C : Integer;
+      C : Result_Index;
       A : Integer;
-      v_1 : Integer;
-      v_3 : Integer;
-      v_4 : Integer;
-      v_5 : Integer;
-      v_6 : Integer;
-      v_7 : Integer;
-      v_8 : Integer;
-      v_9 : Integer;
-      v_10 : Integer;
+      v_1 : Char_Index;
+      v_3 : Char_Index;
+      v_4 : Char_Index;
+      v_5 : Char_Index;
+      v_6 : Char_Index;
+      v_7 : Char_Index;
+      v_8 : Char_Index;
+      v_9 : Char_Index;
+      v_10 : Char_Index;
    begin
       --  (, line 201
       --  do, line 202

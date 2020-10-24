@@ -193,13 +193,13 @@ package body Stemmer.English is
 
 
    procedure R_Prelude (Z : in out Context_Type; Result : out Boolean) is
-      C : Integer;
+      C : Result_Index;
       A : Integer;
-      v_1 : Integer;
-      v_2 : Integer;
-      v_3 : Integer;
-      v_4 : Integer;
-      v_5 : Integer;
+      v_1 : Char_Index;
+      v_2 : Char_Index;
+      v_3 : Char_Index;
+      v_4 : Char_Index;
+      v_5 : Char_Index;
    begin
       --  (, line 25
       --  unset Y_found, line 26
@@ -278,7 +278,7 @@ package body Stemmer.English is
                goto lab4;
             end if;
             --  goto, line 29
-            C := Skip_Utf8 (Z, 1);
+            C := Skip_Utf8 (Z);
             if C < 0 then
                goto lab4;
             end if;
@@ -303,10 +303,10 @@ package body Stemmer.English is
    end R_Prelude;
 
    procedure R_Mark_regions (Z : in out Context_Type; Result : out Boolean) is
-      C : Integer;
+      C : Result_Index;
       A : Integer;
-      v_1 : Integer;
-      v_2 : Integer;
+      v_1 : Char_Index;
+      v_2 : Char_Index;
    begin
       --  (, line 32
       Z.I_P1 := Z.L;
@@ -372,9 +372,9 @@ package body Stemmer.English is
    end R_Mark_regions;
 
    procedure R_Shortv (Z : in out Context_Type; Result : out Boolean) is
-      C : Integer;
+      C : Result_Index;
       A : Integer;
-      v_1 : Integer;
+      v_1 : Char_Index;
    begin
       --  (, line 49
       --  or, line 51
@@ -429,10 +429,10 @@ package body Stemmer.English is
    end R_R2;
 
    procedure R_Step_1a (Z : in out Context_Type; Result : out Boolean) is
-      C : Integer;
+      C : Result_Index;
       A : Integer;
-      v_1 : Integer;
-      v_2 : Integer;
+      v_1 : Char_Index;
+      v_2 : Char_Index;
    begin
       --  (, line 58
       --  try, line 59
@@ -503,7 +503,8 @@ package body Stemmer.English is
          when 3 =>
             --  (, line 69
             --  next, line 69
-            C := Skip_Utf8_Backward (Z, 1);            if C < 0 then
+            C := Skip_Utf8_Backward (Z);
+            if C < 0 then
                Result := False;
                return;
             end if;
@@ -526,11 +527,11 @@ package body Stemmer.English is
    end R_Step_1a;
 
    procedure R_Step_1b (Z : in out Context_Type; Result : out Boolean) is
-      C : Integer;
+      C : Result_Index;
       A : Integer;
-      v_1 : Integer;
-      v_2 : Integer;
-      v_3 : Integer;
+      v_1 : Char_Index;
+      v_2 : Char_Index;
+      v_3 : Char_Index;
    begin
       --  (, line 74
       Z.Ket := Z.C;      --  [, line 75
@@ -601,7 +602,8 @@ package body Stemmer.English is
                   Z.Ket := Z.C;                  --  [, line 86
 
                   --  next, line 86
-                  C := Skip_Utf8_Backward (Z, 1);                  if C < 0 then
+                  C := Skip_Utf8_Backward (Z);
+                  if C < 0 then
                      Result := False;
                      return;
                   end if;
@@ -641,9 +643,9 @@ package body Stemmer.English is
    end R_Step_1b;
 
    procedure R_Step_1c (Z : in out Context_Type; Result : out Boolean) is
-      C : Integer;
+      C : Result_Index;
       A : Integer;
-      v_1 : Integer;
+      v_1 : Char_Index;
    begin
       --  (, line 93
       Z.Ket := Z.C;      --  [, line 94
@@ -692,7 +694,7 @@ package body Stemmer.English is
    end R_Step_1c;
 
    procedure R_Step_2 (Z : in out Context_Type; Result : out Boolean) is
-      C : Integer;
+      C : Result_Index;
       A : Integer;
    begin
       --  (, line 99
@@ -799,7 +801,7 @@ package body Stemmer.English is
    end R_Step_2;
 
    procedure R_Step_3 (Z : in out Context_Type; Result : out Boolean) is
-      C : Integer;
+      C : Result_Index;
       A : Integer;
    begin
       --  (, line 126
@@ -864,9 +866,9 @@ package body Stemmer.English is
    end R_Step_3;
 
    procedure R_Step_4 (Z : in out Context_Type; Result : out Boolean) is
-      C : Integer;
+      C : Result_Index;
       A : Integer;
-      v_1 : Integer;
+      v_1 : Char_Index;
    begin
       --  (, line 140
       Z.Ket := Z.C;      --  [, line 141
@@ -929,10 +931,10 @@ package body Stemmer.English is
    end R_Step_4;
 
    procedure R_Step_5 (Z : in out Context_Type; Result : out Boolean) is
-      C : Integer;
+      C : Result_Index;
       A : Integer;
-      v_1 : Integer;
-      v_2 : Integer;
+      v_1 : Char_Index;
+      v_2 : Char_Index;
    begin
       --  (, line 149
       Z.Ket := Z.C;      --  [, line 150
@@ -1013,7 +1015,7 @@ package body Stemmer.English is
    end R_Step_5;
 
    procedure R_Exception2 (Z : in out Context_Type; Result : out Boolean) is
-      C : Integer;
+      C : Result_Index;
       A : Integer;
    begin
       --  (, line 156
@@ -1042,7 +1044,7 @@ package body Stemmer.English is
    end R_Exception2;
 
    procedure R_Exception1 (Z : in out Context_Type; Result : out Boolean) is
-      C : Integer;
+      C : Result_Index;
       A : Integer;
    begin
       --  (, line 168
@@ -1120,10 +1122,10 @@ package body Stemmer.English is
    end R_Exception1;
 
    procedure R_Postlude (Z : in out Context_Type; Result : out Boolean) is
-      C : Integer;
+      C : Result_Index;
       A : Integer;
-      v_1 : Integer;
-      v_2 : Integer;
+      v_1 : Char_Index;
+      v_2 : Char_Index;
    begin
       --  (, line 203
       --  Boolean test Y_found, line 203
@@ -1161,7 +1163,7 @@ package body Stemmer.English is
                goto lab1;
             end if;
             --  goto, line 203
-            C := Skip_Utf8 (Z, 1);
+            C := Skip_Utf8 (Z);
             if C < 0 then
                goto lab1;
             end if;
@@ -1181,19 +1183,19 @@ package body Stemmer.English is
    end R_Postlude;
 
    procedure Stem (Z : in out Context_Type; Result : out Boolean) is
-      C : Integer;
+      C : Result_Index;
       A : Integer;
-      v_1 : Integer;
-      v_2 : Integer;
-      v_5 : Integer;
-      v_6 : Integer;
-      v_7 : Integer;
-      v_8 : Integer;
-      v_9 : Integer;
-      v_10 : Integer;
-      v_11 : Integer;
-      v_12 : Integer;
-      v_13 : Integer;
+      v_1 : Char_Index;
+      v_2 : Char_Index;
+      v_5 : Char_Index;
+      v_6 : Char_Index;
+      v_7 : Char_Index;
+      v_8 : Char_Index;
+      v_9 : Char_Index;
+      v_10 : Char_Index;
+      v_11 : Char_Index;
+      v_12 : Char_Index;
+      v_13 : Char_Index;
    begin
       --  (, line 205
       --  or, line 207

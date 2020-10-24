@@ -2609,11 +2609,11 @@ package body Stemmer.Serbian is
 
 
    procedure R_Cyr_to_lat (Z : in out Context_Type; Result : out Boolean) is
-      C : Integer;
+      C : Result_Index;
       A : Integer;
-      v_1 : Integer;
-      v_2 : Integer;
-      v_3 : Integer;
+      v_1 : Char_Index;
+      v_2 : Char_Index;
+      v_3 : Char_Index;
    begin
       --  (, line 80
       --  do, line 82
@@ -2771,7 +2771,7 @@ package body Stemmer.Serbian is
                goto lab2;
             end if;
             --  goto, line 82
-            C := Skip_Utf8 (Z, 1);
+            C := Skip_Utf8 (Z);
             if C < 0 then
                goto lab2;
             end if;
@@ -2792,17 +2792,17 @@ package body Stemmer.Serbian is
    end R_Cyr_to_lat;
 
    procedure R_Prelude (Z : in out Context_Type; Result : out Boolean) is
-      C : Integer;
+      C : Result_Index;
       A : Integer;
-      v_1 : Integer;
-      v_2 : Integer;
-      v_3 : Integer;
-      v_4 : Integer;
-      v_5 : Integer;
-      v_6 : Integer;
-      v_7 : Integer;
-      v_8 : Integer;
-      v_9 : Integer;
+      v_1 : Char_Index;
+      v_2 : Char_Index;
+      v_3 : Char_Index;
+      v_4 : Char_Index;
+      v_5 : Char_Index;
+      v_6 : Char_Index;
+      v_7 : Char_Index;
+      v_8 : Char_Index;
+      v_9 : Char_Index;
    begin
       --  (, line 119
       --  do, line 121
@@ -2846,7 +2846,7 @@ package body Stemmer.Serbian is
                goto lab2;
             end if;
             --  goto, line 121
-            C := Skip_Utf8 (Z, 1);
+            C := Skip_Utf8 (Z);
             if C < 0 then
                goto lab2;
             end if;
@@ -2903,7 +2903,7 @@ package body Stemmer.Serbian is
                goto lab7;
             end if;
             --  goto, line 125
-            C := Skip_Utf8 (Z, 1);
+            C := Skip_Utf8 (Z);
             if C < 0 then
                goto lab7;
             end if;
@@ -2952,7 +2952,7 @@ package body Stemmer.Serbian is
                goto lab12;
             end if;
             --  goto, line 129
-            C := Skip_Utf8 (Z, 1);
+            C := Skip_Utf8 (Z);
             if C < 0 then
                goto lab12;
             end if;
@@ -2973,12 +2973,12 @@ package body Stemmer.Serbian is
    end R_Prelude;
 
    procedure R_Mark_regions (Z : in out Context_Type; Result : out Boolean) is
-      C : Integer;
+      C : Result_Index;
       A : Integer;
-      v_1 : Integer;
-      v_2 : Integer;
-      v_3 : Integer;
-      v_4 : Integer;
+      v_1 : Char_Index;
+      v_2 : Char_Index;
+      v_3 : Char_Index;
+      v_4 : Char_Index;
    begin
       --  (, line 135
       --  set no_diacritics, line 137
@@ -3046,7 +3046,7 @@ package body Stemmer.Serbian is
             goto lab5;
          end if;
          --  gopast, line 153
-         C := Skip_Utf8 (Z, 1);
+         C := Skip_Utf8 (Z);
          if C < 0 then
             goto lab5;
          end if;
@@ -3089,7 +3089,7 @@ package body Stemmer.Serbian is
    end R_R1;
 
    procedure R_Step_1 (Z : in out Context_Type; Result : out Boolean) is
-      C : Integer;
+      C : Result_Index;
       A : Integer;
    begin
       --  (, line 164
@@ -3522,7 +3522,7 @@ package body Stemmer.Serbian is
    end R_Step_1;
 
    procedure R_Step_2 (Z : in out Context_Type; Result : out Boolean) is
-      C : Integer;
+      C : Result_Index;
       A : Integer;
    begin
       --  (, line 299
@@ -4428,7 +4428,7 @@ package body Stemmer.Serbian is
    end R_Step_2;
 
    procedure R_Step_3 (Z : in out Context_Type; Result : out Boolean) is
-      C : Integer;
+      C : Result_Index;
       A : Integer;
    begin
       --  (, line 2339
@@ -4461,11 +4461,11 @@ package body Stemmer.Serbian is
    end R_Step_3;
 
    procedure Stem (Z : in out Context_Type; Result : out Boolean) is
-      C : Integer;
+      C : Result_Index;
       A : Integer;
-      v_4 : Integer;
-      v_5 : Integer;
-      v_6 : Integer;
+      v_4 : Char_Index;
+      v_5 : Char_Index;
+      v_6 : Char_Index;
    begin
       --  (, line 2371
       --  do, line 2372

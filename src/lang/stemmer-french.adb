@@ -249,12 +249,12 @@ package body Stemmer.French is
 
 
    procedure R_Prelude (Z : in out Context_Type; Result : out Boolean) is
-      C : Integer;
+      C : Result_Index;
       A : Integer;
-      v_1 : Integer;
-      v_2 : Integer;
-      v_3 : Integer;
-      v_4 : Integer;
+      v_1 : Char_Index;
+      v_2 : Char_Index;
+      v_3 : Char_Index;
+      v_4 : Char_Index;
    begin
       --  repeat, line 38
 
@@ -417,7 +417,7 @@ package body Stemmer.French is
                goto lab1;
             end if;
             --  goto, line 38
-            C := Skip_Utf8 (Z, 1);
+            C := Skip_Utf8 (Z);
             if C < 0 then
                goto lab1;
             end if;
@@ -435,11 +435,11 @@ package body Stemmer.French is
    end R_Prelude;
 
    procedure R_Mark_regions (Z : in out Context_Type; Result : out Boolean) is
-      C : Integer;
+      C : Result_Index;
       A : Integer;
-      v_1 : Integer;
-      v_2 : Integer;
-      v_3 : Integer;
+      v_1 : Char_Index;
+      v_2 : Char_Index;
+      v_3 : Char_Index;
    begin
       --  (, line 54
       Z.I_PV := Z.L;
@@ -460,7 +460,7 @@ package body Stemmer.French is
          goto lab2;
       end if;
       --  next, line 61
-      C := Skip_Utf8 (Z, 1);
+      C := Skip_Utf8 (Z);
       if C < 0 then
          goto lab2;
       end if;
@@ -484,7 +484,7 @@ package body Stemmer.French is
       Z.C := v_2;
       --  (, line 70
       --  next, line 70
-      C := Skip_Utf8 (Z, 1);
+      C := Skip_Utf8 (Z);
       if C < 0 then
          goto lab0;
       end if;
@@ -546,9 +546,9 @@ package body Stemmer.French is
    end R_Mark_regions;
 
    procedure R_Postlude (Z : in out Context_Type; Result : out Boolean) is
-      C : Integer;
+      C : Result_Index;
       A : Integer;
-      v_1 : Integer;
+      v_1 : Char_Index;
    begin
       --  repeat, line 79
 
@@ -599,7 +599,7 @@ package body Stemmer.French is
             when 7 =>
                --  (, line 88
                --  next, line 88
-               C := Skip_Utf8 (Z, 1);
+               C := Skip_Utf8 (Z);
                if C < 0 then
                   goto lab1;
                end if;
@@ -634,19 +634,19 @@ package body Stemmer.French is
    end R_R2;
 
    procedure R_Standard_suffix (Z : in out Context_Type; Result : out Boolean) is
-      C : Integer;
+      C : Result_Index;
       A : Integer;
-      v_1 : Integer;
-      v_2 : Integer;
-      v_3 : Integer;
-      v_4 : Integer;
-      v_5 : Integer;
-      v_6 : Integer;
-      v_7 : Integer;
-      v_8 : Integer;
-      v_9 : Integer;
-      v_10 : Integer;
-      v_11 : Integer;
+      v_1 : Char_Index;
+      v_2 : Char_Index;
+      v_3 : Char_Index;
+      v_4 : Char_Index;
+      v_5 : Char_Index;
+      v_6 : Char_Index;
+      v_7 : Char_Index;
+      v_8 : Char_Index;
+      v_9 : Char_Index;
+      v_10 : Char_Index;
+      v_11 : Char_Index;
    begin
       --  (, line 98
       Z.Ket := Z.C;      --  [, line 99
@@ -1114,10 +1114,10 @@ package body Stemmer.French is
    end R_Standard_suffix;
 
    procedure R_I_verb_suffix (Z : in out Context_Type; Result : out Boolean) is
-      C : Integer;
+      C : Result_Index;
       A : Integer;
       v_2 : Integer;
-      v_3 : Integer;
+      v_3 : Char_Index;
    begin
       if Z.C < Z.I_PV then
          Result := False;
@@ -1171,10 +1171,10 @@ package body Stemmer.French is
    end R_I_verb_suffix;
 
    procedure R_Verb_suffix (Z : in out Context_Type; Result : out Boolean) is
-      C : Integer;
+      C : Result_Index;
       A : Integer;
       v_2 : Integer;
-      v_3 : Integer;
+      v_3 : Char_Index;
    begin
       if Z.C < Z.I_PV then
          Result := False;
@@ -1241,13 +1241,13 @@ package body Stemmer.French is
    end R_Verb_suffix;
 
    procedure R_Residual_suffix (Z : in out Context_Type; Result : out Boolean) is
-      C : Integer;
+      C : Result_Index;
       A : Integer;
-      v_1 : Integer;
-      v_2 : Integer;
-      v_3 : Integer;
+      v_1 : Char_Index;
+      v_2 : Char_Index;
+      v_3 : Char_Index;
       v_5 : Integer;
-      v_6 : Integer;
+      v_6 : Char_Index;
    begin
       --  (, line 205
       --  try, line 206
@@ -1366,9 +1366,9 @@ package body Stemmer.French is
    end R_Residual_suffix;
 
    procedure R_Un_double (Z : in out Context_Type; Result : out Boolean) is
-      C : Integer;
+      C : Result_Index;
       A : Integer;
-      v_1 : Integer;
+      v_1 : Char_Index;
    begin
       --  (, line 217
       --  test, line 218
@@ -1388,7 +1388,8 @@ package body Stemmer.French is
       Z.Ket := Z.C;      --  [, line 218
 
       --  next, line 218
-      C := Skip_Utf8_Backward (Z, 1);      if C < 0 then
+      C := Skip_Utf8_Backward (Z);
+      if C < 0 then
          Result := False;
          return;
       end if;
@@ -1402,10 +1403,10 @@ package body Stemmer.French is
    end R_Un_double;
 
    procedure R_Un_accent (Z : in out Context_Type; Result : out Boolean) is
-      C : Integer;
+      C : Result_Index;
       A : Integer;
       v_1 : Integer;
-      v_3 : Integer;
+      v_3 : Char_Index;
    begin
       --  (, line 221
       --  atleast, line 222
@@ -1463,18 +1464,18 @@ package body Stemmer.French is
    end R_Un_accent;
 
    procedure Stem (Z : in out Context_Type; Result : out Boolean) is
-      C : Integer;
+      C : Result_Index;
       A : Integer;
-      v_1 : Integer;
-      v_3 : Integer;
-      v_4 : Integer;
-      v_5 : Integer;
-      v_6 : Integer;
-      v_7 : Integer;
-      v_8 : Integer;
-      v_9 : Integer;
-      v_10 : Integer;
-      v_11 : Integer;
+      v_1 : Char_Index;
+      v_3 : Char_Index;
+      v_4 : Char_Index;
+      v_5 : Char_Index;
+      v_6 : Char_Index;
+      v_7 : Char_Index;
+      v_8 : Char_Index;
+      v_9 : Char_Index;
+      v_10 : Char_Index;
+      v_11 : Char_Index;
    begin
       --  (, line 227
       --  do, line 229

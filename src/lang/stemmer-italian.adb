@@ -307,13 +307,13 @@ package body Stemmer.Italian is
 
 
    procedure R_Prelude (Z : in out Context_Type; Result : out Boolean) is
-      C : Integer;
+      C : Result_Index;
       A : Integer;
-      v_1 : Integer;
-      v_2 : Integer;
-      v_3 : Integer;
-      v_4 : Integer;
-      v_5 : Integer;
+      v_1 : Char_Index;
+      v_2 : Char_Index;
+      v_3 : Char_Index;
+      v_4 : Char_Index;
+      v_5 : Char_Index;
    begin
       --  (, line 34
       --  test, line 35
@@ -363,7 +363,7 @@ package body Stemmer.Italian is
             when 7 =>
                --  (, line 43
                --  next, line 43
-               C := Skip_Utf8 (Z, 1);
+               C := Skip_Utf8 (Z);
                if C < 0 then
                   goto lab1;
                end if;
@@ -442,7 +442,7 @@ package body Stemmer.Italian is
                goto lab3;
             end if;
             --  goto, line 46
-            C := Skip_Utf8 (Z, 1);
+            C := Skip_Utf8 (Z);
             if C < 0 then
                goto lab3;
             end if;
@@ -460,13 +460,13 @@ package body Stemmer.Italian is
    end R_Prelude;
 
    procedure R_Mark_regions (Z : in out Context_Type; Result : out Boolean) is
-      C : Integer;
+      C : Result_Index;
       A : Integer;
-      v_1 : Integer;
-      v_2 : Integer;
-      v_3 : Integer;
-      v_4 : Integer;
-      v_5 : Integer;
+      v_1 : Char_Index;
+      v_2 : Char_Index;
+      v_3 : Char_Index;
+      v_4 : Char_Index;
+      v_5 : Char_Index;
    begin
       --  (, line 52
       Z.I_PV := Z.L;
@@ -547,7 +547,7 @@ package body Stemmer.Italian is
          goto lab0;
       end if;
       --  next, line 61
-      C := Skip_Utf8 (Z, 1);
+      C := Skip_Utf8 (Z);
       if C < 0 then
          goto lab0;
       end if;
@@ -604,9 +604,9 @@ package body Stemmer.Italian is
    end R_Mark_regions;
 
    procedure R_Postlude (Z : in out Context_Type; Result : out Boolean) is
-      C : Integer;
+      C : Result_Index;
       A : Integer;
-      v_1 : Integer;
+      v_1 : Char_Index;
    begin
       --  repeat, line 70
 
@@ -641,7 +641,7 @@ package body Stemmer.Italian is
             when 3 =>
                --  (, line 75
                --  next, line 75
-               C := Skip_Utf8 (Z, 1);
+               C := Skip_Utf8 (Z);
                if C < 0 then
                   goto lab1;
                end if;
@@ -676,7 +676,7 @@ package body Stemmer.Italian is
    end R_R2;
 
    procedure R_Attached_pronoun (Z : in out Context_Type; Result : out Boolean) is
-      C : Integer;
+      C : Result_Index;
       A : Integer;
    begin
       --  (, line 86
@@ -731,12 +731,12 @@ package body Stemmer.Italian is
    end R_Attached_pronoun;
 
    procedure R_Standard_suffix (Z : in out Context_Type; Result : out Boolean) is
-      C : Integer;
+      C : Result_Index;
       A : Integer;
-      v_1 : Integer;
-      v_2 : Integer;
-      v_3 : Integer;
-      v_4 : Integer;
+      v_1 : Char_Index;
+      v_2 : Char_Index;
+      v_3 : Char_Index;
+      v_4 : Char_Index;
    begin
       --  (, line 103
       Z.Ket := Z.C;      --  [, line 104
@@ -999,7 +999,7 @@ package body Stemmer.Italian is
    end R_Standard_suffix;
 
    procedure R_Verb_suffix (Z : in out Context_Type; Result : out Boolean) is
-      C : Integer;
+      C : Result_Index;
       A : Integer;
       v_2 : Integer;
    begin
@@ -1029,10 +1029,10 @@ package body Stemmer.Italian is
    end R_Verb_suffix;
 
    procedure R_Vowel_suffix (Z : in out Context_Type; Result : out Boolean) is
-      C : Integer;
+      C : Result_Index;
       A : Integer;
-      v_1 : Integer;
-      v_2 : Integer;
+      v_1 : Char_Index;
+      v_2 : Char_Index;
    begin
       --  (, line 170
       --  try, line 171
@@ -1110,14 +1110,14 @@ package body Stemmer.Italian is
    end R_Vowel_suffix;
 
    procedure Stem (Z : in out Context_Type; Result : out Boolean) is
-      C : Integer;
+      C : Result_Index;
       A : Integer;
-      v_1 : Integer;
-      v_3 : Integer;
-      v_4 : Integer;
-      v_5 : Integer;
-      v_6 : Integer;
-      v_7 : Integer;
+      v_1 : Char_Index;
+      v_3 : Char_Index;
+      v_4 : Char_Index;
+      v_5 : Char_Index;
+      v_6 : Char_Index;
+      v_7 : Char_Index;
    begin
       --  (, line 181
       --  do, line 182

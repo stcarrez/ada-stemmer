@@ -161,10 +161,10 @@ package body Stemmer.Nepali is
 
 
    procedure R_Remove_category_1 (Z : in out Context_Type; Result : out Boolean) is
-      C : Integer;
+      C : Result_Index;
       A : Integer;
-      v_1 : Integer;
-      v_2 : Integer;
+      v_1 : Char_Index;
+      v_2 : Char_Index;
    begin
       --  (, line 53
       Z.Ket := Z.C;      --  [, line 54
@@ -225,7 +225,7 @@ package body Stemmer.Nepali is
    end R_Remove_category_1;
 
    procedure R_Check_category_2 (Z : in out Context_Type; Result : out Boolean) is
-      C : Integer;
+      C : Result_Index;
       A : Integer;
    begin
       --  (, line 63
@@ -249,9 +249,9 @@ package body Stemmer.Nepali is
    end R_Check_category_2;
 
    procedure R_Remove_category_2 (Z : in out Context_Type; Result : out Boolean) is
-      C : Integer;
+      C : Result_Index;
       A : Integer;
-      v_1 : Integer;
+      v_1 : Char_Index;
    begin
       --  (, line 69
       Z.Ket := Z.C;      --  [, line 70
@@ -335,7 +335,7 @@ package body Stemmer.Nepali is
    end R_Remove_category_2;
 
    procedure R_Remove_category_3 (Z : in out Context_Type; Result : out Boolean) is
-      C : Integer;
+      C : Result_Index;
       A : Integer;
    begin
       --  (, line 76
@@ -357,13 +357,13 @@ package body Stemmer.Nepali is
    end R_Remove_category_3;
 
    procedure Stem (Z : in out Context_Type; Result : out Boolean) is
-      C : Integer;
+      C : Result_Index;
       A : Integer;
-      v_1 : Integer;
-      v_2 : Integer;
-      v_3 : Integer;
-      v_4 : Integer;
-      v_5 : Integer;
+      v_1 : Char_Index;
+      v_2 : Char_Index;
+      v_3 : Char_Index;
+      v_4 : Char_Index;
+      v_5 : Char_Index;
    begin
       --  (, line 85
       Z.Lb := Z.C; Z.C := Z.L;      --  backwards, line 86

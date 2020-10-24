@@ -326,11 +326,11 @@ package body Stemmer.Arabic is
 
 
    procedure R_Normalize_pre (Z : in out Context_Type; Result : out Boolean) is
-      C : Integer;
+      C : Result_Index;
       A : Integer;
-      v_1 : Integer;
-      v_2 : Integer;
-      v_3 : Integer;
+      v_1 : Char_Index;
+      v_2 : Char_Index;
+      v_3 : Char_Index;
    begin
       --  (, line 246
       --  do, line 247
@@ -568,7 +568,7 @@ package body Stemmer.Arabic is
          <<lab4>>
          Z.C := v_3;
          --  next, line 312
-         C := Skip_Utf8 (Z, 1);
+         C := Skip_Utf8 (Z);
          if C < 0 then
             goto lab2;
          end if;
@@ -590,12 +590,12 @@ package body Stemmer.Arabic is
    end R_Normalize_pre;
 
    procedure R_Normalize_post (Z : in out Context_Type; Result : out Boolean) is
-      C : Integer;
+      C : Result_Index;
       A : Integer;
-      v_1 : Integer;
-      v_2 : Integer;
-      v_3 : Integer;
-      v_4 : Integer;
+      v_1 : Char_Index;
+      v_2 : Char_Index;
+      v_3 : Char_Index;
+      v_4 : Char_Index;
    begin
       --  (, line 316
       --  do, line 318
@@ -671,7 +671,7 @@ package body Stemmer.Arabic is
          <<lab5>>
          Z.C := v_4;
          --  next, line 339
-         C := Skip_Utf8 (Z, 1);
+         C := Skip_Utf8 (Z);
          if C < 0 then
             goto lab3;
          end if;
@@ -693,7 +693,7 @@ package body Stemmer.Arabic is
    end R_Normalize_post;
 
    procedure R_Checks1 (Z : in out Context_Type; Result : out Boolean) is
-      C : Integer;
+      C : Result_Index;
       A : Integer;
    begin
       --  (, line 344
@@ -746,7 +746,7 @@ package body Stemmer.Arabic is
    end R_Checks1;
 
    procedure R_Prefix_Step1 (Z : in out Context_Type; Result : out Boolean) is
-      C : Integer;
+      C : Result_Index;
       A : Integer;
    begin
       --  (, line 353
@@ -807,10 +807,10 @@ package body Stemmer.Arabic is
    end R_Prefix_Step1;
 
    procedure R_Prefix_Step2 (Z : in out Context_Type; Result : out Boolean) is
-      C : Integer;
+      C : Result_Index;
       A : Integer;
-      v_1 : Integer;
-      v_2 : Integer;
+      v_1 : Char_Index;
+      v_2 : Char_Index;
    begin
       --  (, line 364
       --  not, line 365
@@ -866,7 +866,7 @@ package body Stemmer.Arabic is
    end R_Prefix_Step2;
 
    procedure R_Prefix_Step3a_Noun (Z : in out Context_Type; Result : out Boolean) is
-      C : Integer;
+      C : Result_Index;
       A : Integer;
    begin
       --  (, line 373
@@ -911,9 +911,9 @@ package body Stemmer.Arabic is
    end R_Prefix_Step3a_Noun;
 
    procedure R_Prefix_Step3b_Noun (Z : in out Context_Type; Result : out Boolean) is
-      C : Integer;
+      C : Result_Index;
       A : Integer;
-      v_1 : Integer;
+      v_1 : Char_Index;
    begin
       --  (, line 380
       --  not, line 381
@@ -978,7 +978,7 @@ package body Stemmer.Arabic is
    end R_Prefix_Step3b_Noun;
 
    procedure R_Prefix_Step3_Verb (Z : in out Context_Type; Result : out Boolean) is
-      C : Integer;
+      C : Result_Index;
       A : Integer;
    begin
       --  (, line 391
@@ -1034,7 +1034,7 @@ package body Stemmer.Arabic is
    end R_Prefix_Step3_Verb;
 
    procedure R_Prefix_Step4_Verb (Z : in out Context_Type; Result : out Boolean) is
-      C : Integer;
+      C : Result_Index;
       A : Integer;
    begin
       --  (, line 401
@@ -1069,7 +1069,7 @@ package body Stemmer.Arabic is
    end R_Prefix_Step4_Verb;
 
    procedure R_Suffix_Noun_Step1a (Z : in out Context_Type; Result : out Boolean) is
-      C : Integer;
+      C : Result_Index;
       A : Integer;
    begin
       --  (, line 410
@@ -1117,7 +1117,7 @@ package body Stemmer.Arabic is
    end R_Suffix_Noun_Step1a;
 
    procedure R_Suffix_Noun_Step1b (Z : in out Context_Type; Result : out Boolean) is
-      C : Integer;
+      C : Result_Index;
       A : Integer;
    begin
       --  (, line 417
@@ -1148,7 +1148,7 @@ package body Stemmer.Arabic is
    end R_Suffix_Noun_Step1b;
 
    procedure R_Suffix_Noun_Step2a (Z : in out Context_Type; Result : out Boolean) is
-      C : Integer;
+      C : Result_Index;
       A : Integer;
    begin
       --  (, line 423
@@ -1174,7 +1174,7 @@ package body Stemmer.Arabic is
    end R_Suffix_Noun_Step2a;
 
    procedure R_Suffix_Noun_Step2b (Z : in out Context_Type; Result : out Boolean) is
-      C : Integer;
+      C : Result_Index;
       A : Integer;
    begin
       --  (, line 429
@@ -1205,7 +1205,7 @@ package body Stemmer.Arabic is
    end R_Suffix_Noun_Step2b;
 
    procedure R_Suffix_Noun_Step2c1 (Z : in out Context_Type; Result : out Boolean) is
-      C : Integer;
+      C : Result_Index;
       A : Integer;
    begin
       --  (, line 435
@@ -1236,7 +1236,7 @@ package body Stemmer.Arabic is
    end R_Suffix_Noun_Step2c1;
 
    procedure R_Suffix_Noun_Step2c2 (Z : in out Context_Type; Result : out Boolean) is
-      C : Integer;
+      C : Result_Index;
       A : Integer;
    begin
       --  (, line 440
@@ -1267,7 +1267,7 @@ package body Stemmer.Arabic is
    end R_Suffix_Noun_Step2c2;
 
    procedure R_Suffix_Noun_Step3 (Z : in out Context_Type; Result : out Boolean) is
-      C : Integer;
+      C : Result_Index;
       A : Integer;
    begin
       --  (, line 445
@@ -1298,7 +1298,7 @@ package body Stemmer.Arabic is
    end R_Suffix_Noun_Step3;
 
    procedure R_Suffix_Verb_Step1 (Z : in out Context_Type; Result : out Boolean) is
-      C : Integer;
+      C : Result_Index;
       A : Integer;
    begin
       --  (, line 451
@@ -1346,7 +1346,7 @@ package body Stemmer.Arabic is
    end R_Suffix_Verb_Step1;
 
    procedure R_Suffix_Verb_Step2a (Z : in out Context_Type; Result : out Boolean) is
-      C : Integer;
+      C : Result_Index;
       A : Integer;
    begin
       --  (, line 458
@@ -1402,7 +1402,7 @@ package body Stemmer.Arabic is
    end R_Suffix_Verb_Step2a;
 
    procedure R_Suffix_Verb_Step2b (Z : in out Context_Type; Result : out Boolean) is
-      C : Integer;
+      C : Result_Index;
       A : Integer;
    begin
       --  (, line 468
@@ -1433,7 +1433,7 @@ package body Stemmer.Arabic is
    end R_Suffix_Verb_Step2b;
 
    procedure R_Suffix_Verb_Step2c (Z : in out Context_Type; Result : out Boolean) is
-      C : Integer;
+      C : Result_Index;
       A : Integer;
    begin
       --  (, line 475
@@ -1478,7 +1478,7 @@ package body Stemmer.Arabic is
    end R_Suffix_Verb_Step2c;
 
    procedure R_Suffix_All_alef_maqsura (Z : in out Context_Type; Result : out Boolean) is
-      C : Integer;
+      C : Result_Index;
       A : Integer;
    begin
       --  (, line 482
@@ -1505,24 +1505,24 @@ package body Stemmer.Arabic is
    end R_Suffix_All_alef_maqsura;
 
    procedure Stem (Z : in out Context_Type; Result : out Boolean) is
-      C : Integer;
+      C : Result_Index;
       A : Integer;
-      v_1 : Integer;
-      v_3 : Integer;
-      v_4 : Integer;
-      v_5 : Integer;
+      v_1 : Char_Index;
+      v_3 : Char_Index;
+      v_4 : Char_Index;
+      v_5 : Char_Index;
       v_6 : Integer;
-      v_7 : Integer;
-      v_8 : Integer;
-      v_9 : Integer;
-      v_10 : Integer;
-      v_12 : Integer;
-      v_13 : Integer;
-      v_15 : Integer;
-      v_16 : Integer;
-      v_17 : Integer;
-      v_18 : Integer;
-      v_19 : Integer;
+      v_7 : Char_Index;
+      v_8 : Char_Index;
+      v_9 : Char_Index;
+      v_10 : Char_Index;
+      v_12 : Char_Index;
+      v_13 : Char_Index;
+      v_15 : Char_Index;
+      v_16 : Char_Index;
+      v_17 : Char_Index;
+      v_18 : Char_Index;
+      v_19 : Char_Index;
    begin
       --  (, line 491
       --  set is_noun, line 493
@@ -1604,7 +1604,8 @@ package body Stemmer.Arabic is
       <<lab9>>
       Z.C := Z.L - v_8;
       --  next, line 513
-      C := Skip_Utf8_Backward (Z, 1);      if C < 0 then
+      C := Skip_Utf8_Backward (Z);
+      if C < 0 then
          goto lab4;
       end if;
       Z.C := C;
@@ -1699,7 +1700,8 @@ package body Stemmer.Arabic is
       <<lab20>>
       Z.C := Z.L - v_12;
       --  next, line 530
-      C := Skip_Utf8_Backward (Z, 1);      if C < 0 then
+      C := Skip_Utf8_Backward (Z);
+      if C < 0 then
          goto lab15;
       end if;
       Z.C := C;

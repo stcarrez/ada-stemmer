@@ -383,7 +383,7 @@ package body Stemmer.Lithuanian is
    end R_R1;
 
    procedure R_Step1 (Z : in out Context_Type; Result : out Boolean) is
-      C : Integer;
+      C : Result_Index;
       A : Integer;
       v_2 : Integer;
    begin
@@ -419,9 +419,9 @@ package body Stemmer.Lithuanian is
    end R_Step1;
 
    procedure R_Step2 (Z : in out Context_Type; Result : out Boolean) is
-      C : Integer;
+      C : Result_Index;
       A : Integer;
-      v_1 : Integer;
+      v_1 : Char_Index;
       v_3 : Integer;
    begin
       --  repeat, line 232
@@ -462,7 +462,7 @@ package body Stemmer.Lithuanian is
    end R_Step2;
 
    procedure R_Fix_conflicts (Z : in out Context_Type; Result : out Boolean) is
-      C : Integer;
+      C : Result_Index;
       A : Integer;
    begin
       --  (, line 306
@@ -523,7 +523,7 @@ package body Stemmer.Lithuanian is
    end R_Fix_conflicts;
 
    procedure R_Fix_chdz (Z : in out Context_Type; Result : out Boolean) is
-      C : Integer;
+      C : Result_Index;
       A : Integer;
    begin
       --  (, line 337
@@ -560,7 +560,7 @@ package body Stemmer.Lithuanian is
    end R_Fix_chdz;
 
    procedure R_Fix_gd (Z : in out Context_Type; Result : out Boolean) is
-      C : Integer;
+      C : Result_Index;
       A : Integer;
    begin
       --  (, line 344
@@ -587,17 +587,17 @@ package body Stemmer.Lithuanian is
    end R_Fix_gd;
 
    procedure Stem (Z : in out Context_Type; Result : out Boolean) is
-      C : Integer;
+      C : Result_Index;
       A : Integer;
-      v_1 : Integer;
-      v_2 : Integer;
-      v_3 : Integer;
-      v_4 : Integer;
-      v_5 : Integer;
-      v_6 : Integer;
-      v_7 : Integer;
-      v_8 : Integer;
-      v_9 : Integer;
+      v_1 : Char_Index;
+      v_2 : Char_Index;
+      v_3 : Char_Index;
+      v_4 : Char_Index;
+      v_5 : Char_Index;
+      v_6 : Char_Index;
+      v_7 : Char_Index;
+      v_8 : Char_Index;
+      v_9 : Char_Index;
    begin
       --  (, line 353
       Z.I_P1 := Z.L;

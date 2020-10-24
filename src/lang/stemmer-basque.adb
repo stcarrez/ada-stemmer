@@ -504,13 +504,13 @@ package body Stemmer.Basque is
 
 
    procedure R_Mark_regions (Z : in out Context_Type; Result : out Boolean) is
-      C : Integer;
+      C : Result_Index;
       A : Integer;
-      v_1 : Integer;
-      v_2 : Integer;
-      v_3 : Integer;
-      v_4 : Integer;
-      v_5 : Integer;
+      v_1 : Char_Index;
+      v_2 : Char_Index;
+      v_3 : Char_Index;
+      v_4 : Char_Index;
+      v_5 : Char_Index;
    begin
       --  (, line 23
       Z.I_PV := Z.L;
@@ -591,7 +591,7 @@ package body Stemmer.Basque is
          goto lab0;
       end if;
       --  next, line 32
-      C := Skip_Utf8 (Z, 1);
+      C := Skip_Utf8 (Z);
       if C < 0 then
          goto lab0;
       end if;
@@ -663,7 +663,7 @@ package body Stemmer.Basque is
    end R_R1;
 
    procedure R_Aditzak (Z : in out Context_Type; Result : out Boolean) is
-      C : Integer;
+      C : Result_Index;
       A : Integer;
    begin
       --  (, line 47
@@ -724,7 +724,7 @@ package body Stemmer.Basque is
    end R_Aditzak;
 
    procedure R_Izenak (Z : in out Context_Type; Result : out Boolean) is
-      C : Integer;
+      C : Result_Index;
       A : Integer;
    begin
       --  (, line 72
@@ -811,7 +811,7 @@ package body Stemmer.Basque is
    end R_Izenak;
 
    procedure R_Adjetiboak (Z : in out Context_Type; Result : out Boolean) is
-      C : Integer;
+      C : Result_Index;
       A : Integer;
    begin
       --  (, line 125
@@ -854,11 +854,11 @@ package body Stemmer.Basque is
    end R_Adjetiboak;
 
    procedure Stem (Z : in out Context_Type; Result : out Boolean) is
-      C : Integer;
+      C : Result_Index;
       A : Integer;
-      v_2 : Integer;
-      v_3 : Integer;
-      v_4 : Integer;
+      v_2 : Char_Index;
+      v_3 : Char_Index;
+      v_4 : Char_Index;
    begin
       --  (, line 137
       --  do, line 138

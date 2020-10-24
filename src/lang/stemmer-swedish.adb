@@ -105,9 +105,9 @@ package body Stemmer.Swedish is
 
 
    procedure R_Mark_regions (Z : in out Context_Type; Result : out Boolean) is
-      C : Integer;
+      C : Result_Index;
       A : Integer;
-      v_1 : Integer;
+      v_1 : Char_Index;
    begin
       --  (, line 26
       Z.I_P1 := Z.L;
@@ -152,7 +152,7 @@ package body Stemmer.Swedish is
    end R_Mark_regions;
 
    procedure R_Main_suffix (Z : in out Context_Type; Result : out Boolean) is
-      C : Integer;
+      C : Result_Index;
       A : Integer;
       v_2 : Integer;
    begin
@@ -204,10 +204,10 @@ package body Stemmer.Swedish is
    end R_Main_suffix;
 
    procedure R_Consonant_pair (Z : in out Context_Type; Result : out Boolean) is
-      C : Integer;
+      C : Result_Index;
       A : Integer;
       v_2 : Integer;
-      v_3 : Integer;
+      v_3 : Char_Index;
    begin
       if Z.C < Z.I_P1 then
          Result := False;
@@ -235,7 +235,8 @@ package body Stemmer.Swedish is
       Z.Ket := Z.C;      --  [, line 52
 
       --  next, line 52
-      C := Skip_Utf8_Backward (Z, 1);      if C < 0 then
+      C := Skip_Utf8_Backward (Z);
+      if C < 0 then
          Z.Lb := v_2;
          Result := False;
          return;
@@ -251,7 +252,7 @@ package body Stemmer.Swedish is
    end R_Consonant_pair;
 
    procedure R_Other_suffix (Z : in out Context_Type; Result : out Boolean) is
-      C : Integer;
+      C : Result_Index;
       A : Integer;
       v_2 : Integer;
    begin
@@ -301,12 +302,12 @@ package body Stemmer.Swedish is
    end R_Other_suffix;
 
    procedure Stem (Z : in out Context_Type; Result : out Boolean) is
-      C : Integer;
+      C : Result_Index;
       A : Integer;
-      v_1 : Integer;
-      v_2 : Integer;
-      v_3 : Integer;
-      v_4 : Integer;
+      v_1 : Char_Index;
+      v_2 : Char_Index;
+      v_3 : Char_Index;
+      v_4 : Char_Index;
    begin
       --  (, line 64
       --  do, line 66

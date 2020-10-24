@@ -236,7 +236,7 @@ package body Stemmer.Finnish is
 
 
    procedure R_Mark_regions (Z : in out Context_Type; Result : out Boolean) is
-      C : Integer;
+      C : Result_Index;
       A : Integer;
    begin
       --  (, line 42
@@ -282,7 +282,7 @@ package body Stemmer.Finnish is
    end R_R2;
 
    procedure R_Particle_etc (Z : in out Context_Type; Result : out Boolean) is
-      C : Integer;
+      C : Result_Index;
       A : Integer;
       v_2 : Integer;
    begin
@@ -332,10 +332,10 @@ package body Stemmer.Finnish is
    end R_Particle_etc;
 
    procedure R_Possessive (Z : in out Context_Type; Result : out Boolean) is
-      C : Integer;
+      C : Result_Index;
       A : Integer;
       v_2 : Integer;
-      v_3 : Integer;
+      v_3 : Char_Index;
    begin
       --  (, line 69
       if Z.C < Z.I_P1 then
@@ -449,7 +449,7 @@ package body Stemmer.Finnish is
    end R_Possessive;
 
    procedure R_LONG (Z : in out Context_Type; Result : out Boolean) is
-      C : Integer;
+      C : Result_Index;
       A : Integer;
    begin
       --  among, line 92
@@ -463,7 +463,7 @@ package body Stemmer.Finnish is
    end R_LONG;
 
    procedure R_VI (Z : in out Context_Type; Result : out Boolean) is
-      C : Integer;
+      C : Result_Index;
       A : Integer;
    begin
       --  (, line 94
@@ -484,12 +484,12 @@ package body Stemmer.Finnish is
    end R_VI;
 
    procedure R_Case_ending (Z : in out Context_Type; Result : out Boolean) is
-      C : Integer;
+      C : Result_Index;
       A : Integer;
       v_2 : Integer;
-      v_3 : Integer;
-      v_4 : Integer;
-      v_5 : Integer;
+      v_3 : Char_Index;
+      v_4 : Char_Index;
+      v_5 : Char_Index;
    begin
       --  (, line 96
       if Z.C < Z.I_P1 then
@@ -595,7 +595,8 @@ package body Stemmer.Finnish is
             <<lab1>>
             Z.C := Z.L - v_4;
             --  next, line 114
-            C := Skip_Utf8_Backward (Z, 1);            if C < 0 then
+            C := Skip_Utf8_Backward (Z);
+            if C < 0 then
                Z.C := Z.L - v_3;
                goto lab0;
             end if;
@@ -628,10 +629,10 @@ package body Stemmer.Finnish is
    end R_Case_ending;
 
    procedure R_Other_endings (Z : in out Context_Type; Result : out Boolean) is
-      C : Integer;
+      C : Result_Index;
       A : Integer;
       v_2 : Integer;
-      v_3 : Integer;
+      v_3 : Char_Index;
    begin
       --  (, line 142
       if Z.C < Z.I_P2 then
@@ -679,7 +680,7 @@ package body Stemmer.Finnish is
    end R_Other_endings;
 
    procedure R_I_plural (Z : in out Context_Type; Result : out Boolean) is
-      C : Integer;
+      C : Result_Index;
       A : Integer;
       v_2 : Integer;
    begin
@@ -715,12 +716,12 @@ package body Stemmer.Finnish is
    end R_I_plural;
 
    procedure R_T_plural (Z : in out Context_Type; Result : out Boolean) is
-      C : Integer;
+      C : Result_Index;
       A : Integer;
       v_2 : Integer;
-      v_3 : Integer;
+      v_3 : Char_Index;
       v_5 : Integer;
-      v_6 : Integer;
+      v_6 : Char_Index;
    begin
       --  (, line 161
       if Z.C < Z.I_P1 then
@@ -804,15 +805,15 @@ package body Stemmer.Finnish is
    end R_T_plural;
 
    procedure R_Tidy (Z : in out Context_Type; Result : out Boolean) is
-      C : Integer;
+      C : Result_Index;
       A : Integer;
       v_2 : Integer;
-      v_3 : Integer;
-      v_4 : Integer;
-      v_5 : Integer;
-      v_6 : Integer;
-      v_7 : Integer;
-      v_8 : Integer;
+      v_3 : Char_Index;
+      v_4 : Char_Index;
+      v_5 : Char_Index;
+      v_6 : Char_Index;
+      v_7 : Char_Index;
+      v_8 : Char_Index;
    begin
       --  (, line 173
       if Z.C < Z.I_P1 then
@@ -836,7 +837,8 @@ package body Stemmer.Finnish is
       Z.Ket := Z.C;      --  [, line 175
 
       --  next, line 175
-      C := Skip_Utf8_Backward (Z, 1);      if C < 0 then
+      C := Skip_Utf8_Backward (Z);
+      if C < 0 then
          goto lab0;
       end if;
       Z.C := C;
@@ -958,16 +960,16 @@ package body Stemmer.Finnish is
    end R_Tidy;
 
    procedure Stem (Z : in out Context_Type; Result : out Boolean) is
-      C : Integer;
+      C : Result_Index;
       A : Integer;
-      v_1 : Integer;
-      v_2 : Integer;
-      v_3 : Integer;
-      v_4 : Integer;
-      v_5 : Integer;
-      v_7 : Integer;
-      v_8 : Integer;
-      v_9 : Integer;
+      v_1 : Char_Index;
+      v_2 : Char_Index;
+      v_3 : Char_Index;
+      v_4 : Char_Index;
+      v_5 : Char_Index;
+      v_7 : Char_Index;
+      v_8 : Char_Index;
+      v_9 : Char_Index;
    begin
       --  (, line 184
       --  do, line 186

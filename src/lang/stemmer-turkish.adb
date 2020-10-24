@@ -387,10 +387,10 @@ package body Stemmer.Turkish is
 
 
    procedure R_Check_vowel_harmony (Z : in out Context_Type; Result : out Boolean) is
-      C : Integer;
+      C : Result_Index;
       A : Integer;
-      v_1 : Integer;
-      v_2 : Integer;
+      v_1 : Char_Index;
+      v_2 : Char_Index;
    begin
       --  (, line 109
       --  test, line 110
@@ -531,13 +531,13 @@ package body Stemmer.Turkish is
    end R_Check_vowel_harmony;
 
    procedure R_Mark_suffix_with_optional_n_consonant (Z : in out Context_Type; Result : out Boolean) is
-      C : Integer;
+      C : Result_Index;
       A : Integer;
-      v_1 : Integer;
-      v_2 : Integer;
-      v_3 : Integer;
-      v_4 : Integer;
-      v_5 : Integer;
+      v_1 : Char_Index;
+      v_2 : Char_Index;
+      v_3 : Char_Index;
+      v_4 : Char_Index;
+      v_5 : Char_Index;
    begin
       --  (, line 130
       --  or, line 132
@@ -584,7 +584,8 @@ package body Stemmer.Turkish is
       v_5 := Z.L - Z.C;
       --  (, line 133
       --  next, line 133
-      C := Skip_Utf8_Backward (Z, 1);      if C < 0 then
+      C := Skip_Utf8_Backward (Z);
+      if C < 0 then
          Result := False;
          return;
       end if;
@@ -602,13 +603,13 @@ package body Stemmer.Turkish is
    end R_Mark_suffix_with_optional_n_consonant;
 
    procedure R_Mark_suffix_with_optional_s_consonant (Z : in out Context_Type; Result : out Boolean) is
-      C : Integer;
+      C : Result_Index;
       A : Integer;
-      v_1 : Integer;
-      v_2 : Integer;
-      v_3 : Integer;
-      v_4 : Integer;
-      v_5 : Integer;
+      v_1 : Char_Index;
+      v_2 : Char_Index;
+      v_3 : Char_Index;
+      v_4 : Char_Index;
+      v_5 : Char_Index;
    begin
       --  (, line 141
       --  or, line 143
@@ -655,7 +656,8 @@ package body Stemmer.Turkish is
       v_5 := Z.L - Z.C;
       --  (, line 144
       --  next, line 144
-      C := Skip_Utf8_Backward (Z, 1);      if C < 0 then
+      C := Skip_Utf8_Backward (Z);
+      if C < 0 then
          Result := False;
          return;
       end if;
@@ -673,13 +675,13 @@ package body Stemmer.Turkish is
    end R_Mark_suffix_with_optional_s_consonant;
 
    procedure R_Mark_suffix_with_optional_y_consonant (Z : in out Context_Type; Result : out Boolean) is
-      C : Integer;
+      C : Result_Index;
       A : Integer;
-      v_1 : Integer;
-      v_2 : Integer;
-      v_3 : Integer;
-      v_4 : Integer;
-      v_5 : Integer;
+      v_1 : Char_Index;
+      v_2 : Char_Index;
+      v_3 : Char_Index;
+      v_4 : Char_Index;
+      v_5 : Char_Index;
    begin
       --  (, line 151
       --  or, line 153
@@ -726,7 +728,8 @@ package body Stemmer.Turkish is
       v_5 := Z.L - Z.C;
       --  (, line 154
       --  next, line 154
-      C := Skip_Utf8_Backward (Z, 1);      if C < 0 then
+      C := Skip_Utf8_Backward (Z);
+      if C < 0 then
          Result := False;
          return;
       end if;
@@ -744,13 +747,13 @@ package body Stemmer.Turkish is
    end R_Mark_suffix_with_optional_y_consonant;
 
    procedure R_Mark_suffix_with_optional_U_vowel (Z : in out Context_Type; Result : out Boolean) is
-      C : Integer;
+      C : Result_Index;
       A : Integer;
-      v_1 : Integer;
-      v_2 : Integer;
-      v_3 : Integer;
-      v_4 : Integer;
-      v_5 : Integer;
+      v_1 : Char_Index;
+      v_2 : Char_Index;
+      v_3 : Char_Index;
+      v_4 : Char_Index;
+      v_5 : Char_Index;
    begin
       --  (, line 157
       --  or, line 159
@@ -793,7 +796,8 @@ package body Stemmer.Turkish is
       v_5 := Z.L - Z.C;
       --  (, line 160
       --  next, line 160
-      C := Skip_Utf8_Backward (Z, 1);      if C < 0 then
+      C := Skip_Utf8_Backward (Z);
+      if C < 0 then
          Result := False;
          return;
       end if;
@@ -811,7 +815,7 @@ package body Stemmer.Turkish is
    end R_Mark_suffix_with_optional_U_vowel;
 
    procedure R_Mark_possessives (Z : in out Context_Type; Result : out Boolean) is
-      C : Integer;
+      C : Result_Index;
       A : Integer;
    begin
       --  (, line 164
@@ -838,7 +842,7 @@ package body Stemmer.Turkish is
    end R_Mark_possessives;
 
    procedure R_Mark_sU (Z : in out Context_Type; Result : out Boolean) is
-      C : Integer;
+      C : Result_Index;
       A : Integer;
    begin
       --  (, line 170
@@ -865,7 +869,7 @@ package body Stemmer.Turkish is
    end R_Mark_sU;
 
    procedure R_Mark_lArI (Z : in out Context_Type; Result : out Boolean) is
-      C : Integer;
+      C : Result_Index;
       A : Integer;
    begin
       --  (, line 176
@@ -885,7 +889,7 @@ package body Stemmer.Turkish is
    end R_Mark_lArI;
 
    procedure R_Mark_yU (Z : in out Context_Type; Result : out Boolean) is
-      C : Integer;
+      C : Result_Index;
       A : Integer;
    begin
       --  (, line 180
@@ -912,7 +916,7 @@ package body Stemmer.Turkish is
    end R_Mark_yU;
 
    procedure R_Mark_nU (Z : in out Context_Type; Result : out Boolean) is
-      C : Integer;
+      C : Result_Index;
       A : Integer;
    begin
       --  (, line 186
@@ -933,7 +937,7 @@ package body Stemmer.Turkish is
    end R_Mark_nU;
 
    procedure R_Mark_nUn (Z : in out Context_Type; Result : out Boolean) is
-      C : Integer;
+      C : Result_Index;
       A : Integer;
    begin
       --  (, line 191
@@ -966,7 +970,7 @@ package body Stemmer.Turkish is
    end R_Mark_nUn;
 
    procedure R_Mark_yA (Z : in out Context_Type; Result : out Boolean) is
-      C : Integer;
+      C : Result_Index;
       A : Integer;
    begin
       --  (, line 197
@@ -999,7 +1003,7 @@ package body Stemmer.Turkish is
    end R_Mark_yA;
 
    procedure R_Mark_nA (Z : in out Context_Type; Result : out Boolean) is
-      C : Integer;
+      C : Result_Index;
       A : Integer;
    begin
       --  (, line 203
@@ -1025,7 +1029,7 @@ package body Stemmer.Turkish is
    end R_Mark_nA;
 
    procedure R_Mark_DA (Z : in out Context_Type; Result : out Boolean) is
-      C : Integer;
+      C : Result_Index;
       A : Integer;
    begin
       --  (, line 208
@@ -1051,7 +1055,7 @@ package body Stemmer.Turkish is
    end R_Mark_DA;
 
    procedure R_Mark_ndA (Z : in out Context_Type; Result : out Boolean) is
-      C : Integer;
+      C : Result_Index;
       A : Integer;
    begin
       --  (, line 213
@@ -1077,7 +1081,7 @@ package body Stemmer.Turkish is
    end R_Mark_ndA;
 
    procedure R_Mark_DAn (Z : in out Context_Type; Result : out Boolean) is
-      C : Integer;
+      C : Result_Index;
       A : Integer;
    begin
       --  (, line 218
@@ -1103,7 +1107,7 @@ package body Stemmer.Turkish is
    end R_Mark_DAn;
 
    procedure R_Mark_ndAn (Z : in out Context_Type; Result : out Boolean) is
-      C : Integer;
+      C : Result_Index;
       A : Integer;
    begin
       --  (, line 223
@@ -1129,7 +1133,7 @@ package body Stemmer.Turkish is
    end R_Mark_ndAn;
 
    procedure R_Mark_ylA (Z : in out Context_Type; Result : out Boolean) is
-      C : Integer;
+      C : Result_Index;
       A : Integer;
    begin
       --  (, line 228
@@ -1162,7 +1166,7 @@ package body Stemmer.Turkish is
    end R_Mark_ylA;
 
    procedure R_Mark_ki (Z : in out Context_Type; Result : out Boolean) is
-      C : Integer;
+      C : Result_Index;
       A : Integer;
    begin
       --  (, line 234
@@ -1178,7 +1182,7 @@ package body Stemmer.Turkish is
    end R_Mark_ki;
 
    procedure R_Mark_ncA (Z : in out Context_Type; Result : out Boolean) is
-      C : Integer;
+      C : Result_Index;
       A : Integer;
    begin
       --  (, line 238
@@ -1211,7 +1215,7 @@ package body Stemmer.Turkish is
    end R_Mark_ncA;
 
    procedure R_Mark_yUm (Z : in out Context_Type; Result : out Boolean) is
-      C : Integer;
+      C : Result_Index;
       A : Integer;
    begin
       --  (, line 244
@@ -1244,7 +1248,7 @@ package body Stemmer.Turkish is
    end R_Mark_yUm;
 
    procedure R_Mark_sUn (Z : in out Context_Type; Result : out Boolean) is
-      C : Integer;
+      C : Result_Index;
       A : Integer;
    begin
       --  (, line 250
@@ -1270,7 +1274,7 @@ package body Stemmer.Turkish is
    end R_Mark_sUn;
 
    procedure R_Mark_yUz (Z : in out Context_Type; Result : out Boolean) is
-      C : Integer;
+      C : Result_Index;
       A : Integer;
    begin
       --  (, line 255
@@ -1303,7 +1307,7 @@ package body Stemmer.Turkish is
    end R_Mark_yUz;
 
    procedure R_Mark_sUnUz (Z : in out Context_Type; Result : out Boolean) is
-      C : Integer;
+      C : Result_Index;
       A : Integer;
    begin
       --  (, line 261
@@ -1323,7 +1327,7 @@ package body Stemmer.Turkish is
    end R_Mark_sUnUz;
 
    procedure R_Mark_lAr (Z : in out Context_Type; Result : out Boolean) is
-      C : Integer;
+      C : Result_Index;
       A : Integer;
    begin
       --  (, line 265
@@ -1349,7 +1353,7 @@ package body Stemmer.Turkish is
    end R_Mark_lAr;
 
    procedure R_Mark_nUz (Z : in out Context_Type; Result : out Boolean) is
-      C : Integer;
+      C : Result_Index;
       A : Integer;
    begin
       --  (, line 270
@@ -1375,7 +1379,7 @@ package body Stemmer.Turkish is
    end R_Mark_nUz;
 
    procedure R_Mark_DUr (Z : in out Context_Type; Result : out Boolean) is
-      C : Integer;
+      C : Result_Index;
       A : Integer;
    begin
       --  (, line 275
@@ -1401,7 +1405,7 @@ package body Stemmer.Turkish is
    end R_Mark_DUr;
 
    procedure R_Mark_cAsInA (Z : in out Context_Type; Result : out Boolean) is
-      C : Integer;
+      C : Result_Index;
       A : Integer;
    begin
       --  (, line 280
@@ -1421,7 +1425,7 @@ package body Stemmer.Turkish is
    end R_Mark_cAsInA;
 
    procedure R_Mark_yDU (Z : in out Context_Type; Result : out Boolean) is
-      C : Integer;
+      C : Result_Index;
       A : Integer;
    begin
       --  (, line 284
@@ -1449,7 +1453,7 @@ package body Stemmer.Turkish is
    end R_Mark_yDU;
 
    procedure R_Mark_ysA (Z : in out Context_Type; Result : out Boolean) is
-      C : Integer;
+      C : Result_Index;
       A : Integer;
    begin
       --  (, line 294
@@ -1476,7 +1480,7 @@ package body Stemmer.Turkish is
    end R_Mark_ysA;
 
    procedure R_Mark_ymUs_E (Z : in out Context_Type; Result : out Boolean) is
-      C : Integer;
+      C : Result_Index;
       A : Integer;
    begin
       --  (, line 299
@@ -1509,7 +1513,7 @@ package body Stemmer.Turkish is
    end R_Mark_ymUs_E;
 
    procedure R_Mark_yken (Z : in out Context_Type; Result : out Boolean) is
-      C : Integer;
+      C : Result_Index;
       A : Integer;
    begin
       --  (, line 305
@@ -1532,18 +1536,18 @@ package body Stemmer.Turkish is
    end R_Mark_yken;
 
    procedure R_Stem_nominal_verb_suffixes (Z : in out Context_Type; Result : out Boolean) is
-      C : Integer;
+      C : Result_Index;
       A : Integer;
-      v_1 : Integer;
-      v_2 : Integer;
-      v_3 : Integer;
-      v_4 : Integer;
-      v_5 : Integer;
-      v_6 : Integer;
-      v_7 : Integer;
-      v_8 : Integer;
-      v_9 : Integer;
-      v_10 : Integer;
+      v_1 : Char_Index;
+      v_2 : Char_Index;
+      v_3 : Char_Index;
+      v_4 : Char_Index;
+      v_5 : Char_Index;
+      v_6 : Char_Index;
+      v_7 : Char_Index;
+      v_8 : Char_Index;
+      v_9 : Char_Index;
+      v_10 : Char_Index;
    begin
       --  (, line 309
       Z.Ket := Z.C;      --  [, line 310
@@ -1892,19 +1896,19 @@ package body Stemmer.Turkish is
    end R_Stem_nominal_verb_suffixes;
 
    procedure R_Stem_suffix_chain_before_ki (Z : in out Context_Type; Result : out Boolean) is
-      C : Integer;
+      C : Result_Index;
       A : Integer;
-      v_1 : Integer;
-      v_2 : Integer;
-      v_3 : Integer;
-      v_4 : Integer;
-      v_5 : Integer;
-      v_6 : Integer;
-      v_7 : Integer;
-      v_8 : Integer;
-      v_9 : Integer;
-      v_10 : Integer;
-      v_11 : Integer;
+      v_1 : Char_Index;
+      v_2 : Char_Index;
+      v_3 : Char_Index;
+      v_4 : Char_Index;
+      v_5 : Char_Index;
+      v_6 : Char_Index;
+      v_7 : Char_Index;
+      v_8 : Char_Index;
+      v_9 : Char_Index;
+      v_10 : Char_Index;
+      v_11 : Char_Index;
    begin
       --  (, line 330
       Z.Ket := Z.C;      --  [, line 331
@@ -2178,35 +2182,35 @@ package body Stemmer.Turkish is
    end R_Stem_suffix_chain_before_ki;
 
    procedure R_Stem_noun_suffixes (Z : in out Context_Type; Result : out Boolean) is
-      C : Integer;
+      C : Result_Index;
       A : Integer;
-      v_1 : Integer;
-      v_2 : Integer;
-      v_3 : Integer;
-      v_4 : Integer;
-      v_5 : Integer;
-      v_6 : Integer;
-      v_7 : Integer;
-      v_8 : Integer;
-      v_9 : Integer;
-      v_10 : Integer;
-      v_11 : Integer;
-      v_12 : Integer;
-      v_13 : Integer;
-      v_14 : Integer;
-      v_15 : Integer;
-      v_16 : Integer;
-      v_17 : Integer;
-      v_18 : Integer;
-      v_19 : Integer;
-      v_20 : Integer;
-      v_21 : Integer;
-      v_22 : Integer;
-      v_23 : Integer;
-      v_24 : Integer;
-      v_25 : Integer;
-      v_26 : Integer;
-      v_27 : Integer;
+      v_1 : Char_Index;
+      v_2 : Char_Index;
+      v_3 : Char_Index;
+      v_4 : Char_Index;
+      v_5 : Char_Index;
+      v_6 : Char_Index;
+      v_7 : Char_Index;
+      v_8 : Char_Index;
+      v_9 : Char_Index;
+      v_10 : Char_Index;
+      v_11 : Char_Index;
+      v_12 : Char_Index;
+      v_13 : Char_Index;
+      v_14 : Char_Index;
+      v_15 : Char_Index;
+      v_16 : Char_Index;
+      v_17 : Char_Index;
+      v_18 : Char_Index;
+      v_19 : Char_Index;
+      v_20 : Char_Index;
+      v_21 : Char_Index;
+      v_22 : Char_Index;
+      v_23 : Char_Index;
+      v_24 : Char_Index;
+      v_25 : Char_Index;
+      v_26 : Char_Index;
+      v_27 : Char_Index;
    begin
       --  (, line 359
       --  or, line 361
@@ -2903,7 +2907,7 @@ package body Stemmer.Turkish is
    end R_Stem_noun_suffixes;
 
    procedure R_Post_process_last_consonants (Z : in out Context_Type; Result : out Boolean) is
-      C : Integer;
+      C : Result_Index;
       A : Integer;
    begin
       --  (, line 413
@@ -2943,19 +2947,19 @@ package body Stemmer.Turkish is
    end R_Post_process_last_consonants;
 
    procedure R_Append_U_to_stems_ending_with_d_or_g (Z : in out Context_Type; Result : out Boolean) is
-      C : Integer;
+      C : Result_Index;
       A : Integer;
-      v_1 : Integer;
-      v_2 : Integer;
-      v_3 : Integer;
-      v_4 : Integer;
-      v_5 : Integer;
-      v_6 : Integer;
-      v_7 : Integer;
-      v_8 : Integer;
-      v_9 : Integer;
-      v_10 : Integer;
-      v_11 : Integer;
+      v_1 : Char_Index;
+      v_2 : Char_Index;
+      v_3 : Char_Index;
+      v_4 : Char_Index;
+      v_5 : Char_Index;
+      v_6 : Char_Index;
+      v_7 : Char_Index;
+      v_8 : Char_Index;
+      v_9 : Char_Index;
+      v_10 : Char_Index;
+      v_11 : Char_Index;
    begin
       --  (, line 428
       --  test, line 429
@@ -3142,9 +3146,9 @@ package body Stemmer.Turkish is
    end R_Append_U_to_stems_ending_with_d_or_g;
 
    procedure R_Is_reserved_word (Z : in out Context_Type; Result : out Boolean) is
-      C : Integer;
+      C : Result_Index;
       A : Integer;
-      v_1 : Integer;
+      v_1 : Char_Index;
    begin
       --  (, line 439
       --  literal, line 440
@@ -3175,11 +3179,11 @@ package body Stemmer.Turkish is
    end R_Is_reserved_word;
 
    procedure R_More_than_one_syllable_word (Z : in out Context_Type; Result : out Boolean) is
-      C : Integer;
+      C : Result_Index;
       A : Integer;
-      v_1 : Integer;
+      v_1 : Char_Index;
       v_2 : Integer;
-      v_3 : Integer;
+      v_3 : Char_Index;
    begin
       --  (, line 446
       --  test, line 447
@@ -3220,11 +3224,11 @@ package body Stemmer.Turkish is
    end R_More_than_one_syllable_word;
 
    procedure R_Postlude (Z : in out Context_Type; Result : out Boolean) is
-      C : Integer;
+      C : Result_Index;
       A : Integer;
-      v_1 : Integer;
-      v_2 : Integer;
-      v_3 : Integer;
+      v_1 : Char_Index;
+      v_2 : Char_Index;
+      v_3 : Char_Index;
    begin
       --  (, line 450
       Z.Lb := Z.C; Z.C := Z.L;      --  backwards, line 451
@@ -3259,10 +3263,10 @@ package body Stemmer.Turkish is
    end R_Postlude;
 
    procedure Stem (Z : in out Context_Type; Result : out Boolean) is
-      C : Integer;
+      C : Result_Index;
       A : Integer;
-      v_1 : Integer;
-      v_2 : Integer;
+      v_1 : Char_Index;
+      v_2 : Char_Index;
    begin
       --  (, line 459
       --  (, line 460

@@ -132,14 +132,14 @@ package body Stemmer.Dutch is
 
 
    procedure R_Prelude (Z : in out Context_Type; Result : out Boolean) is
-      C : Integer;
+      C : Result_Index;
       A : Integer;
-      v_1 : Integer;
-      v_2 : Integer;
-      v_3 : Integer;
-      v_4 : Integer;
-      v_5 : Integer;
-      v_6 : Integer;
+      v_1 : Char_Index;
+      v_2 : Char_Index;
+      v_3 : Char_Index;
+      v_4 : Char_Index;
+      v_5 : Char_Index;
+      v_6 : Char_Index;
    begin
       --  (, line 41
       --  test, line 42
@@ -189,7 +189,7 @@ package body Stemmer.Dutch is
             when 6 =>
                --  (, line 54
                --  next, line 54
-               C := Skip_Utf8 (Z, 1);
+               C := Skip_Utf8 (Z);
                if C < 0 then
                   goto lab1;
                end if;
@@ -282,7 +282,7 @@ package body Stemmer.Dutch is
                goto lab4;
             end if;
             --  goto, line 58
-            C := Skip_Utf8 (Z, 1);
+            C := Skip_Utf8 (Z);
             if C < 0 then
                goto lab4;
             end if;
@@ -300,7 +300,7 @@ package body Stemmer.Dutch is
    end R_Prelude;
 
    procedure R_Mark_regions (Z : in out Context_Type; Result : out Boolean) is
-      C : Integer;
+      C : Result_Index;
       A : Integer;
    begin
       --  (, line 64
@@ -355,9 +355,9 @@ package body Stemmer.Dutch is
    end R_Mark_regions;
 
    procedure R_Postlude (Z : in out Context_Type; Result : out Boolean) is
-      C : Integer;
+      C : Result_Index;
       A : Integer;
-      v_1 : Integer;
+      v_1 : Char_Index;
    begin
       --  repeat, line 75
 
@@ -392,7 +392,7 @@ package body Stemmer.Dutch is
             when 3 =>
                --  (, line 80
                --  next, line 80
-               C := Skip_Utf8 (Z, 1);
+               C := Skip_Utf8 (Z);
                if C < 0 then
                   goto lab1;
                end if;
@@ -422,9 +422,9 @@ package body Stemmer.Dutch is
    end R_R2;
 
    procedure R_Undouble (Z : in out Context_Type; Result : out Boolean) is
-      C : Integer;
+      C : Result_Index;
       A : Integer;
-      v_1 : Integer;
+      v_1 : Char_Index;
    begin
       --  (, line 90
       --  test, line 91
@@ -444,7 +444,8 @@ package body Stemmer.Dutch is
       Z.Ket := Z.C;      --  [, line 91
 
       --  next, line 91
-      C := Skip_Utf8_Backward (Z, 1);      if C < 0 then
+      C := Skip_Utf8_Backward (Z);
+      if C < 0 then
          Result := False;
          return;
       end if;
@@ -458,9 +459,9 @@ package body Stemmer.Dutch is
    end R_Undouble;
 
    procedure R_E_ending (Z : in out Context_Type; Result : out Boolean) is
-      C : Integer;
+      C : Result_Index;
       A : Integer;
-      v_1 : Integer;
+      v_1 : Char_Index;
    begin
       --  (, line 94
       --  unset e_found, line 95
@@ -505,10 +506,10 @@ package body Stemmer.Dutch is
    end R_E_ending;
 
    procedure R_En_ending (Z : in out Context_Type; Result : out Boolean) is
-      C : Integer;
+      C : Result_Index;
       A : Integer;
-      v_1 : Integer;
-      v_2 : Integer;
+      v_1 : Char_Index;
+      v_2 : Char_Index;
    begin
       --  (, line 101
       --  call R1, line 102
@@ -551,18 +552,18 @@ package body Stemmer.Dutch is
    end R_En_ending;
 
    procedure R_Standard_suffix (Z : in out Context_Type; Result : out Boolean) is
-      C : Integer;
+      C : Result_Index;
       A : Integer;
-      v_1 : Integer;
-      v_2 : Integer;
-      v_3 : Integer;
-      v_4 : Integer;
-      v_5 : Integer;
-      v_6 : Integer;
-      v_7 : Integer;
-      v_8 : Integer;
-      v_9 : Integer;
-      v_10 : Integer;
+      v_1 : Char_Index;
+      v_2 : Char_Index;
+      v_3 : Char_Index;
+      v_4 : Char_Index;
+      v_5 : Char_Index;
+      v_6 : Char_Index;
+      v_7 : Char_Index;
+      v_8 : Char_Index;
+      v_9 : Char_Index;
+      v_10 : Char_Index;
    begin
       --  (, line 106
       --  do, line 107
@@ -833,7 +834,8 @@ package body Stemmer.Dutch is
       Z.Ket := Z.C;      --  [, line 152
 
       --  next, line 152
-      C := Skip_Utf8_Backward (Z, 1);      if C < 0 then
+      C := Skip_Utf8_Backward (Z);
+      if C < 0 then
          goto lab8;
       end if;
       Z.C := C;
@@ -849,11 +851,11 @@ package body Stemmer.Dutch is
    end R_Standard_suffix;
 
    procedure Stem (Z : in out Context_Type; Result : out Boolean) is
-      C : Integer;
+      C : Result_Index;
       A : Integer;
-      v_1 : Integer;
-      v_2 : Integer;
-      v_4 : Integer;
+      v_1 : Char_Index;
+      v_2 : Char_Index;
+      v_4 : Char_Index;
    begin
       --  (, line 157
       --  do, line 159

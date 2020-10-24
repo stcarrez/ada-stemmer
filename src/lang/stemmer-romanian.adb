@@ -313,11 +313,11 @@ package body Stemmer.Romanian is
 
 
    procedure R_Prelude (Z : in out Context_Type; Result : out Boolean) is
-      C : Integer;
+      C : Result_Index;
       A : Integer;
-      v_1 : Integer;
-      v_2 : Integer;
-      v_3 : Integer;
+      v_1 : Char_Index;
+      v_2 : Char_Index;
+      v_3 : Char_Index;
    begin
       --  (, line 31
       --  repeat, line 32
@@ -383,7 +383,7 @@ package body Stemmer.Romanian is
                goto lab1;
             end if;
             --  goto, line 32
-            C := Skip_Utf8 (Z, 1);
+            C := Skip_Utf8 (Z);
             if C < 0 then
                goto lab1;
             end if;
@@ -401,13 +401,13 @@ package body Stemmer.Romanian is
    end R_Prelude;
 
    procedure R_Mark_regions (Z : in out Context_Type; Result : out Boolean) is
-      C : Integer;
+      C : Result_Index;
       A : Integer;
-      v_1 : Integer;
-      v_2 : Integer;
-      v_3 : Integer;
-      v_4 : Integer;
-      v_5 : Integer;
+      v_1 : Char_Index;
+      v_2 : Char_Index;
+      v_3 : Char_Index;
+      v_4 : Char_Index;
+      v_5 : Char_Index;
    begin
       --  (, line 38
       Z.I_PV := Z.L;
@@ -488,7 +488,7 @@ package body Stemmer.Romanian is
          goto lab0;
       end if;
       --  next, line 47
-      C := Skip_Utf8 (Z, 1);
+      C := Skip_Utf8 (Z);
       if C < 0 then
          goto lab0;
       end if;
@@ -545,9 +545,9 @@ package body Stemmer.Romanian is
    end R_Mark_regions;
 
    procedure R_Postlude (Z : in out Context_Type; Result : out Boolean) is
-      C : Integer;
+      C : Result_Index;
       A : Integer;
-      v_1 : Integer;
+      v_1 : Char_Index;
    begin
       --  repeat, line 56
 
@@ -582,7 +582,7 @@ package body Stemmer.Romanian is
             when 3 =>
                --  (, line 61
                --  next, line 61
-               C := Skip_Utf8 (Z, 1);
+               C := Skip_Utf8 (Z);
                if C < 0 then
                   goto lab1;
                end if;
@@ -617,9 +617,9 @@ package body Stemmer.Romanian is
    end R_R2;
 
    procedure R_Step_0 (Z : in out Context_Type; Result : out Boolean) is
-      C : Integer;
+      C : Result_Index;
       A : Integer;
-      v_1 : Integer;
+      v_1 : Char_Index;
    begin
       --  (, line 72
       Z.Ket := Z.C;      --  [, line 73
@@ -694,9 +694,9 @@ package body Stemmer.Romanian is
    end R_Step_0;
 
    procedure R_Combo_suffix (Z : in out Context_Type; Result : out Boolean) is
-      C : Integer;
+      C : Result_Index;
       A : Integer;
-      v_1 : Integer;
+      v_1 : Char_Index;
    begin
       --  test, line 91
       v_1 := Z.L - Z.C;
@@ -755,9 +755,9 @@ package body Stemmer.Romanian is
    end R_Combo_suffix;
 
    procedure R_Standard_suffix (Z : in out Context_Type; Result : out Boolean) is
-      C : Integer;
+      C : Result_Index;
       A : Integer;
-      v_1 : Integer;
+      v_1 : Char_Index;
    begin
       --  (, line 129
       --  unset standard_suffix_removed, line 130
@@ -830,10 +830,10 @@ package body Stemmer.Romanian is
    end R_Standard_suffix;
 
    procedure R_Verb_suffix (Z : in out Context_Type; Result : out Boolean) is
-      C : Integer;
+      C : Result_Index;
       A : Integer;
       v_2 : Integer;
-      v_3 : Integer;
+      v_3 : Char_Index;
    begin
       if Z.C < Z.I_PV then
          Result := False;
@@ -891,7 +891,7 @@ package body Stemmer.Romanian is
    end R_Verb_suffix;
 
    procedure R_Vowel_suffix (Z : in out Context_Type; Result : out Boolean) is
-      C : Integer;
+      C : Result_Index;
       A : Integer;
    begin
       --  (, line 218
@@ -919,15 +919,15 @@ package body Stemmer.Romanian is
    end R_Vowel_suffix;
 
    procedure Stem (Z : in out Context_Type; Result : out Boolean) is
-      C : Integer;
+      C : Result_Index;
       A : Integer;
-      v_1 : Integer;
-      v_3 : Integer;
-      v_4 : Integer;
-      v_5 : Integer;
-      v_6 : Integer;
-      v_7 : Integer;
-      v_8 : Integer;
+      v_1 : Char_Index;
+      v_3 : Char_Index;
+      v_4 : Char_Index;
+      v_5 : Char_Index;
+      v_6 : Char_Index;
+      v_7 : Char_Index;
+      v_8 : Char_Index;
    begin
       --  (, line 225
       --  do, line 226

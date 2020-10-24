@@ -196,9 +196,9 @@ package body Stemmer.Russian is
 
 
    procedure R_Mark_regions (Z : in out Context_Type; Result : out Boolean) is
-      C : Integer;
+      C : Result_Index;
       A : Integer;
-      v_1 : Integer;
+      v_1 : Char_Index;
    begin
       --  (, line 59
       Z.I_PV := Z.L;
@@ -251,9 +251,9 @@ package body Stemmer.Russian is
    end R_R2;
 
    procedure R_Perfective_gerund (Z : in out Context_Type; Result : out Boolean) is
-      C : Integer;
+      C : Result_Index;
       A : Integer;
-      v_1 : Integer;
+      v_1 : Char_Index;
    begin
       --  (, line 73
       Z.Ket := Z.C;      --  [, line 74
@@ -305,7 +305,7 @@ package body Stemmer.Russian is
    end R_Perfective_gerund;
 
    procedure R_Adjective (Z : in out Context_Type; Result : out Boolean) is
-      C : Integer;
+      C : Result_Index;
       A : Integer;
    begin
       --  (, line 89
@@ -327,10 +327,10 @@ package body Stemmer.Russian is
    end R_Adjective;
 
    procedure R_Adjectival (Z : in out Context_Type; Result : out Boolean) is
-      C : Integer;
+      C : Result_Index;
       A : Integer;
-      v_1 : Integer;
-      v_2 : Integer;
+      v_1 : Char_Index;
+      v_2 : Char_Index;
    begin
       --  (, line 103
       --  call adjective, line 104
@@ -393,7 +393,7 @@ package body Stemmer.Russian is
    end R_Adjectival;
 
    procedure R_Reflexive (Z : in out Context_Type; Result : out Boolean) is
-      C : Integer;
+      C : Result_Index;
       A : Integer;
    begin
       --  (, line 130
@@ -420,9 +420,9 @@ package body Stemmer.Russian is
    end R_Reflexive;
 
    procedure R_Verb (Z : in out Context_Type; Result : out Boolean) is
-      C : Integer;
+      C : Result_Index;
       A : Integer;
-      v_1 : Integer;
+      v_1 : Char_Index;
    begin
       --  (, line 138
       Z.Ket := Z.C;      --  [, line 139
@@ -474,7 +474,7 @@ package body Stemmer.Russian is
    end R_Verb;
 
    procedure R_Noun (Z : in out Context_Type; Result : out Boolean) is
-      C : Integer;
+      C : Result_Index;
       A : Integer;
    begin
       --  (, line 161
@@ -496,7 +496,7 @@ package body Stemmer.Russian is
    end R_Noun;
 
    procedure R_Derivational (Z : in out Context_Type; Result : out Boolean) is
-      C : Integer;
+      C : Result_Index;
       A : Integer;
    begin
       --  (, line 177
@@ -529,7 +529,7 @@ package body Stemmer.Russian is
    end R_Derivational;
 
    procedure R_Tidy_up (Z : in out Context_Type; Result : out Boolean) is
-      C : Integer;
+      C : Result_Index;
       A : Integer;
    begin
       --  (, line 185
@@ -592,19 +592,19 @@ package body Stemmer.Russian is
    end R_Tidy_up;
 
    procedure Stem (Z : in out Context_Type; Result : out Boolean) is
-      C : Integer;
+      C : Result_Index;
       A : Integer;
-      v_1 : Integer;
-      v_2 : Integer;
-      v_3 : Integer;
+      v_1 : Char_Index;
+      v_2 : Char_Index;
+      v_3 : Char_Index;
       v_6 : Integer;
-      v_7 : Integer;
-      v_8 : Integer;
-      v_9 : Integer;
-      v_10 : Integer;
-      v_11 : Integer;
-      v_12 : Integer;
-      v_13 : Integer;
+      v_7 : Char_Index;
+      v_8 : Char_Index;
+      v_9 : Char_Index;
+      v_10 : Char_Index;
+      v_11 : Char_Index;
+      v_12 : Char_Index;
+      v_13 : Char_Index;
    begin
       --  (, line 201
       --  do, line 205
@@ -639,7 +639,7 @@ package body Stemmer.Russian is
                goto lab2;
             end if;
             --  goto, line 205
-            C := Skip_Utf8 (Z, 1);
+            C := Skip_Utf8 (Z);
             if C < 0 then
                goto lab2;
             end if;

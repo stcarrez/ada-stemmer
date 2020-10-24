@@ -265,7 +265,7 @@ package body Stemmer.Tamil is
 
 
    procedure R_Has_min_length (Z : in out Context_Type; Result : out Boolean) is
-      C : Integer;
+      C : Result_Index;
       A : Integer;
    begin
       --  (, line 99
@@ -278,17 +278,17 @@ package body Stemmer.Tamil is
    end R_Has_min_length;
 
    procedure R_Fix_va_start (Z : in out Context_Type; Result : out Boolean) is
-      C : Integer;
+      C : Result_Index;
       A : Integer;
-      v_1 : Integer;
-      v_2 : Integer;
-      v_3 : Integer;
-      v_4 : Integer;
-      v_5 : Integer;
-      v_6 : Integer;
-      v_7 : Integer;
-      v_8 : Integer;
-      v_9 : Integer;
+      v_1 : Char_Index;
+      v_2 : Char_Index;
+      v_3 : Char_Index;
+      v_4 : Char_Index;
+      v_5 : Char_Index;
+      v_6 : Char_Index;
+      v_7 : Char_Index;
+      v_8 : Char_Index;
+      v_9 : Char_Index;
    begin
       --  (, line 103
       --  or, line 104
@@ -421,10 +421,10 @@ package body Stemmer.Tamil is
    end R_Fix_va_start;
 
    procedure R_Fix_endings (Z : in out Context_Type; Result : out Boolean) is
-      C : Integer;
+      C : Result_Index;
       A : Integer;
-      v_1 : Integer;
-      v_2 : Integer;
+      v_1 : Char_Index;
+      v_2 : Char_Index;
    begin
       --  (, line 110
       --  do, line 111
@@ -455,9 +455,9 @@ package body Stemmer.Tamil is
    end R_Fix_endings;
 
    procedure R_Remove_question_prefixes (Z : in out Context_Type; Result : out Boolean) is
-      C : Integer;
+      C : Result_Index;
       A : Integer;
-      v_1 : Integer;
+      v_1 : Char_Index;
    begin
       --  (, line 114
       Z.Bra := Z.C;      --  [, line 115
@@ -497,21 +497,21 @@ package body Stemmer.Tamil is
    end R_Remove_question_prefixes;
 
    procedure R_Fix_ending (Z : in out Context_Type; Result : out Boolean) is
-      C : Integer;
+      C : Result_Index;
       A : Integer;
-      v_1 : Integer;
-      v_2 : Integer;
-      v_3 : Integer;
-      v_4 : Integer;
-      v_5 : Integer;
-      v_6 : Integer;
-      v_7 : Integer;
-      v_8 : Integer;
-      v_9 : Integer;
-      v_10 : Integer;
-      v_11 : Integer;
-      v_12 : Integer;
-      v_13 : Integer;
+      v_1 : Char_Index;
+      v_2 : Char_Index;
+      v_3 : Char_Index;
+      v_4 : Char_Index;
+      v_5 : Char_Index;
+      v_6 : Char_Index;
+      v_7 : Char_Index;
+      v_8 : Char_Index;
+      v_9 : Char_Index;
+      v_10 : Char_Index;
+      v_11 : Char_Index;
+      v_12 : Char_Index;
+      v_13 : Char_Index;
    begin
       --  (, line 120
       if not (Length_Utf8 (Z) > 3) then
@@ -983,9 +983,9 @@ package body Stemmer.Tamil is
    end R_Fix_ending;
 
    procedure R_Remove_pronoun_prefixes (Z : in out Context_Type; Result : out Boolean) is
-      C : Integer;
+      C : Result_Index;
       A : Integer;
-      v_1 : Integer;
+      v_1 : Char_Index;
    begin
       --  (, line 160
       --  unset found_a_match, line 161
@@ -1033,11 +1033,11 @@ package body Stemmer.Tamil is
    end R_Remove_pronoun_prefixes;
 
    procedure R_Remove_plural_suffix (Z : in out Context_Type; Result : out Boolean) is
-      C : Integer;
+      C : Result_Index;
       A : Integer;
-      v_1 : Integer;
-      v_2 : Integer;
-      v_3 : Integer;
+      v_1 : Char_Index;
+      v_2 : Char_Index;
+      v_3 : Char_Index;
    begin
       --  (, line 167
       --  unset found_a_match, line 168
@@ -1138,9 +1138,9 @@ package body Stemmer.Tamil is
    end R_Remove_plural_suffix;
 
    procedure R_Remove_question_suffixes (Z : in out Context_Type; Result : out Boolean) is
-      C : Integer;
+      C : Result_Index;
       A : Integer;
-      v_1 : Integer;
+      v_1 : Char_Index;
    begin
       --  (, line 178
       --  call has_min_length, line 179
@@ -1183,7 +1183,7 @@ package body Stemmer.Tamil is
    end R_Remove_question_suffixes;
 
    procedure R_Remove_command_suffixes (Z : in out Context_Type; Result : out Boolean) is
-      C : Integer;
+      C : Result_Index;
       A : Integer;
    begin
       --  (, line 190
@@ -1224,9 +1224,9 @@ package body Stemmer.Tamil is
    end R_Remove_command_suffixes;
 
    procedure R_Remove_um (Z : in out Context_Type; Result : out Boolean) is
-      C : Integer;
+      C : Result_Index;
       A : Integer;
-      v_1 : Integer;
+      v_1 : Char_Index;
    begin
       --  (, line 199
       --  unset found_a_match, line 200
@@ -1267,14 +1267,14 @@ package body Stemmer.Tamil is
    end R_Remove_um;
 
    procedure R_Remove_common_word_endings (Z : in out Context_Type; Result : out Boolean) is
-      C : Integer;
+      C : Result_Index;
       A : Integer;
-      v_1 : Integer;
-      v_2 : Integer;
-      v_3 : Integer;
-      v_4 : Integer;
-      v_5 : Integer;
-      v_6 : Integer;
+      v_1 : Char_Index;
+      v_2 : Char_Index;
+      v_3 : Char_Index;
+      v_4 : Char_Index;
+      v_5 : Char_Index;
+      v_6 : Char_Index;
    begin
       --  (, line 208
       --  unset found_a_match, line 212
@@ -1493,28 +1493,28 @@ package body Stemmer.Tamil is
    end R_Remove_common_word_endings;
 
    procedure R_Remove_vetrumai_urupukal (Z : in out Context_Type; Result : out Boolean) is
-      C : Integer;
+      C : Result_Index;
       A : Integer;
-      v_1 : Integer;
-      v_2 : Integer;
-      v_3 : Integer;
-      v_4 : Integer;
-      v_5 : Integer;
-      v_6 : Integer;
-      v_7 : Integer;
-      v_8 : Integer;
-      v_9 : Integer;
-      v_10 : Integer;
-      v_11 : Integer;
-      v_12 : Integer;
-      v_13 : Integer;
-      v_14 : Integer;
-      v_15 : Integer;
-      v_16 : Integer;
-      v_17 : Integer;
-      v_18 : Integer;
-      v_19 : Integer;
-      v_20 : Integer;
+      v_1 : Char_Index;
+      v_2 : Char_Index;
+      v_3 : Char_Index;
+      v_4 : Char_Index;
+      v_5 : Char_Index;
+      v_6 : Char_Index;
+      v_7 : Char_Index;
+      v_8 : Char_Index;
+      v_9 : Char_Index;
+      v_10 : Char_Index;
+      v_11 : Char_Index;
+      v_12 : Char_Index;
+      v_13 : Char_Index;
+      v_14 : Char_Index;
+      v_15 : Char_Index;
+      v_16 : Char_Index;
+      v_17 : Char_Index;
+      v_18 : Char_Index;
+      v_19 : Char_Index;
+      v_20 : Char_Index;
    begin
       --  (, line 252
       --  unset found_a_match, line 253
@@ -1977,10 +1977,10 @@ package body Stemmer.Tamil is
    end R_Remove_vetrumai_urupukal;
 
    procedure R_Remove_tense_suffixes (Z : in out Context_Type; Result : out Boolean) is
-      C : Integer;
+      C : Result_Index;
       A : Integer;
-      v_1 : Integer;
-      v_2 : Integer;
+      v_1 : Char_Index;
+      v_2 : Char_Index;
    begin
       --  (, line 304
       --  set found_a_match, line 305
@@ -2014,25 +2014,25 @@ package body Stemmer.Tamil is
    end R_Remove_tense_suffixes;
 
    procedure R_Remove_tense_suffix (Z : in out Context_Type; Result : out Boolean) is
-      C : Integer;
+      C : Result_Index;
       A : Integer;
-      v_1 : Integer;
-      v_2 : Integer;
-      v_3 : Integer;
-      v_4 : Integer;
-      v_5 : Integer;
-      v_6 : Integer;
-      v_7 : Integer;
-      v_8 : Integer;
-      v_9 : Integer;
-      v_10 : Integer;
-      v_11 : Integer;
-      v_12 : Integer;
-      v_13 : Integer;
-      v_14 : Integer;
-      v_15 : Integer;
-      v_16 : Integer;
-      v_17 : Integer;
+      v_1 : Char_Index;
+      v_2 : Char_Index;
+      v_3 : Char_Index;
+      v_4 : Char_Index;
+      v_5 : Char_Index;
+      v_6 : Char_Index;
+      v_7 : Char_Index;
+      v_8 : Char_Index;
+      v_9 : Char_Index;
+      v_10 : Char_Index;
+      v_11 : Char_Index;
+      v_12 : Char_Index;
+      v_13 : Char_Index;
+      v_14 : Char_Index;
+      v_15 : Char_Index;
+      v_16 : Char_Index;
+      v_17 : Char_Index;
    begin
       --  (, line 309
       --  unset found_a_match, line 310
@@ -2716,18 +2716,18 @@ package body Stemmer.Tamil is
    end R_Remove_tense_suffix;
 
    procedure Stem (Z : in out Context_Type; Result : out Boolean) is
-      C : Integer;
+      C : Result_Index;
       A : Integer;
-      v_1 : Integer;
-      v_2 : Integer;
-      v_3 : Integer;
-      v_4 : Integer;
-      v_5 : Integer;
-      v_6 : Integer;
-      v_7 : Integer;
-      v_8 : Integer;
-      v_9 : Integer;
-      v_10 : Integer;
+      v_1 : Char_Index;
+      v_2 : Char_Index;
+      v_3 : Char_Index;
+      v_4 : Char_Index;
+      v_5 : Char_Index;
+      v_6 : Char_Index;
+      v_7 : Char_Index;
+      v_8 : Char_Index;
+      v_9 : Char_Index;
+      v_10 : Char_Index;
    begin
       --  (, line 392
       --  unset found_vetrumai_urupu, line 393

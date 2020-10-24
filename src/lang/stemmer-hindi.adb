@@ -187,7 +187,7 @@ package body Stemmer.Hindi is
 
 
    procedure R_CONSONANT (Z : in out Context_Type; Result : out Boolean) is
-      C : Integer;
+      C : Result_Index;
       A : Integer;
    begin
       --  (, line 129
@@ -201,9 +201,9 @@ package body Stemmer.Hindi is
    end R_CONSONANT;
 
    procedure Stem (Z : in out Context_Type; Result : out Boolean) is
-      C : Integer;
+      C : Result_Index;
       A : Integer;
-      v_1 : Integer;
+      v_1 : Char_Index;
       v_3 : Integer;
    begin
       --  (, line 131
@@ -211,7 +211,7 @@ package body Stemmer.Hindi is
       v_1 := Z.C;
       --  (, line 132
       --  next, line 132
-      C := Skip_Utf8 (Z, 1);
+      C := Skip_Utf8 (Z);
       if C < 0 then
          Result := False;
          return;

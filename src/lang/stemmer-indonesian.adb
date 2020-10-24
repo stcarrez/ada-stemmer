@@ -70,7 +70,7 @@ package body Stemmer.Indonesian is
 
 
    procedure R_Remove_particle (Z : in out Context_Type; Result : out Boolean) is
-      C : Integer;
+      C : Result_Index;
       A : Integer;
    begin
       --  (, line 50
@@ -98,7 +98,7 @@ package body Stemmer.Indonesian is
    end R_Remove_particle;
 
    procedure R_Remove_possessive_pronoun (Z : in out Context_Type; Result : out Boolean) is
-      C : Integer;
+      C : Result_Index;
       A : Integer;
    begin
       --  (, line 56
@@ -126,7 +126,7 @@ package body Stemmer.Indonesian is
    end R_Remove_possessive_pronoun;
 
    procedure R_SUFFIX_KAN_OK (Z : in out Context_Type; Result : out Boolean) is
-      C : Integer;
+      C : Result_Index;
       A : Integer;
    begin
       --  (, line 63
@@ -144,7 +144,7 @@ package body Stemmer.Indonesian is
    end R_SUFFIX_KAN_OK;
 
    procedure R_SUFFIX_AN_OK (Z : in out Context_Type; Result : out Boolean) is
-      C : Integer;
+      C : Result_Index;
       A : Integer;
    begin
       --  (, line 89
@@ -157,9 +157,9 @@ package body Stemmer.Indonesian is
    end R_SUFFIX_AN_OK;
 
    procedure R_SUFFIX_I_OK (Z : in out Context_Type; Result : out Boolean) is
-      C : Integer;
+      C : Result_Index;
       A : Integer;
-      v_1 : Integer;
+      v_1 : Char_Index;
    begin
       --  (, line 91
       if not (Z.I_Prefix <= 2) then
@@ -184,7 +184,7 @@ package body Stemmer.Indonesian is
    end R_SUFFIX_I_OK;
 
    procedure R_Remove_suffix (Z : in out Context_Type; Result : out Boolean) is
-      C : Integer;
+      C : Result_Index;
       A : Integer;
    begin
       --  (, line 131
@@ -212,7 +212,7 @@ package body Stemmer.Indonesian is
    end R_Remove_suffix;
 
    procedure R_VOWEL (Z : in out Context_Type; Result : out Boolean) is
-      C : Integer;
+      C : Result_Index;
       A : Integer;
    begin
       --  (, line 141
@@ -226,7 +226,7 @@ package body Stemmer.Indonesian is
    end R_VOWEL;
 
    procedure R_KER (Z : in out Context_Type; Result : out Boolean) is
-      C : Integer;
+      C : Result_Index;
       A : Integer;
    begin
       --  (, line 143
@@ -247,12 +247,12 @@ package body Stemmer.Indonesian is
    end R_KER;
 
    procedure R_Remove_first_order_prefix (Z : in out Context_Type; Result : out Boolean) is
-      C : Integer;
+      C : Result_Index;
       A : Integer;
-      v_1 : Integer;
-      v_2 : Integer;
-      v_3 : Integer;
-      v_4 : Integer;
+      v_1 : Char_Index;
+      v_2 : Char_Index;
+      v_3 : Char_Index;
+      v_4 : Char_Index;
    begin
       --  (, line 145
       Z.Bra := Z.C;      --  [, line 146
@@ -350,7 +350,7 @@ package body Stemmer.Indonesian is
    end R_Remove_first_order_prefix;
 
    procedure R_Remove_second_order_prefix (Z : in out Context_Type; Result : out Boolean) is
-      C : Integer;
+      C : Result_Index;
       A : Integer;
    begin
       --  (, line 156
@@ -402,18 +402,18 @@ package body Stemmer.Indonesian is
    end R_Remove_second_order_prefix;
 
    procedure Stem (Z : in out Context_Type; Result : out Boolean) is
-      C : Integer;
+      C : Result_Index;
       A : Integer;
-      v_1 : Integer;
-      v_2 : Integer;
-      v_3 : Integer;
-      v_4 : Integer;
-      v_5 : Integer;
-      v_6 : Integer;
-      v_7 : Integer;
-      v_8 : Integer;
-      v_9 : Integer;
-      v_10 : Integer;
+      v_1 : Char_Index;
+      v_2 : Char_Index;
+      v_3 : Char_Index;
+      v_4 : Char_Index;
+      v_5 : Char_Index;
+      v_6 : Char_Index;
+      v_7 : Char_Index;
+      v_8 : Char_Index;
+      v_9 : Char_Index;
+      v_10 : Char_Index;
    begin
       --  (, line 171
       Z.I_Measure := 0;

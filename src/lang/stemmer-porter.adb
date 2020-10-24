@@ -124,7 +124,7 @@ package body Stemmer.Porter is
 
 
    procedure R_Shortv (Z : in out Context_Type; Result : out Boolean) is
-      C : Integer;
+      C : Result_Index;
       A : Integer;
    begin
       --  (, line 19
@@ -158,7 +158,7 @@ package body Stemmer.Porter is
    end R_R2;
 
    procedure R_Step_1a (Z : in out Context_Type; Result : out Boolean) is
-      C : Integer;
+      C : Result_Index;
       A : Integer;
    begin
       --  (, line 24
@@ -199,11 +199,11 @@ package body Stemmer.Porter is
    end R_Step_1a;
 
    procedure R_Step_1b (Z : in out Context_Type; Result : out Boolean) is
-      C : Integer;
+      C : Result_Index;
       A : Integer;
-      v_1 : Integer;
-      v_2 : Integer;
-      v_3 : Integer;
+      v_1 : Char_Index;
+      v_2 : Char_Index;
+      v_3 : Char_Index;
    begin
       --  (, line 33
       Z.Ket := Z.C;      --  [, line 34
@@ -274,7 +274,8 @@ package body Stemmer.Porter is
                   Z.Ket := Z.C;                  --  [, line 44
 
                   --  next, line 44
-                  C := Skip_Utf8_Backward (Z, 1);                  if C < 0 then
+                  C := Skip_Utf8_Backward (Z);
+                  if C < 0 then
                      Result := False;
                      return;
                   end if;
@@ -314,9 +315,9 @@ package body Stemmer.Porter is
    end R_Step_1b;
 
    procedure R_Step_1c (Z : in out Context_Type; Result : out Boolean) is
-      C : Integer;
+      C : Result_Index;
       A : Integer;
-      v_1 : Integer;
+      v_1 : Char_Index;
    begin
       --  (, line 51
       Z.Ket := Z.C;      --  [, line 52
@@ -359,7 +360,7 @@ package body Stemmer.Porter is
    end R_Step_1c;
 
    procedure R_Step_2 (Z : in out Context_Type; Result : out Boolean) is
-      C : Integer;
+      C : Result_Index;
       A : Integer;
    begin
       --  (, line 57
@@ -446,7 +447,7 @@ package body Stemmer.Porter is
    end R_Step_2;
 
    procedure R_Step_3 (Z : in out Context_Type; Result : out Boolean) is
-      C : Integer;
+      C : Result_Index;
       A : Integer;
    begin
       --  (, line 81
@@ -493,9 +494,9 @@ package body Stemmer.Porter is
    end R_Step_3;
 
    procedure R_Step_4 (Z : in out Context_Type; Result : out Boolean) is
-      C : Integer;
+      C : Result_Index;
       A : Integer;
-      v_1 : Integer;
+      v_1 : Char_Index;
    begin
       --  (, line 91
       Z.Ket := Z.C;      --  [, line 92
@@ -558,10 +559,10 @@ package body Stemmer.Porter is
    end R_Step_4;
 
    procedure R_Step_5a (Z : in out Context_Type; Result : out Boolean) is
-      C : Integer;
+      C : Result_Index;
       A : Integer;
-      v_1 : Integer;
-      v_2 : Integer;
+      v_1 : Char_Index;
+      v_2 : Char_Index;
    begin
       --  (, line 100
       Z.Ket := Z.C;      --  [, line 101
@@ -614,7 +615,7 @@ package body Stemmer.Porter is
    end R_Step_5a;
 
    procedure R_Step_5b (Z : in out Context_Type; Result : out Boolean) is
-      C : Integer;
+      C : Result_Index;
       A : Integer;
    begin
       --  (, line 106
@@ -649,24 +650,24 @@ package body Stemmer.Porter is
    end R_Step_5b;
 
    procedure Stem (Z : in out Context_Type; Result : out Boolean) is
-      C : Integer;
+      C : Result_Index;
       A : Integer;
-      v_1 : Integer;
-      v_2 : Integer;
-      v_3 : Integer;
-      v_4 : Integer;
-      v_5 : Integer;
-      v_6 : Integer;
-      v_7 : Integer;
-      v_8 : Integer;
-      v_9 : Integer;
-      v_10 : Integer;
-      v_11 : Integer;
-      v_12 : Integer;
-      v_13 : Integer;
-      v_14 : Integer;
-      v_15 : Integer;
-      v_16 : Integer;
+      v_1 : Char_Index;
+      v_2 : Char_Index;
+      v_3 : Char_Index;
+      v_4 : Char_Index;
+      v_5 : Char_Index;
+      v_6 : Char_Index;
+      v_7 : Char_Index;
+      v_8 : Char_Index;
+      v_9 : Char_Index;
+      v_10 : Char_Index;
+      v_11 : Char_Index;
+      v_12 : Char_Index;
+      v_13 : Char_Index;
+      v_14 : Char_Index;
+      v_15 : Char_Index;
+      v_16 : Char_Index;
    begin
       --  (, line 113
       --  unset Y_found, line 115
@@ -727,7 +728,7 @@ package body Stemmer.Porter is
                goto lab3;
             end if;
             --  goto, line 117
-            C := Skip_Utf8 (Z, 1);
+            C := Skip_Utf8 (Z);
             if C < 0 then
                goto lab3;
             end if;
@@ -868,7 +869,7 @@ package body Stemmer.Porter is
                goto lab13;
             end if;
             --  goto, line 137
-            C := Skip_Utf8 (Z, 1);
+            C := Skip_Utf8 (Z);
             if C < 0 then
                goto lab13;
             end if;

@@ -291,13 +291,13 @@ package body Stemmer.Spanish is
 
 
    procedure R_Mark_regions (Z : in out Context_Type; Result : out Boolean) is
-      C : Integer;
+      C : Result_Index;
       A : Integer;
-      v_1 : Integer;
-      v_2 : Integer;
-      v_3 : Integer;
-      v_4 : Integer;
-      v_5 : Integer;
+      v_1 : Char_Index;
+      v_2 : Char_Index;
+      v_3 : Char_Index;
+      v_4 : Char_Index;
+      v_5 : Char_Index;
    begin
       --  (, line 31
       Z.I_PV := Z.L;
@@ -378,7 +378,7 @@ package body Stemmer.Spanish is
          goto lab0;
       end if;
       --  next, line 40
-      C := Skip_Utf8 (Z, 1);
+      C := Skip_Utf8 (Z);
       if C < 0 then
          goto lab0;
       end if;
@@ -435,9 +435,9 @@ package body Stemmer.Spanish is
    end R_Mark_regions;
 
    procedure R_Postlude (Z : in out Context_Type; Result : out Boolean) is
-      C : Integer;
+      C : Result_Index;
       A : Integer;
-      v_1 : Integer;
+      v_1 : Char_Index;
    begin
       --  repeat, line 49
 
@@ -484,7 +484,7 @@ package body Stemmer.Spanish is
             when 6 =>
                --  (, line 57
                --  next, line 57
-               C := Skip_Utf8 (Z, 1);
+               C := Skip_Utf8 (Z);
                if C < 0 then
                   goto lab1;
                end if;
@@ -519,7 +519,7 @@ package body Stemmer.Spanish is
    end R_R2;
 
    procedure R_Attached_pronoun (Z : in out Context_Type; Result : out Boolean) is
-      C : Integer;
+      C : Result_Index;
       A : Integer;
    begin
       --  (, line 67
@@ -610,13 +610,13 @@ package body Stemmer.Spanish is
    end R_Attached_pronoun;
 
    procedure R_Standard_suffix (Z : in out Context_Type; Result : out Boolean) is
-      C : Integer;
+      C : Result_Index;
       A : Integer;
-      v_1 : Integer;
-      v_2 : Integer;
-      v_3 : Integer;
-      v_4 : Integer;
-      v_5 : Integer;
+      v_1 : Char_Index;
+      v_2 : Char_Index;
+      v_3 : Char_Index;
+      v_4 : Char_Index;
+      v_5 : Char_Index;
    begin
       --  (, line 86
       Z.Ket := Z.C;      --  [, line 87
@@ -894,7 +894,7 @@ package body Stemmer.Spanish is
    end R_Standard_suffix;
 
    procedure R_Y_verb_suffix (Z : in out Context_Type; Result : out Boolean) is
-      C : Integer;
+      C : Result_Index;
       A : Integer;
       v_2 : Integer;
    begin
@@ -932,11 +932,11 @@ package body Stemmer.Spanish is
    end R_Y_verb_suffix;
 
    procedure R_Verb_suffix (Z : in out Context_Type; Result : out Boolean) is
-      C : Integer;
+      C : Result_Index;
       A : Integer;
       v_2 : Integer;
-      v_3 : Integer;
-      v_4 : Integer;
+      v_3 : Char_Index;
+      v_4 : Char_Index;
    begin
       --  (, line 175
       if Z.C < Z.I_PV then
@@ -999,10 +999,10 @@ package body Stemmer.Spanish is
    end R_Verb_suffix;
 
    procedure R_Residual_suffix (Z : in out Context_Type; Result : out Boolean) is
-      C : Integer;
+      C : Result_Index;
       A : Integer;
-      v_1 : Integer;
-      v_2 : Integer;
+      v_1 : Char_Index;
+      v_2 : Char_Index;
    begin
       --  (, line 204
       Z.Ket := Z.C;      --  [, line 205
@@ -1079,13 +1079,13 @@ package body Stemmer.Spanish is
    end R_Residual_suffix;
 
    procedure Stem (Z : in out Context_Type; Result : out Boolean) is
-      C : Integer;
+      C : Result_Index;
       A : Integer;
-      v_2 : Integer;
-      v_3 : Integer;
-      v_4 : Integer;
-      v_5 : Integer;
-      v_6 : Integer;
+      v_2 : Char_Index;
+      v_3 : Char_Index;
+      v_4 : Char_Index;
+      v_5 : Char_Index;
+      v_6 : Char_Index;
    begin
       --  (, line 215
       --  do, line 216

@@ -678,9 +678,9 @@ package body Stemmer.Catalan is
 
 
    procedure R_Mark_regions (Z : in out Context_Type; Result : out Boolean) is
-      C : Integer;
+      C : Result_Index;
       A : Integer;
-      v_1 : Integer;
+      v_1 : Char_Index;
    begin
       --  (, line 36
       Z.I_P1 := Z.L;
@@ -728,9 +728,9 @@ package body Stemmer.Catalan is
    end R_Mark_regions;
 
    procedure R_Cleaning (Z : in out Context_Type; Result : out Boolean) is
-      C : Integer;
+      C : Result_Index;
       A : Integer;
-      v_1 : Integer;
+      v_1 : Char_Index;
    begin
       --  repeat, line 47
 
@@ -781,7 +781,7 @@ package body Stemmer.Catalan is
             when 7 =>
                --  (, line 61
                --  next, line 61
-               C := Skip_Utf8 (Z, 1);
+               C := Skip_Utf8 (Z);
                if C < 0 then
                   goto lab1;
                end if;
@@ -811,7 +811,7 @@ package body Stemmer.Catalan is
    end R_R2;
 
    procedure R_Attached_pronoun (Z : in out Context_Type; Result : out Boolean) is
-      C : Integer;
+      C : Result_Index;
       A : Integer;
    begin
       --  (, line 70
@@ -844,7 +844,7 @@ package body Stemmer.Catalan is
    end R_Attached_pronoun;
 
    procedure R_Standard_suffix (Z : in out Context_Type; Result : out Boolean) is
-      C : Integer;
+      C : Result_Index;
       A : Integer;
    begin
       --  (, line 85
@@ -918,7 +918,7 @@ package body Stemmer.Catalan is
    end R_Standard_suffix;
 
    procedure R_Verb_suffix (Z : in out Context_Type; Result : out Boolean) is
-      C : Integer;
+      C : Result_Index;
       A : Integer;
    begin
       --  (, line 122
@@ -962,7 +962,7 @@ package body Stemmer.Catalan is
    end R_Verb_suffix;
 
    procedure R_Residual_suffix (Z : in out Context_Type; Result : out Boolean) is
-      C : Integer;
+      C : Result_Index;
       A : Integer;
    begin
       --  (, line 174
@@ -1006,13 +1006,13 @@ package body Stemmer.Catalan is
    end R_Residual_suffix;
 
    procedure Stem (Z : in out Context_Type; Result : out Boolean) is
-      C : Integer;
+      C : Result_Index;
       A : Integer;
-      v_2 : Integer;
-      v_3 : Integer;
-      v_4 : Integer;
-      v_5 : Integer;
-      v_6 : Integer;
+      v_2 : Char_Index;
+      v_3 : Char_Index;
+      v_4 : Char_Index;
+      v_5 : Char_Index;
+      v_6 : Char_Index;
    begin
       --  (, line 185
       --  do, line 186

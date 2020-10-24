@@ -290,10 +290,10 @@ package body Stemmer.Hungarian is
 
 
    procedure R_Mark_regions (Z : in out Context_Type; Result : out Boolean) is
-      C : Integer;
+      C : Result_Index;
       A : Integer;
-      v_1 : Integer;
-      v_2 : Integer;
+      v_1 : Char_Index;
+      v_2 : Char_Index;
    begin
       --  (, line 44
       Z.I_P1 := Z.L;
@@ -324,7 +324,7 @@ package body Stemmer.Hungarian is
       <<lab4>>
       Z.C := v_2;
       --  next, line 49
-      C := Skip_Utf8 (Z, 1);
+      C := Skip_Utf8 (Z);
       if C < 0 then
          goto lab1;
       end if;
@@ -365,7 +365,7 @@ package body Stemmer.Hungarian is
    end R_R1;
 
    procedure R_V_ending (Z : in out Context_Type; Result : out Boolean) is
-      C : Integer;
+      C : Result_Index;
       A : Integer;
    begin
       --  (, line 60
@@ -408,9 +408,9 @@ package body Stemmer.Hungarian is
    end R_V_ending;
 
    procedure R_Double (Z : in out Context_Type; Result : out Boolean) is
-      C : Integer;
+      C : Result_Index;
       A : Integer;
-      v_1 : Integer;
+      v_1 : Char_Index;
    begin
       --  (, line 67
       --  test, line 68
@@ -432,12 +432,13 @@ package body Stemmer.Hungarian is
    end R_Double;
 
    procedure R_Undouble (Z : in out Context_Type; Result : out Boolean) is
-      C : Integer;
+      C : Result_Index;
       A : Integer;
    begin
       --  (, line 72
       --  next, line 73
-      C := Skip_Utf8_Backward (Z, 1);      if C < 0 then
+      C := Skip_Utf8_Backward (Z);
+      if C < 0 then
          Result := False;
          return;
       end if;
@@ -460,7 +461,7 @@ package body Stemmer.Hungarian is
    end R_Undouble;
 
    procedure R_Instrum (Z : in out Context_Type; Result : out Boolean) is
-      C : Integer;
+      C : Result_Index;
       A : Integer;
    begin
       --  (, line 76
@@ -505,7 +506,7 @@ package body Stemmer.Hungarian is
    end R_Instrum;
 
    procedure R_Case (Z : in out Context_Type; Result : out Boolean) is
-      C : Integer;
+      C : Result_Index;
       A : Integer;
    begin
       --  (, line 86
@@ -538,7 +539,7 @@ package body Stemmer.Hungarian is
    end R_Case;
 
    procedure R_Case_special (Z : in out Context_Type; Result : out Boolean) is
-      C : Integer;
+      C : Result_Index;
       A : Integer;
    begin
       --  (, line 115
@@ -581,7 +582,7 @@ package body Stemmer.Hungarian is
    end R_Case_special;
 
    procedure R_Case_other (Z : in out Context_Type; Result : out Boolean) is
-      C : Integer;
+      C : Result_Index;
       A : Integer;
    begin
       --  (, line 123
@@ -628,7 +629,7 @@ package body Stemmer.Hungarian is
    end R_Case_other;
 
    procedure R_Factive (Z : in out Context_Type; Result : out Boolean) is
-      C : Integer;
+      C : Result_Index;
       A : Integer;
    begin
       --  (, line 132
@@ -673,7 +674,7 @@ package body Stemmer.Hungarian is
    end R_Factive;
 
    procedure R_Plural (Z : in out Context_Type; Result : out Boolean) is
-      C : Integer;
+      C : Result_Index;
       A : Integer;
    begin
       --  (, line 141
@@ -720,7 +721,7 @@ package body Stemmer.Hungarian is
    end R_Plural;
 
    procedure R_Owned (Z : in out Context_Type; Result : out Boolean) is
-      C : Integer;
+      C : Result_Index;
       A : Integer;
    begin
       --  (, line 153
@@ -767,7 +768,7 @@ package body Stemmer.Hungarian is
    end R_Owned;
 
    procedure R_Sing_owner (Z : in out Context_Type; Result : out Boolean) is
-      C : Integer;
+      C : Result_Index;
       A : Integer;
    begin
       --  (, line 167
@@ -809,7 +810,7 @@ package body Stemmer.Hungarian is
    end R_Sing_owner;
 
    procedure R_Plur_owner (Z : in out Context_Type; Result : out Boolean) is
-      C : Integer;
+      C : Result_Index;
       A : Integer;
    begin
       --  (, line 192
@@ -856,18 +857,18 @@ package body Stemmer.Hungarian is
    end R_Plur_owner;
 
    procedure Stem (Z : in out Context_Type; Result : out Boolean) is
-      C : Integer;
+      C : Result_Index;
       A : Integer;
-      v_1 : Integer;
-      v_2 : Integer;
-      v_3 : Integer;
-      v_4 : Integer;
-      v_5 : Integer;
-      v_6 : Integer;
-      v_7 : Integer;
-      v_8 : Integer;
-      v_9 : Integer;
-      v_10 : Integer;
+      v_1 : Char_Index;
+      v_2 : Char_Index;
+      v_3 : Char_Index;
+      v_4 : Char_Index;
+      v_5 : Char_Index;
+      v_6 : Char_Index;
+      v_7 : Char_Index;
+      v_8 : Char_Index;
+      v_9 : Char_Index;
+      v_10 : Char_Index;
    begin
       --  (, line 228
       --  do, line 229
