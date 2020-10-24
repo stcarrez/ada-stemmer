@@ -18,13 +18,19 @@ ifeq ($(HAVE_ADA_UTIL),yes)
 endif
 
 # Build and run the unit tests
-test:	build
+test:	build regtests/files
 ifeq ($(HAVE_ADA_UTIL),yes)
 	bin/stemmer_harness -xml stemmer-aunit.xml
 else
 	@echo "You must build with Ada Utility Library to run the unit tests."
 	@exit 1
 endif
+
+regtests/files:
+	cd regtests && tar xf files.tar.gz
+
+clean::
+	rm -rf regtests/files
 
 build::
 	$(GNATMAKE) $(GPRFLAGS) -p -Psamples $(MAKE_ARGS)
