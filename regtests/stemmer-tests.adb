@@ -86,6 +86,8 @@ package body Stemmer.Tests is
                        Test_Stem_Portuguese_Reference_File'Access);
       Caller.Add_Test (Suite, "Test Stemmer.Stem (Romanian, Ref File)",
                        Test_Stem_Romanian_Reference_File'Access);
+      Caller.Add_Test (Suite, "Test Stemmer.Stem (Porter, Ref File)",
+                       Test_Stem_Porter_Reference_File'Access);
    end Add_Tests;
 
    procedure Verify (T : in out Test;
@@ -331,5 +333,11 @@ package body Stemmer.Tests is
    begin
       Verify (T, L_ROMANIAN, "regtests/files/ro-test.txt");
    end Test_Stem_Romanian_Reference_File;
+
+   --  Stem on English Porter words using the reference file.
+   procedure Test_Stem_Porter_Reference_File (T : in out Test) is
+   begin
+      Verify (T, L_PORTER, "regtests/files/en-porter-test.txt");
+   end Test_Stem_Porter_Reference_File;
 
 end Stemmer.Tests;
