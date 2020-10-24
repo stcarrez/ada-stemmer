@@ -94,6 +94,8 @@ package body Stemmer.Tests is
                        Test_Stem_Turkish_Reference_File'Access);
       Caller.Add_Test (Suite, "Test Stemmer.Stem (Lithuanian, Ref File)",
                        Test_Stem_Lithuanian_Reference_File'Access);
+      Caller.Add_Test (Suite, "Test Stemmer.Stem (Arabic, Ref File)",
+                       Test_Stem_Arabic_Reference_File'Access);
    end Add_Tests;
 
    procedure Verify (T : in out Test;
@@ -363,5 +365,11 @@ package body Stemmer.Tests is
    begin
       Verify (T, L_LITHUANIAN, "regtests/files/lt-test.txt");
    end Test_Stem_Lithuanian_Reference_File;
+
+   --  Stem on Arabic words using the reference file.
+   procedure Test_Stem_Arabic_Reference_File (T : in out Test) is
+   begin
+      Verify (T, L_ARABIC, "regtests/files/ar-test.txt");
+   end Test_Stem_Arabic_Reference_File;
 
 end Stemmer.Tests;
