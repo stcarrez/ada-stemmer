@@ -70,6 +70,8 @@ package body Stemmer.Tests is
                        Test_Stem_Basque_Reference_File'Access);
       Caller.Add_Test (Suite, "Test Stemmer.Stem (Finnish, Ref File)",
                        Test_Stem_Finnish_Reference_File'Access);
+      Caller.Add_Test (Suite, "Test Stemmer.Stem (Hindi, Ref File)",
+                       Test_Stem_Hindi_Reference_File'Access);
    end Add_Tests;
 
    procedure Verify (T : in out Test;
@@ -267,5 +269,11 @@ package body Stemmer.Tests is
    begin
       Verify (T, L_FINNISH, "regtests/files/fi-test.txt");
    end Test_Stem_Finnish_Reference_File;
+
+   --  Stem on Hindi words using the reference file.
+   procedure Test_Stem_Hindi_Reference_File (T : in out Test) is
+   begin
+      Verify (T, L_HINDI, "regtests/files/hi-test.txt");
+   end Test_Stem_Hindi_Reference_File;
 
 end Stemmer.Tests;
