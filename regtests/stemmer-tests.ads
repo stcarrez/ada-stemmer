@@ -93,4 +93,7 @@ package Stemmer.Tests is
    --  Stem on Catalan word using the reference file.
    procedure Test_Stem_Catalan_Reference_File (T : in out Test);
 
+   --  Stem on Finnish word using the reference file.
+   procedure Test_Stem_Finnish_Reference_File (T : in out Test);
+
 end Stemmer.Tests;
