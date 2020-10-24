@@ -132,4 +132,7 @@ package Stemmer.Tests is
    --  Stem on Lithuanian word using the reference file.
    procedure Test_Stem_Lithuanian_Reference_File (T : in out Test);
 
+   --  Stem on Arabic word using the reference file.
+   procedure Test_Stem_Arabic_Reference_File (T : in out Test);
+
 end Stemmer.Tests;
