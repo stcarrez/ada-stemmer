@@ -37,22 +37,25 @@ Example of stemming:
 # Build
 
 Build with the following commands:
-```
-   make
+
+```sh
+make
 ```
 
 ## Unit test
 
 To build the unit test, you will need the [Ada Utility Library](https://github.com/stcarrez/ada-util).
 If that library is not installed, you can use the following commands:
-```
-   git clone https://github.com/stcarrez/ada-util.git
-   make build test HAVE_ADA_UTIL=yes ADA_PROJECT_PATH=./ada-util/.alire:./ada-util:./ada-util/.alire/unit
+
+```sh
+git clone https://github.com/stcarrez/ada-util.git
+make build test HAVE_ADA_UTIL=yes ADA_PROJECT_PATH=./ada-util/.alire:./ada-util:./ada-util/.alire/unit
 ```
 
 And unit tests are executed with:
-```
-   make test
+
+```sh
+make test
 ```
 
 The unit tests contains several reference files in `regtests/files` that come from the
@@ -61,8 +64,9 @@ The unit tests contains several reference files in `regtests/files` that come fr
 # Examples
 
 The samples can be built using:
-```
-   gnatmake -Psamples
+
+```sh
+gnatmake -Psamples
 ```
 
 You will get two programs:
@@ -72,13 +76,13 @@ You will get two programs:
 
 The first argument is the language.  For example:
 
-```
+```sh
 bin/stemargs french chienne
 ```
 
 or:
 
-```
+```sh
 bin/stemwords english LICENSE.txt
 ```
 
@@ -89,7 +93,7 @@ The Ada Stemmer library does not split words.  You have to give them one word at
 to stem and it returns either the word itself or its stem.  The `Stemmer.Factory` is
 the multi-language entry point.  The stemmer algorithm is created for each call.
 
-```
+```ada
 with Stemmer.Factory;
 
   Ada.Text_IO.Put_Line (Stem (L_FRENCH, "chienne"));
@@ -98,7 +102,7 @@ with Stemmer.Factory;
 It is possible to instantiate a specific stemmer algorithm and then use it to stem
 words.
 
-```
+```ada
 with Stemmer.English;
 
   Ctx : Stemmer.English.Context_Type;
