@@ -90,6 +90,8 @@ package body Stemmer.Tests is
                        Test_Stem_Porter_Reference_File'Access);
       Caller.Add_Test (Suite, "Test Stemmer.Stem (Tamil, Ref File)",
                        Test_Stem_Tamil_Reference_File'Access);
+      Caller.Add_Test (Suite, "Test Stemmer.Stem (Turkish, Ref File)",
+                       Test_Stem_Turkish_Reference_File'Access);
    end Add_Tests;
 
    procedure Verify (T : in out Test;
@@ -347,5 +349,11 @@ package body Stemmer.Tests is
    begin
       Verify (T, L_TAMIL, "regtests/files/ta-test.txt");
    end Test_Stem_Tamil_Reference_File;
+
+   --  Stem on Turkish words using the reference file.
+   procedure Test_Stem_Turkish_Reference_File (T : in out Test) is
+   begin
+      Verify (T, L_TURKISH, "regtests/files/tr-test.txt");
+   end Test_Stem_Turkish_Reference_File;
 
 end Stemmer.Tests;
