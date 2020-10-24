@@ -14,7 +14,9 @@ The [Porter Stemmer](https://tartarus.org/martin/PorterStemmer/) algorithm is sp
 and will not work for French, Greek or Russian.
 
 The Ada Stemmer Library integrates stemming algorithms for:
-English, Danish, Dutch, French, German, Greek, Italian, Serbian, Spanish, Swedish, Russian.
+Arabic, Basque, Catalan, Danish, Dutch, English, Finnish, French, German, Greek,
+Hindi, Hungarian, Indonesian, Irish, Italian, Lithuanian, Serbian, Nepali, Norwegian,
+Portuguese, Romanian, Russian, Serbian, Spanish, Swedish, Tamil, Turkish.
 
 Example of stemming:
 
@@ -29,6 +31,12 @@ Example of stemming:
 |Russian  | ячменный      | ячмен      |
 |Russian  | адом          | ад         |
 
+
+## Version 1.1.0 - Oct 2020
+
+* Add support Arabic, Basque, Catalan, Finnish, Hindi, Hungarian, Indonesian,
+  Irish, Lithuanian, Nepali, Norwegian, Porter, Portuguese, Romanian,
+  Tamil, Turkish
 
 ## Version 1.0.0 - May 2020
 
