@@ -6,7 +6,7 @@ authors = ["Stephane.Carrez@gmail.com"]
 maintainers = ["Stephane.Carrez@gmail.com"]
 maintainers-logins = ["stcarrez"]
 project-files = ["stemmer.gpr"]
-tags = ["words", "stemmer", "natural-language"]
+tags = ["words", "stemmer"]
 website = "https://gitlab.com/stcarrez/ada-stemmer"
 long-description = """
 
