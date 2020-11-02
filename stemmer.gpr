@@ -2,7 +2,7 @@ with "stemmer_config";
 
 library project Stemmer is
 
-   Version := "0.1.0";
+   Version := "1.1.0";
    Library_Dir := "lib";
    Library_Type : Stemmer_Config.Library_Type_Type := external ("STEMMER_LIBRARY_TYPE", "static");
 
