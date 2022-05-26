@@ -32,7 +32,7 @@ Example of stemming:
 |Russian  | адом          | ад         |
 
 
-## Version 1.1.0 - May 2022
+## Version 1.2.0 - May 2022
 
 * Update to use Snowball 2.2 (the Ada code generator has been integrated in Snowball 2.2!)
 * Improvement to help in running the tests
