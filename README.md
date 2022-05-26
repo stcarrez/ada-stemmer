@@ -32,6 +32,11 @@ Example of stemming:
 |Russian  | адом          | ад         |
 
 
+## Version 1.1.0 - May 2022
+
+* Update to use Snowball 2.2 (the Ada code generator has been integrated in Snowball 2.2!)
+* Improvement to help in running the tests
+
 ## Version 1.1.0 - Oct 2020
 
 * Add support Arabic, Basque, Catalan, Finnish, Hindi, Hungarian, Indonesian,
@@ -53,10 +58,10 @@ make
 ## Unit test
 
 To build the unit test, you will need the [Ada Utility Library](https://github.com/stcarrez/ada-util).
-If that library is not installed, you can use the following commands:
+The `make test` target will clone the git repository locally and it will configure the GNAT project
+accordingly to use and build the unit tests.
 
 ```sh
-git clone https://github.com/stcarrez/ada-util.git
 make build test HAVE_ADA_UTIL=yes ADA_PROJECT_PATH=./ada-util/.alire:./ada-util:./ada-util/.alire/unit
 ```
 
