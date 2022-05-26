@@ -4,4 +4,12 @@
 *.ali
 *.o
 stemmer.cov
-
+regtests/files
+regtests/results
+alire
+obj
+bin
+lib
+stemmer-aunit.xml
+stemmer-tests.xml
+cover/
