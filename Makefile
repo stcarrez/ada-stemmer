@@ -12,13 +12,18 @@ SNOWBALL=./snowball/snowball
 include Makefile.defaults
 
 # Build executables for all mains defined by the project.
-build-test::	setup
+test:	build regtests/files
+	test -d ada-util || git clone https://github.com/stcarrez/ada-util.git
+	test -d ada-util && cd ada-util && git pull
+	$(MAKE) build run-test HAVE_ADA_UTIL=yes ADA_PROJECT_PATH=./ada-util/.alire:./ada-util:./ada-util/.alire/unit
+
+build-test::
 ifeq ($(HAVE_ADA_UTIL),yes)
 	$(GNATMAKE) $(GPRFLAGS) -p -P$(NAME)_tests $(MAKE_ARGS)
 endif
 
 # Build and run the unit tests
-test:	build regtests/files
+run-test:	build regtests/files
 ifeq ($(HAVE_ADA_UTIL),yes)
 	bin/stemmer_harness -xml stemmer-aunit.xml
 else
