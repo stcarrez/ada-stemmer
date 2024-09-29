@@ -1,0 +1,19 @@
+description = "Examples for Ada Stemmer Library"
+tags = ["words", "stemmer"]
+website = "https://gitlab.com/stcarrez/ada-stemmer"
+name = "stammer_samples"
+version = "1.2.0"
+licenses = "Apache-2.0"
+authors = ["Stephane.Carrez@gmail.com"]
+maintainers = ["Stephane.Carrez@gmail.com"]
+maintainers-logins = ["stcarrez"]
+project-files = ["samples.gpr"]
+
+[[depends-on]]
+stemmer = "*"
+
+[configuration]
+disabled = true
+
+[[pins]]
+stemmer = { path = '..' }
