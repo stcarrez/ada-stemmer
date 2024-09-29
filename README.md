@@ -1,8 +1,8 @@
 # Ada Stemmer Library
 
-[![Build Status](https://img.shields.io/jenkins/s/https/jenkins.vacs.fr/Bionic-Ada-Stemmer.svg)](https://jenkins.vacs.fr/job/Bionic-Ada-Stemmer/)
-[![Test Status](https://img.shields.io/jenkins/t/https/jenkins.vacs.fr/Bionic-Ada-Stemmer.svg)](https://jenkins.vacs.fr/job/Bionic-Ada-Stemmer/)
-[![codecov](https://codecov.io/gh/stcarrez/ada-stemmer/branch/master/graph/badge.svg)](https://codecov.io/gh/stcarrez/ada-stemmer)
+[![Build Status](https://img.shields.io/endpoint?url=https://porion.vacs.fr/porion/api/v1/projects/ada-stemmer/badges/build.json)](https://porion.vacs.fr/porion/projects/view/ada-stemmer/summary)
+[![Test Status](https://img.shields.io/endpoint?url=https://porion.vacs.fr/porion/api/v1/projects/ada-stemmer/badges/tests.json)](https://porion.vacs.fr/porion/projects/view/ada-stemmer/xunits)
+[![Coverage](https://img.shields.io/endpoint?url=https://porion.vacs.fr/porion/api/v1/projects/ada-stemmer/badges/coverage.json)](https://porion.vacs.fr/porion/projects/view/ada-stemmer/summary)
 [![License](https://img.shields.io/badge/license-APACHE2-blue.svg)](LICENSE)
 
 The Ada Stemmer Library is a [stemming](https://en.wikipedia.org/wiki/Stemming) processor for several
@@ -31,6 +31,10 @@ Example of stemming:
 |Russian  | ячменный      | ячмен      |
 |Russian  | адом          | ад         |
 
+
+## Version 1.2.1 - Under development
+
+* Update to build with Alire
 
 ## Version 1.2.0 - May 2022
 
