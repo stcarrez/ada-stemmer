@@ -1,4 +1,10 @@
 NAME=stemmer
+VERSION=1.2.0
+
+DIST_DIR=ada-stemmer-$(VERSION)
+DIST_FILE=ada-stemmer-$(VERSION).tar.gz
+
+MAKE_ARGS += -XSTEMMER_BUILD=$(BUILD)
 
 -include Makefile.conf
 
@@ -12,24 +18,14 @@ SNOWBALL=./snowball/snowball
 include Makefile.defaults
 
 # Build executables for all mains defined by the project.
-test:	build regtests/files
-	test -d ada-util || git clone https://github.com/stcarrez/ada-util.git
-	test -d ada-util && cd ada-util && git pull
-	$(MAKE) build run-test HAVE_ADA_UTIL=yes ADA_PROJECT_PATH=./ada-util/.alire:./ada-util:./ada-util/.alire/unit
+test:	build-test regtests/files run-test
 
 build-test::
-ifeq ($(HAVE_ADA_UTIL),yes)
-	$(GNATMAKE) $(GPRFLAGS) -p -P$(NAME)_tests $(MAKE_ARGS)
-endif
+	cd regtests && $(BUILD_COMMAND) $(GPRFLAGS) $(MAKE_ARGS)
 
 # Build and run the unit tests
 run-test:	build regtests/files
-ifeq ($(HAVE_ADA_UTIL),yes)
 	bin/stemmer_harness -xml stemmer-aunit.xml
-else
-	@echo "You must build with Ada Utility Library to run the unit tests."
-	@exit 1
-endif
 
 regtests/files:
 	cd regtests && tar xf files.tar.gz
@@ -38,7 +34,7 @@ clean::
 	rm -rf regtests/files
 
 build::
-	$(GNATMAKE) $(GPRFLAGS) -p -Psamples $(MAKE_ARGS)
+	cd samples && $(BUILD_COMMAND) $(GPRFLAGS) $(MAKE_ARGS)
 
 install-samples:
 	$(MKDIR) -p $(samplesdir)/samples
@@ -46,7 +42,7 @@ install-samples:
 	cp -p $(srcdir)/samples.gpr $(samplesdir)
 	cp -p $(srcdir)/stemmer_config.gpr $(samplesdir)
 
-$(eval $(call ada_library,$(NAME)))
+$(eval $(call ada_library,$(NAME),.))
 
 # To build the Snowball stemmer, make sure to build snowball before
 generate: ./snowball/snowball
